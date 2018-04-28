@@ -1,18 +1,15 @@
-package io.arkitekt;
+package io.arkitekt.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class AppManager {
   public WebDriver driver;
 
-  @BeforeMethod
-  public void setUp() throws Exception {
+  public void init() {
     driver = new FirefoxDriver();
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     driver.get("http://staging.arkitekt.io./");
@@ -40,8 +37,7 @@ public class TestBase {
     driver.findElement(By.xpath("//div[@id='content']/div/div/a")).click();
   }
 
-  @AfterMethod
-  public void tearDown() throws Exception {
+  public void stop() {
     driver.quit();
   }
 
