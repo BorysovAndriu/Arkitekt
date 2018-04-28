@@ -3,30 +3,30 @@ package io.arkitekt.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NavHelper {
+public class NavHelper extends HelperBase{
   private WebDriver driver;
 
   public NavHelper(WebDriver driver) {
-    this.driver = driver;
+    super(driver);
   }
 
   public void gotoSettingSiteGeneraInfo() {
-    driver.findElement(By.linkText("General Info")).click();
+    click(By.linkText("General Info"));
   }
 
   public void gotoSettingSite() {
-    driver.findElement(By.linkText("Site")).click();
+    click(By.linkText("Site"));
   }
 
   public void gotoSetting() {
-    driver.findElement(By.linkText("Settings")).click();
+    click(By.linkText("Settings"));
   }
 
   public void initListSite() {
-    driver.findElement(By.id("choose_template")).click();
+    click(By.id("choose_template"));
   }
 
   public void logo() {
-    driver.findElement(By.xpath("//div[@id='content']/div/div/a")).click();
+    click(By.xpath("//div[@id='content']/div/div/a"));
   }
 }
