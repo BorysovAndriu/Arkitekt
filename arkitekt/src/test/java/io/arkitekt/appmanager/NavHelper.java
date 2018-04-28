@@ -29,4 +29,16 @@ public class NavHelper extends HelperBase{
   public void logo() {
     click(By.xpath("//div[@id='content']/div/div/a"));
   }
+
+  public void gotoGetStart() {
+    click(By.linkText("Get started"));
+  }
+
+  public void gotoMarathon(){
+    click(By.xpath("//img[@alt='Marathon']"));
+  }
+
+  public void gotoLivePreview() {
+    click(By.linkText("Live preview"));
+  }
 }

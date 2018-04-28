@@ -9,6 +9,7 @@ public class SiteCreate extends TestBase {
     app.getLoginHelper().login("andriu.test.post.1@gmail.com","1111111111" );
     app.getNavHelper().initListSite();
     app.getSiteEditHelper().createSite();
+    app.getNavHelper().gotoMarathon();
   }
 
 }

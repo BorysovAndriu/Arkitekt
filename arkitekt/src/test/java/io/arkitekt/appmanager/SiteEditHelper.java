@@ -13,7 +13,6 @@ public class SiteEditHelper extends HelperBase{
 
   public void createSite() {
     click(By.linkText("Create New Site"));
-    click(By.xpath("//img[@alt='Marathon']"));
   }
 
   public void deleteSite() {
