@@ -6,9 +6,9 @@ public class SignIn extends TestBase {
 
   @Test
   public void testSignIn() throws Exception {
-    app.login("andriu.test.post.1@gmail.com", "1111111111");
-    app.initListSite();
-    app.logout();
-    app.logo();
+    app.getLoginHelper().login("andriu.test.post.1@gmail.com", "1111111111");
+    app.getNavHelper().initListSite();
+    app.getLoginHelper().logout();
+    app.getNavHelper().logo();
   }
 }

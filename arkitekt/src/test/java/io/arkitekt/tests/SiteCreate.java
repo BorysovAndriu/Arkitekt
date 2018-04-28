@@ -6,9 +6,9 @@ public class SiteCreate extends TestBase {
 
   @Test
   public void testCreateSite() throws Exception {
-    app.login("andriu.test.post.1@gmail.com","1111111111" );
-    app.initListSite();
-    app.createSite();
+    app.getLoginHelper().login("andriu.test.post.1@gmail.com","1111111111" );
+    app.getNavHelper().initListSite();
+    app.getSiteEditHelper().createSite();
   }
 
 }
