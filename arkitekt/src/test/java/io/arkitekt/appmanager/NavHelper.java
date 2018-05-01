@@ -36,6 +36,7 @@ public class NavHelper extends HelperBase{
 
   public void gotoMarathon(){
     click(By.xpath("//img[@alt='Marathon']"));
+    click(By.name("commit"));
   }
 
   public void gotoLivePreview() {

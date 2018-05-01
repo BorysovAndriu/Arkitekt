@@ -10,6 +10,7 @@ public class SiteCreate extends TestBase {
     app.getNavHelper().initListSite();
     app.getSiteEditHelper().createSite();
     app.getNavHelper().gotoMarathon();
+
   }
 
 }
