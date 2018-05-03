@@ -15,7 +15,12 @@ public class SiteEditHelper extends HelperBase{
     click(By.linkText("Create New Site"));
   }
 
+
   public void deleteSite() {
     click(By.xpath("//div[@id='settings_site_general']/div/div[2]/div[5]/button"));
+  }
+
+  public int getSiteCount() {
+    return driver.findElements(By.xpath("//div[@id='sites_list']/div/ul/li")).size();
   }
 }

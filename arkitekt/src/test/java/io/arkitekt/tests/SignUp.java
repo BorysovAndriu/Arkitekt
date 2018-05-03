@@ -9,8 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 public class SignUp extends TestBase {
 
-
-  @Test
+  @Test(enabled = false)
   public void testSignUp() {
     app.getNavHelper().click(By.linkText("Sign in"));
     app.getNavHelper().click(By.linkText("Sign up"));
