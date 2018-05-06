@@ -29,20 +29,14 @@ public class HelperBase {
   }
 
   public void click(By locator) {
-    WebDriverWait wait = new WebDriverWait(driver, 150);
+    WebDriverWait wait = new WebDriverWait(driver, 120);
     WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     driver.findElement(locator).click();
   }
 
-  public void waitForButtonSeconds (By locator, int seconds) {
-    WebDriverWait wait = new WebDriverWait(driver, seconds);
-    WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-
-  }
-
-  public void gotoTab() throws InterruptedException {
+   public void gotoTab() throws InterruptedException {
     String firstTab = driver.getWindowHandle();
-    click(By.linkText("Live preview"));
+    click(By.xpath("//a[@class='simple-btn ripple-btn']"));
 
     Thread.sleep(5000);
 
@@ -53,10 +47,15 @@ public class HelperBase {
     assertEquals("Marathon", driver.getTitle());
   }
 
-  public void gotoFrame(By locator){
+  public void gotoFrame(By locator) throws InterruptedException {
     WebDriverWait wait = new WebDriverWait(driver, 100);
-    WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     driver.switchTo().frame(driver.findElement(locator));
+
+  }
+
+  public void stopFrame(){
+    driver.switchTo().defaultContent();
   }
 
 

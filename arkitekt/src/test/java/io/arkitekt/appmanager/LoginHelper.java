@@ -3,8 +3,6 @@ package io.arkitekt.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Date;
-
 public class LoginHelper extends HelperBase {
 
   public LoginHelper(WebDriver driver) {
@@ -12,7 +10,7 @@ public class LoginHelper extends HelperBase {
   }
 
   public void login(String email, String password) {
-    click(By.linkText("Sign in"));
+    click(By.xpath("//a[@class='btn btn-link']"));
     type(email, By.id("user_email"));
     type(password, By.id("user_password"));
     click(By.name("commit"));

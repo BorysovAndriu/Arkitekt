@@ -23,7 +23,7 @@ public class NavHelper extends HelperBase{
   }
 
   public void initListSite() {
-    click(By.xpath("//a[@id='choose_template']/span"));
+    click(By.xpath("//a[@id='choose_template']"));
   }
 
   public void logo() {
@@ -31,15 +31,11 @@ public class NavHelper extends HelperBase{
   }
 
   public void gotoGetStart() {
-    click(By.linkText("Get started"));
+    click(By.xpath("//*[@id=\"content\"]/section[1]/div[4]/a"));
   }
 
   public void gotoMarathon(){
     click(By.xpath("//img[@alt='Marathon']"));
   }
 
-
-  public void gotoLivePreview() {
-    click(By.linkText("Live preview"));
-  }
 }

@@ -17,7 +17,7 @@ public class SiteEditHelper extends HelperBase{
 
 
   public void deleteSite() {
-    click(By.xpath("//div[@id='settings_site_general']/div/div[2]/div[5]/button"));
+    click(By.xpath("//div[@id=\"settings_site_general\"]//button[@class='btn btn-default btn-raised btn-gray waves-effect waves-button']"));
   }
 
   public int getSiteCount() {

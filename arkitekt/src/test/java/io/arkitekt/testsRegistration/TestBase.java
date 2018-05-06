@@ -11,7 +11,7 @@ import java.util.Date;
 public class TestBase {
 
   Date date = new Date();
-  SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy");
+  SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd");
 
   protected static final AppManager app = new AppManager(BrowserType.FIREFOX);
 
