@@ -1,16 +1,13 @@
-package io.arkitekt.tests;
+package io.arkitekt.testsRegistration;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
 public class SignUp extends TestBase {
 
   @Test(enabled = false)
   public void testSignUp() {
+    app.getNavHelper().openSite("http://staging.arkitekt.io/");
     app.getNavHelper().click(By.linkText("Sign in"));
     app.getNavHelper().click(By.linkText("Sign up"));
     app.getNavHelper().gotoMarathon();

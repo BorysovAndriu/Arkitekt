@@ -1,4 +1,4 @@
-package io.arkitekt.tests;
+package io.arkitekt.testsRegistration;
 
 import io.arkitekt.appmanager.AppManager;
 import org.openqa.selenium.remote.BrowserType;
@@ -17,7 +17,7 @@ public class TestBase {
 
   @BeforeSuite
   public void setUp() throws Exception {
-    app.init("http://staging.arkitekt.io./");
+    app.init();
   }
 
   @AfterSuite

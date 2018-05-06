@@ -23,7 +23,7 @@ public class AppManager {
     this.browser = browser;
   }
 
-  public void init(String url) {
+  public void init() {
     if (browser.equals(BrowserType.FIREFOX)) {
       driver = new FirefoxDriver();
     } else if(browser.equals(BrowserType.CHROME)) {
@@ -37,7 +37,6 @@ public class AppManager {
     loginHelper = new LoginHelper(driver);
     navHelper = new NavHelper(driver);
     siteEditHelper = new SiteEditHelper(driver);
-    driver.get(url);
   }
 
   public void stop() {

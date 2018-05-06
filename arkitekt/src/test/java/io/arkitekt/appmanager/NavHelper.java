@@ -36,7 +36,6 @@ public class NavHelper extends HelperBase{
 
   public void gotoMarathon(){
     click(By.xpath("//img[@alt='Marathon']"));
-
   }
 
 
