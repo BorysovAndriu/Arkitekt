@@ -2,7 +2,9 @@ package io.arkitekt.testsRegistration;
 
 import io.arkitekt.appmanager.AppManager;
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +21,12 @@ public class TestBase {
   public void setUp() throws Exception {
     app.init();
   }
+
+  @BeforeClass
+  public void setUpp() throws Exception {
+    app.init();
+  }
+
 
   @AfterSuite
   public void tearDown() throws Exception {

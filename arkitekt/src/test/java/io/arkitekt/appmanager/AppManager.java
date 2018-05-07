@@ -12,9 +12,10 @@ public class AppManager {
 
   WebDriver driver;
 
-  private NavHelper navHelper;
+  private NavHelperLeftPanel navHelperLeftPanel;
   private LoginHelper loginHelper;
   private SiteEditHelper siteEditHelper;
+  private NavHelperBuilder navHelperBuilder;
   private String browser;
 
   public AppManager(String browser) {
@@ -33,8 +34,10 @@ public class AppManager {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
     loginHelper = new LoginHelper(driver);
-    navHelper = new NavHelper(driver);
+    navHelperLeftPanel = new NavHelperLeftPanel(driver);
     siteEditHelper = new SiteEditHelper(driver);
+    navHelperBuilder = new NavHelperBuilder(driver);
+
   }
 
   public void stop() {
@@ -45,12 +48,17 @@ public class AppManager {
     return loginHelper;
   }
 
-  public NavHelper getNavHelper() {
-    return navHelper;
+  public NavHelperLeftPanel getNavHelperLeftPanel() {
+    return navHelperLeftPanel;
   }
 
   public SiteEditHelper getSiteEditHelper() {
     return siteEditHelper;
   }
+
+  public NavHelperBuilder getNavHelperBuilder() {
+    return navHelperBuilder;
+  }
+
 }
 

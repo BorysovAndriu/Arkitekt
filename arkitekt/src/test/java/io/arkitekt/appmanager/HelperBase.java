@@ -34,30 +34,35 @@ public class HelperBase {
     driver.findElement(locator).click();
   }
 
-   public void gotoTab() throws InterruptedException {
+   public String gotoTab() throws InterruptedException {
     String firstTab = driver.getWindowHandle();
     click(By.xpath("//a[@class='simple-btn ripple-btn']"));
-
     Thread.sleep(5000);
-
     ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
-
     driver.switchTo().window(newTab.get(1));
-    Thread.sleep(10000);
-    assertEquals("Marathon", driver.getTitle());
+    return firstTab;
   }
 
   public void gotoFrame(By locator) throws InterruptedException {
     WebDriverWait wait = new WebDriverWait(driver, 100);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     driver.switchTo().frame(driver.findElement(locator));
-
   }
 
   public void stopFrame(){
     driver.switchTo().defaultContent();
   }
 
+  public void closeTab() throws InterruptedException {
+    driver.close();
+    Thread.sleep(5000);
+
+    }
+
+  public void checking(String text, By locator) throws InterruptedException {
+    Thread.sleep(10000);
+    assertEquals(text, locator);
+  }
 
   public boolean isElementPressent(By locator) {
     try {

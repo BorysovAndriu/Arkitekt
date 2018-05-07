@@ -8,12 +8,11 @@ public class Payment extends TestBase {
 
   @Test
   public void paymentWithoutBuilder () throws InterruptedException {
-    app.getNavHelper().openSite("http://staging.arkitekt.io/");
+    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
-    app.getNavHelper().click(By.xpath("//span[@class='subscription_toast']"));
-    app.getNavHelper().gotoFrame(By.cssSelector("#new_subscription_iframe"));
-    //app.getNavHelper().type("Andriu", By.xpath("//*[@id=\"payment-form\"]/div[2]/div[2]/label/input"));
-
-
+    app.getNavHelperLeftPanel().click(By.xpath("//span[@class='subscription_toast']"));
+    app.getNavHelperLeftPanel().gotoFrame(By.cssSelector("#new_subscription_iframe"));
+    app.getLoginHelper().checkout("Andriu","4242-4242-4242-4242","123","12", "19");
+    app.getNavHelperLeftPanel().stopFrame();
   }
 }

@@ -7,13 +7,13 @@ public class SiteCreate extends TestBase {
 
   @Test
   public void testCreateSite() throws Exception {
-    app.getNavHelper().openSite("http://staging.arkitekt.io/");
+    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-    app.getNavHelper().initListSite();
+    app.getNavHelperLeftPanel().initListSite();
     app.getSiteEditHelper().createSite();
-    app.getNavHelper().gotoMarathon();
-    app.getNavHelper().click(By.name("commit"));
-    app.getNavHelper().initListSite();
+    app.getNavHelperLeftPanel().gotoMarathon();
+    app.getNavHelperLeftPanel().click(By.name("commit"));
+    app.getNavHelperLeftPanel().initListSite();
   }
 
 }

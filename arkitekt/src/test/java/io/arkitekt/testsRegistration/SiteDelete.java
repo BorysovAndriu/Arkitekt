@@ -6,13 +6,13 @@ public class SiteDelete extends TestBase {
 
   @Test
   public void testDeleteSite() throws Exception {
-    app.getNavHelper().openSite("http://staging.arkitekt.io/");
+    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-    app.getNavHelper().gotoSetting();
-    app.getNavHelper().gotoSettingSite();
-    app.getNavHelper().gotoSettingSiteGeneraInfo();
+    app.getNavHelperLeftPanel().gotoSetting();
+    app.getNavHelperLeftPanel().gotoSettingSite();
+    app.getNavHelperLeftPanel().gotoSettingSiteGeneraInfo();
     app.getSiteEditHelper().deleteSite();
-    app.getNavHelper().initListSite();
+    app.getNavHelperLeftPanel().initListSite();
   }
 
 }

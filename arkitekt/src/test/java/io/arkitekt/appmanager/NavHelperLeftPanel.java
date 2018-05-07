@@ -3,23 +3,23 @@ package io.arkitekt.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NavHelper extends HelperBase{
+public class NavHelperLeftPanel extends HelperBase{
   private WebDriver driver;
 
-  public NavHelper(WebDriver driver) {
+  public NavHelperLeftPanel(WebDriver driver) {
     super(driver);
   }
 
   public void gotoSettingSiteGeneraInfo() {
-    click(By.linkText("General Info"));
+    click(By.xpath("//*[@id=\"settings_site\"]/div/div[2]/ul/li[1]/a"));
   }
 
   public void gotoSettingSite() {
-    click(By.linkText("Site"));
+    click(By.xpath("//div[2]/div[5]/div/div[2]/ul/li[2]/a"));
   }
 
   public void gotoSetting() {
-    click(By.linkText("Settings"));
+    click(By.xpath("//div[1]/div/div/div[2]/ul/li[5]/a"));
   }
 
   public void initListSite() {

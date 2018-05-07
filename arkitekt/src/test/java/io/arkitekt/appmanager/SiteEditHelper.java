@@ -12,12 +12,13 @@ public class SiteEditHelper extends HelperBase{
   }
 
   public void createSite() {
-    click(By.linkText("Create New Site"));
+    click(By.xpath("//*[@id=\"sites_list\"]/div/ul/li[1]/div/a"));
   }
 
 
-  public void deleteSite() {
-    click(By.xpath("//div[@id=\"settings_site_general\"]//button[@class='btn btn-default btn-raised btn-gray waves-effect waves-button']"));
+  public void deleteSite() throws InterruptedException {
+    click(By.xpath("//*[@id=\"settings_site_general\"]/div/div[2]/div[5]/button"));
+    Thread.sleep(10000);
   }
 
   public int getSiteCount() {
