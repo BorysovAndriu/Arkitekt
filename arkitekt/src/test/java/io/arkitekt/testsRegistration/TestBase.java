@@ -17,10 +17,6 @@ public class TestBase {
 
   protected static final AppManager app = new AppManager(BrowserType.FIREFOX);
 
-  @BeforeSuite
-  public void setUp() throws Exception {
-    app.init();
-  }
 
   @BeforeClass
   public void setUpp() throws Exception {
@@ -28,7 +24,7 @@ public class TestBase {
   }
 
 
-  @AfterSuite
+  @AfterClass
   public void tearDown() throws Exception {
     app.stop();
   }

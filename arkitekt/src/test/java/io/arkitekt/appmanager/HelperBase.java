@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,6 +14,8 @@ import static org.testng.Assert.assertEquals;
 
 public class HelperBase {
   public WebDriver driver;
+  public Actions builder;
+
 
   public HelperBase(WebDriver driver) {
     this.driver = driver;
@@ -72,4 +75,15 @@ public class HelperBase {
       return false;
     }
   }
+
+    public void hover() throws InterruptedException {
+
+      WebElement preview = driver.findElement(By.cssSelector("#hover_button_block"));
+      new Actions(driver).
+              moveToElement(preview).
+              perform();
+
+      Thread.sleep(10000);
+      driver.findElement(By.cssSelector("#toggle_preview_icon")).click();
+    }
 }

@@ -11,6 +11,11 @@ public class NavBuilder extends TestBase {
         app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
         app.getNavHelperLeftPanel().gotoFrame(By.xpath("//div[3]/iframe[2]"));
         app.getNavHelperBuilder().movetoNavBuilder();
+        app.getNavHelperBuilder().stopFrame();
+        app.getNavHelperBuilder().hover();
+        app.getNavHelperBuilder().movetoNavpreview();
+
+
 
     }
 }

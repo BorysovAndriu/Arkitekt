@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class AppManager {
 
   WebDriver driver;
+  Actions builder;
 
   private NavHelperLeftPanel navHelperLeftPanel;
   private LoginHelper loginHelper;
@@ -32,6 +34,8 @@ public class AppManager {
     }
 
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+    builder = new Actions(driver);
 
     loginHelper = new LoginHelper(driver);
     navHelperLeftPanel = new NavHelperLeftPanel(driver);

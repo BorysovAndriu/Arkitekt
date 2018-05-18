@@ -10,7 +10,7 @@ public class LivePreview extends TestBase{
     app.getNavHelperLeftPanel().gotoGetStart();
     app.getNavHelperLeftPanel().gotoMarathon();
     app.getNavHelperLeftPanel().gotoTab();
+    app.getNavHelperBuilder().movetoNavOutPreview();
     app.getNavHelperBuilder().closeTab();
-
   }
 }
