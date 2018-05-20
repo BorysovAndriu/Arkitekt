@@ -8,8 +8,6 @@ public class SiteDelete extends TestBase {
   public void testDeleteSite() throws Exception {
     app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-    app.getNavHelperLeftPanel().gotoSetting();
-    app.getNavHelperLeftPanel().gotoSettingSite();
     app.getNavHelperLeftPanel().gotoSettingSiteGeneraInfo();
     app.getSiteEditHelper().deleteSite();
     app.getNavHelperLeftPanel().initListSite();

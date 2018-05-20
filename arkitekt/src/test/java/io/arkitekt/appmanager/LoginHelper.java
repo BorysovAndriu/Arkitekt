@@ -24,12 +24,12 @@ public class LoginHelper extends HelperBase {
   }
 
   public void checkout(String fullname, String cardsNumber, String cvv, String expiresMM, String expiresYY) {
-    type(fullname, By.xpath("//*[@id=\"payment-form\"]/div[2]/div[2]/label/input"));
-    type(cardsNumber, By.xpath("//*[@id=\"payment-form\"]/div[2]/div[3]/label[1]/input"));
-    type(cvv, By.xpath("//*[@id=\"payment-form\"]/div[2]/div[3]/label[2]/input"));
-    type(expiresMM, By.xpath("//*[@id=\"payment-form\"]/div[2]/div[4]/label/div/input[1]"));
-    type(cvv, By.xpath("//*[@id=\"payment-form\"]/div[2]/div[4]/label/div/input[2]"));
-    click(By.xpath("//*[@id=\"payment-form\"]/div[2]/div[5]/div/button"));
+    type(fullname, By.xpath("//input[@name='subscription[card_holder_name]']"));
+    type(cardsNumber, By.xpath("//input[@class='credit-card-number']"));
+    type(cvv, By.xpath("//input[@class='credit-card-cvv']"));
+    type(expiresMM, By.xpath("//input[@class='exp_month']"));
+    type(expiresYY, By.xpath("//input[@class='exp_year']"));
+    click(By.xpath("//button[@name='button']"));
   }
 
   public void logout() {

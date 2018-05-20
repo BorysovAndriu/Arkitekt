@@ -26,20 +26,26 @@ public class HelperBase {
   }
 
   public void type(String text, By locator) {
-    click(locator);
+    clickA(locator);
     driver.findElement(locator).clear();
     driver.findElement(locator).sendKeys(text);
   }
 
-  public void click(By locator) {
+  public void clickA(By locator) {
     WebDriverWait wait = new WebDriverWait(driver, 120);
     WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     driver.findElement(locator).click();
   }
 
+  public void click(By locator) {
+    WebDriverWait wait = new WebDriverWait(driver, 120);
+    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    driver.findElement(locator).click();
+  }
+
    public String gotoTab() throws InterruptedException {
     String firstTab = driver.getWindowHandle();
-    click(By.xpath("//a[@class='simple-btn ripple-btn']"));
+    clickA(By.xpath("//a[@class='simple-btn ripple-btn']"));
     Thread.sleep(5000);
     ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
     driver.switchTo().window(newTab.get(1));
@@ -76,14 +82,14 @@ public class HelperBase {
     }
   }
 
-    public void hover() throws InterruptedException {
+    public void hover(By locatorFind, By locatorClick) throws InterruptedException {
 
-      WebElement preview = driver.findElement(By.cssSelector("#hover_button_block"));
+      WebElement preview = driver.findElement(locatorFind);
       new Actions(driver).
               moveToElement(preview).
               perform();
 
       Thread.sleep(10000);
-      driver.findElement(By.cssSelector("#toggle_preview_icon")).click();
+      driver.findElement(locatorClick).click();
     }
 }

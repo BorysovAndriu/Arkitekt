@@ -10,20 +10,30 @@ public class NavHelperLeftPanel extends HelperBase{
     super(driver);
   }
 
-  public void gotoSettingSiteGeneraInfo() {
-    click(By.xpath("//*[@id=\"settings_site\"]/div/div[2]/ul/li[1]/a"));
-  }
-
-  public void gotoSettingSite() {
-    click(By.xpath("//div[2]/div[5]/div/div[2]/ul/li[2]/a"));
-  }
-
   public void gotoSetting() {
-    click(By.xpath("//div[1]/div/div/div[2]/ul/li[5]/a"));
+    click(By.xpath("//li//a[@href='#!/settings'])"));
+  }
+
+  public void gotoSettingSiteGeneraInfo() {
+    click(By.xpath("//li//a[@href='#!/settings'])"));
+    click(By.xpath("//li//a[@href='#!/settings/site']"));
+    click(By.xpath("//li//a[@href='#!/settings/site/general']"));
+  }
+
+  public void gotoSettingBilling() {
+    click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]"));
+    click(By.xpath("//li//a[@href='#!/settings/billing-info']"));
+  }
+
+  public void cancelSubscribpition() {
+    click(By.xpath("//a[@href='#!/settings/billing-info/cancel-subscription']"));
+    click(By.xpath("//input[@value='CONFIRM']"));
   }
 
   public void initListSite() {
-    click(By.xpath("//a[@id='choose_template']"));
+    while(isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))){
+     click(By.cssSelector("#choose_template"));
+    }
   }
 
   public void logo() {
@@ -38,4 +48,9 @@ public class NavHelperLeftPanel extends HelperBase{
     click(By.xpath("//img[@alt='Marathon']"));
   }
 
+  public void changeCycle() throws InterruptedException {
+    click(By.xpath("//input[@value='Monthly']"));
+    click(By.xpath("//*[@id=\"select-options-4dc9\"]/li[1]"));
+    click(By.xpath("//div[@id='settings_billing_info']//button[text()]"));
+  }
 }

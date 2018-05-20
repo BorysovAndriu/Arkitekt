@@ -12,11 +12,15 @@ public class NavBuilder extends TestBase {
         app.getNavHelperLeftPanel().gotoFrame(By.xpath("//div[3]/iframe[2]"));
         app.getNavHelperBuilder().movetoNavBuilder();
         app.getNavHelperBuilder().stopFrame();
-        app.getNavHelperBuilder().hover();
+
+    }
+
+    @Test
+    public void navPreview() throws InterruptedException {
+        app.getNavHelperBuilder().hover(By.cssSelector("#hover_button_block"),
+                                        By.cssSelector("By.cssSelector(\"#toggle_preview_icon\")"));
+        app.getNavHelperBuilder().gotoFrame(By.xpath("//*[@id='page_preview_iframe']"));
         app.getNavHelperBuilder().movetoNavpreview();
-
-
-
     }
 }
 

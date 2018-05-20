@@ -15,14 +15,13 @@ public class TestBase {
   Date date = new Date();
   SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd");
 
-  protected static final AppManager app = new AppManager(BrowserType.FIREFOX);
+  protected static final AppManager app = new AppManager(BrowserType.CHROME);
 
 
   @BeforeClass
   public void setUpp() throws Exception {
     app.init();
   }
-
 
   @AfterClass
   public void tearDown() throws Exception {

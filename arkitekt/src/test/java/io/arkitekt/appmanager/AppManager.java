@@ -35,6 +35,8 @@ public class AppManager {
 
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
+    driver.manage().window().maximize();
+
     builder = new Actions(driver);
 
     loginHelper = new LoginHelper(driver);

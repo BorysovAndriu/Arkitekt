@@ -31,7 +31,11 @@ public class NavHelperBuilder extends HelperBase{
     }
 
     public void movetoNavpreview(){
-        click(By.xpath("//div[1]/nav/div/h1/a/span[1]"));
+        click(By.xpath("//div[@class='container']/div[1]//a[@href='/home']"));
+        click(By.xpath("//div[@class='container']/div[1]//a[@href='/about']"));
+        click(By.xpath("//div[@class='container']/div[1]//a[@href='/tours']"));
+        click(By.xpath("//div[@class='container']/div[1]//a[@href='/blog']"));
+        click(By.xpath("//div[@class='container']/div[1]//a[@href='/reach-us']"));
     }
 
 
