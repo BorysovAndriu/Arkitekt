@@ -9,10 +9,17 @@ public class SiteCreate extends TestBase {
   public void testCreateSite() throws Exception {
     app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-    app.getNavHelperLeftPanel().initListSite();
-    app.getSiteEditHelper().createSite();
-    app.getNavHelperLeftPanel().gotoMarathon();
-    app.getNavHelperLeftPanel().click(By.name("commit"));
+      if (! app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))){
+        app.getNavHelperLeftPanel().gotoMarathon();
+        app.getNavHelperLeftPanel().click(By.name("commit"));
+      }
+      else {
+        app.getNavHelperLeftPanel().initListSite();
+        app.getSiteEditHelper().createSite();
+        app.getNavHelperLeftPanel().gotoMarathon();
+        app.getNavHelperLeftPanel().click(By.name("commit"));
+      }
+
     app.getNavHelperLeftPanel().initListSite();
   }
 

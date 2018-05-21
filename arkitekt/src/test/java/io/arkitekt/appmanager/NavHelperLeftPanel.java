@@ -15,13 +15,13 @@ public class NavHelperLeftPanel extends HelperBase{
   }
 
   public void gotoSettingSiteGeneraInfo() {
-    click(By.xpath("//li//a[@href='#!/settings'])"));
+    click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
     click(By.xpath("//li//a[@href='#!/settings/site']"));
     click(By.xpath("//li//a[@href='#!/settings/site/general']"));
   }
 
   public void gotoSettingBilling() {
-    click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]"));
+    click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
     click(By.xpath("//li//a[@href='#!/settings/billing-info']"));
   }
 
@@ -41,7 +41,7 @@ public class NavHelperLeftPanel extends HelperBase{
   }
 
   public void gotoGetStart() {
-    click(By.xpath("//*[@id=\"content\"]/section[1]/div[4]/a"));
+    click(By.xpath("//a[text()='Get started']"));
   }
 
   public void gotoMarathon(){

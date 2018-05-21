@@ -23,17 +23,13 @@ public class Payment extends TestBase {
     app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
     app.getNavHelperLeftPanel().gotoSettingBilling();
-
     app.getNavHelperLeftPanel().changeCycle();
   }
-
-
 
   @Test(priority = 4)
   public void cancelSubscription() throws InterruptedException {
     app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
-    app.getNavHelperLeftPanel().gotoSetting();
     app.getNavHelperLeftPanel().gotoSettingBilling();
     app.getNavHelperLeftPanel().cancelSubscribpition();
     app.getNavHelperLeftPanel().checking("SUBSCRIBE", By.id("billing_subscribe"));
