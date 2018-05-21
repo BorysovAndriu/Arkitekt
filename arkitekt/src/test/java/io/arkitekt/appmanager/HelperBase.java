@@ -25,7 +25,7 @@ public class HelperBase {
   }
 
   public void type(String text, By locator) {
-    clickA(locator);
+    click(locator);
     driver.findElement(locator).clear();
     driver.findElement(locator).sendKeys(text);
   }
@@ -70,6 +70,12 @@ public class HelperBase {
   public void checking(String text, By locator) throws InterruptedException {
     Thread.sleep(10000);
     String existingText = driver.findElement(locator).getAttribute("value");
+    assertEquals(text, existingText);
+  }
+
+  public void checkingText(String text, By locator) throws InterruptedException {
+    Thread.sleep(10000);
+    String existingText = driver.findElement(locator).getText();
     assertEquals(text, existingText);
   }
 
