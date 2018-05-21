@@ -32,6 +32,16 @@ public class LoginHelper extends HelperBase {
     click(By.xpath("//button[@name='button']"));
   }
 
+  public void updatePaymentInfo(String fullname, String cardsNumber, String cvv, String expiresMM, String expiresYY) {
+    click(By.xpath("//a[@class='settings-billing-link']"));
+    type(fullname, By.xpath("//input[@name='subscription[card_holder_name]']"));
+    type(cardsNumber, By.xpath("//input[@class='credit-card-number']"));
+    type(cvv, By.xpath("//input[@class='credit-card-cvv']"));
+    type(expiresMM, By.xpath("//input[@class='exp_month']"));
+    type(expiresYY, By.xpath("//input[@class='exp_year']"));
+    click(By.xpath("//button[@name='button']"));
+  }
+
   public void logout() {
     click(By.name("commit"));
   }

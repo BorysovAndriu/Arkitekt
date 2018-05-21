@@ -16,7 +16,6 @@ public class HelperBase {
   public WebDriver driver;
   public Actions builder;
 
-
   public HelperBase(WebDriver driver) {
     this.driver = driver;
   }
@@ -58,19 +57,20 @@ public class HelperBase {
     driver.switchTo().frame(driver.findElement(locator));
   }
 
-  public void stopFrame(){
+  public void stopFrame() throws InterruptedException {
     driver.switchTo().defaultContent();
+    Thread.sleep(5000);
   }
 
   public void closeTab() throws InterruptedException {
     driver.close();
     Thread.sleep(5000);
-
-    }
+  }
 
   public void checking(String text, By locator) throws InterruptedException {
     Thread.sleep(10000);
-    assertEquals(text, locator);
+    String existingText = driver.findElement(locator).getAttribute("value");
+    assertEquals(text, existingText);
   }
 
   public boolean isElementPressent(By locator) {

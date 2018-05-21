@@ -10,8 +10,22 @@ public class NavHelperLeftPanel extends HelperBase{
     super(driver);
   }
 
-  public void gotoSetting() {
-    click(By.xpath("//li//a[@href='#!/settings'])"));
+  public void logo() {
+    click(By.xpath("//div[@id='content']/div/div/a"));
+  }
+
+  public void gotoGetStart() {
+    click(By.xpath("//a[text()='Get started']"));
+  }
+
+  public void gotoMarathon(){
+    click(By.xpath("//img[@alt='Marathon']"));
+  }
+
+  public void initListSite() {
+    while(isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))){
+      click(By.cssSelector("#choose_template"));
+    }
   }
 
   public void gotoSettingSiteGeneraInfo() {
@@ -30,27 +44,17 @@ public class NavHelperLeftPanel extends HelperBase{
     click(By.xpath("//input[@value='CONFIRM']"));
   }
 
-  public void initListSite() {
-    while(isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))){
-     click(By.cssSelector("#choose_template"));
-    }
-  }
-
-  public void logo() {
-    click(By.xpath("//div[@id='content']/div/div/a"));
-  }
-
-  public void gotoGetStart() {
-    click(By.xpath("//a[text()='Get started']"));
-  }
-
-  public void gotoMarathon(){
-    click(By.xpath("//img[@alt='Marathon']"));
-  }
-
-  public void changeCycle() throws InterruptedException {
-    click(By.xpath("//input[@value='Monthly']"));
-    click(By.xpath("//*[@id=\"select-options-4dc9\"]/li[1]"));
+  public void changeCycle() {
+    click(By.xpath("//*[@id='settings_billing_info']//input"));
+    click(By.xpath("//ul[@class='dropdown-content select-dropdown active']/li[2]/span"));
     click(By.xpath("//div[@id='settings_billing_info']//button[text()]"));
   }
+
+  public void gobackBillingInfo() {
+    click(By.xpath("//div[@id='settings_billing_info']//a[@href='#!/settings']"));
+    click(By.xpath("//h4[text()='Settings']/parent::div/a"));
+
+  }
+
+
 }

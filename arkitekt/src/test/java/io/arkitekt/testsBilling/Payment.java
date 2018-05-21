@@ -14,6 +14,9 @@ public class Payment extends TestBase {
     app.getNavHelperLeftPanel().gotoFrame(By.cssSelector("#new_subscription_iframe"));
     app.getLoginHelper().checkout("Andriu","4242-4242-4242-4242","123","12", "19");
     app.getNavHelperLeftPanel().stopFrame();
+    app.getNavHelperLeftPanel().gotoSettingBilling();
+    app.getNavHelperLeftPanel().checking("Monthly", By.xpath("//*[@id='settings_billing_info']//input"));
+    app.getNavHelperLeftPanel().gobackBillingInfo();
     app.getNavHelperLeftPanel().initListSite();
     app.getLoginHelper().logout();
   }
@@ -24,7 +27,21 @@ public class Payment extends TestBase {
     app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
     app.getNavHelperLeftPanel().gotoSettingBilling();
     app.getNavHelperLeftPanel().changeCycle();
+    app.getNavHelperLeftPanel().checking("Annual", By.xpath("//*[@id='settings_billing_info']//input"));
+    app.getNavHelperLeftPanel().gobackBillingInfo();
+    app.getNavHelperLeftPanel().initListSite();
+    app.getLoginHelper().logout();
   }
+
+  @Test(priority = 3)
+  public void testBillingCycle() throws InterruptedException {
+    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+    app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
+    app.getNavHelperLeftPanel().gotoSettingBilling();
+
+
+  }
+
 
   @Test(priority = 4)
   public void cancelSubscription() throws InterruptedException {
