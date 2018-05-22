@@ -37,8 +37,6 @@ public class AppManager {
 
     driver.manage().window().maximize();
 
-    driver.manage().deleteCookieNamed("staging-my.arkitekt.io");
-
     builder = new Actions(driver);
 
     loginHelper = new LoginHelper(driver);

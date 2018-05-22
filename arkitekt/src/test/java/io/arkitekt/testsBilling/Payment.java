@@ -41,7 +41,7 @@ public class Payment extends TestBase {
     app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
     app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
     app.getNavHelperLeftPanel().gotoSettingBilling();
-    app.getLoginHelper().click(By.xpath("//a[@class='settings-billing-link']"));
+    app.getLoginHelper().clickA(By.xpath("//a[@class='settings-billing-link']"));
     app.getNavHelperBuilder().gotoFrame(By.xpath("//iframe[@class='subscribe_iframe']"));
     app.getLoginHelper().updatePaymentInfo("Boris", "5105-1051-0510-5100",
             "123", "12", "20");

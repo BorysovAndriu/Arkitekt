@@ -55,6 +55,7 @@ public class HelperBase {
     WebDriverWait wait = new WebDriverWait(driver, 100);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     driver.switchTo().frame(driver.findElement(locator));
+    Thread.sleep(10000);
   }
 
   public void stopFrame() throws InterruptedException {
@@ -67,14 +68,16 @@ public class HelperBase {
     Thread.sleep(5000);
   }
 
-  public void checking(String text, By locator) throws InterruptedException {
-    Thread.sleep(10000);
+  public void checking(String text, By locator) {
+    WebDriverWait wait = new WebDriverWait(driver, 100);
+    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     String existingText = driver.findElement(locator).getAttribute("value");
     assertEquals(text, existingText);
   }
 
-  public void checkingText(String text, By locator) throws InterruptedException {
-    Thread.sleep(10000);
+  public void checkingText(String text, By locator) {
+    WebDriverWait wait = new WebDriverWait(driver, 100);
+    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     String existingText = driver.findElement(locator).getText();
     assertEquals(text, existingText);
   }
@@ -89,13 +92,17 @@ public class HelperBase {
   }
 
     public void hover(By locatorFind, By locatorClick) throws InterruptedException {
-
+      WebDriverWait wait = new WebDriverWait(driver, 60);
+      WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorFind));
       WebElement preview = driver.findElement(locatorFind);
       new Actions(driver).
               moveToElement(preview).
               perform();
-
-      Thread.sleep(10000);
+      element = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorClick));
       driver.findElement(locatorClick).click();
+    }
+
+    public void refresh() {
+      driver.navigate().refresh();
     }
 }

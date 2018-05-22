@@ -28,23 +28,32 @@ public class NavHelperLeftPanel extends HelperBase{
     }
   }
 
+  public void gotoAddPages(By locator) {
+    click(By.xpath("//li//a[@href='#!/pages']"));
+    click(By.xpath("//button[@id='sb5_add_new_page']"));
+    click(locator);
+  }
+
   public void gotoSettingSiteGeneraInfo() {
     click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
     click(By.xpath("//li//a[@href='#!/settings/site']"));
     click(By.xpath("//li//a[@href='#!/settings/site/general']"));
   }
 
-  public void gotoSettingBilling() {
+  public void gotoSettingBilling() throws InterruptedException {
     click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
     click(By.xpath("//li//a[@href='#!/settings/billing-info']"));
+    Thread.sleep(2000);
   }
 
-  public void cancelSubscribpition() {
+  public void cancelSubscribpition() throws InterruptedException {
     click(By.xpath("//a[@href='#!/settings/billing-info/cancel-subscription']"));
+    Thread.sleep(2000);
     click(By.xpath("//input[@value='CONFIRM']"));
   }
 
-  public void changeCycle() {
+  public void changeCycle() throws InterruptedException {
+    Thread.sleep(5000);
     click(By.xpath("//*[@id='settings_billing_info']//input"));
     click(By.xpath("//ul[@class='dropdown-content select-dropdown active']/li[2]/span"));
     click(By.xpath("//div[@id='settings_billing_info']//button[text()]"));

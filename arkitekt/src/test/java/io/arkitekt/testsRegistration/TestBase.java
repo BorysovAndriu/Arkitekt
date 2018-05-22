@@ -2,7 +2,9 @@ package io.arkitekt.testsRegistration;
 
 import io.arkitekt.appmanager.AppManager;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,12 +17,12 @@ public class TestBase {
   protected static final AppManager app = new AppManager(BrowserType.CHROME);
 
 
-  @AfterTest
+  @BeforeMethod
   public void setUpp() throws Exception {
     app.init();
   }
 
-  @AfterTest
+  @AfterMethod
   public void tearDown() throws Exception {
     app.stop();
   }
