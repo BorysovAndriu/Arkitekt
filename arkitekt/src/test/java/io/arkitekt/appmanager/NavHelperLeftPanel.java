@@ -34,6 +34,22 @@ public class NavHelperLeftPanel extends HelperBase{
     click(locator);
   }
 
+  public void addSubPagesC() throws InterruptedException {
+    click(By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]/a"));
+    checking("New Page", By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]/div[1]//input"));
+    gotoFrame(By.xpath("//div[3]/iframe[2]"));
+    checkingText("This page is empty.", By.xpath("//section[@class='page-section']//p"));
+    stopFrame();
+  }
+
+  public void addSubPagesD() throws InterruptedException {
+    click(By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]/a"));
+    checking("New Page", By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]/div[1]//input"));
+    gotoFrame(By.xpath("//div[3]/iframe[2]"));
+    checkingText("This page is empty.", By.xpath("//div[@class='sb5-empty-drag-help']/p"));
+    stopFrame();
+  }
+
   public void gotoSettingSiteGeneraInfo() {
     click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
     click(By.xpath("//li//a[@href='#!/settings/site']"));

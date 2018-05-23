@@ -16,6 +16,7 @@ public class HelperBase {
   public WebDriver driver;
   public Actions builder;
 
+
   public HelperBase(WebDriver driver) {
     this.driver = driver;
   }
@@ -71,7 +72,7 @@ public class HelperBase {
   public void checking(String text, By locator) {
     WebDriverWait wait = new WebDriverWait(driver, 100);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    String existingText = driver.findElement(locator).getAttribute("value");
+    String existingText = driver.findElement(locator).getAttribute("value placeholder");
     assertEquals(text, existingText);
   }
 
@@ -98,11 +99,16 @@ public class HelperBase {
       new Actions(driver).
               moveToElement(preview).
               perform();
-      element = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorClick));
+      //element = wait.until(ExpectedConditions.presenceOfElementLocated(locatorClick));
       driver.findElement(locatorClick).click();
     }
 
     public void refresh() {
       driver.navigate().refresh();
     }
+
+   /**public String getAtrebut () {
+      String id = driver.findElement(By.xpath("//div[@id=\"site_pages\"]/div[1]")).getAttribute("id");
+      return id;
+    }*/
 }
