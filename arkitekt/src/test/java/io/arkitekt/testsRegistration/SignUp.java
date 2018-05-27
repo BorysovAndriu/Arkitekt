@@ -3,7 +3,7 @@ package io.arkitekt.testsRegistration;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class PreviewSignUp extends TestBase {
+public class SignUp extends TestBase {
 
 
   @Test(priority = 1, enabled = false)

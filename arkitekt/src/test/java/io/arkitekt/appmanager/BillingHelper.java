@@ -15,6 +15,17 @@ public class BillingHelper extends HelperBase{
         Thread.sleep(2000);
     }
 
+    public void gotoSubscribpition() {
+        click(By.id("billing_subscribe"));
+    }
+
+    public void chooseSubscribtionPrice() throws InterruptedException {
+        click(By.id("billing_subscribe"));
+        gotoFrame(By.cssSelector("#new_subscription_iframe"));
+        click(By.xpath("//label[@for='subscription_price_id_2']"));
+        stopFrame();
+    }
+
     public void cancelSubscribpition() throws InterruptedException {
         click(By.xpath("//a[@href='#!/settings/billing-info/cancel-subscription']"));
         Thread.sleep(2000);
@@ -28,9 +39,26 @@ public class BillingHelper extends HelperBase{
         click(By.xpath("//div[@id='settings_billing_info']//button[text()]"));
     }
 
-    public void gobackBillingInfo() {
-        click(By.xpath("//div[@id='settings_billing_info']//a[@href='#!/settings']"));
-        click(By.xpath("//h4[text()='Settings']/parent::div/a"));
+    public void checkout(String fullname, String cardsNumber, String cvv, String expiresMM, String expiresYY) throws InterruptedException {
+        gotoFrame(By.cssSelector("#new_subscription_iframe"));
+        type(fullname, By.xpath("//input[@name='subscription[card_holder_name]']"));
+        type(cardsNumber, By.xpath("//input[@class='credit-card-number']"));
+        type(cvv, By.xpath("//input[@class='credit-card-cvv']"));
+        type(expiresMM, By.xpath("//input[@class='exp_month']"));
+        type(expiresYY, By.xpath("//input[@class='exp_year']"));
+        click(By.xpath("//button[@name='button']"));
+        stopFrame();
+    }
 
+    public void updatePaymentInfo(String fullname, String cardsNumber, String cvv, String expiresMM, String expiresYY) throws InterruptedException {
+        clickA(By.xpath("//a[@class='settings-billing-link']"));
+        gotoFrame(By.xpath("//iframe[@class='subscribe_iframe']"));
+        type(fullname, By.xpath("//*[@id='payment-form']/div/div[2]/label/input"));
+        type(cardsNumber, By.xpath("//input[@class='credit-card-number']"));
+        type(expiresMM, By.xpath("//input[@class='exp_month']"));
+        type(expiresYY, By.xpath("//input[@class='exp_year']"));
+        type(cvv, By.xpath("//input[@data-stripe='cvv']"));
+        click(By.xpath("//input[@value='UPDATE PAYMENT INFO']"));
+        stopFrame();
     }
 }

@@ -1,4 +1,4 @@
-package io.arkitekt.Pages;
+package io.arkitekt.testsPages;
 
 import io.arkitekt.testsRegistration.TestBase;
 import org.openqa.selenium.By;

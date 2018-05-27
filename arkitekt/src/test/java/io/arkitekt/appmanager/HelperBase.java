@@ -32,13 +32,13 @@ public class HelperBase {
   }
 
   public void clickA(By locator) {
-    WebDriverWait wait = new WebDriverWait(driver, 120);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
     WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     driver.findElement(locator).click();
   }
 
   public void click(By locator) {
-    WebDriverWait wait = new WebDriverWait(driver, 120);
+    WebDriverWait wait = new WebDriverWait(driver, 60);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     driver.findElement(locator).click();
   }
@@ -53,7 +53,7 @@ public class HelperBase {
   }
 
   public void gotoFrame(By locator) throws InterruptedException {
-    WebDriverWait wait = new WebDriverWait(driver, 100);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     driver.switchTo().frame(driver.findElement(locator));
     Thread.sleep(10000);
@@ -70,14 +70,14 @@ public class HelperBase {
   }
 
   public void checking(String text, By locator) {
-    WebDriverWait wait = new WebDriverWait(driver, 100);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    String existingText = driver.findElement(locator).getAttribute("value placeholder");
+    String existingText = driver.findElement(locator).getAttribute("value");
     assertEquals(text, existingText);
   }
 
   public void checkingText(String text, By locator) {
-    WebDriverWait wait = new WebDriverWait(driver, 100);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     String existingText = driver.findElement(locator).getText();
     assertEquals(text, existingText);
@@ -99,7 +99,7 @@ public class HelperBase {
       new Actions(driver).
               moveToElement(preview).
               perform();
-      //element = wait.until(ExpectedConditions.presenceOfElementLocated(locatorClick));
+      element = wait.until(ExpectedConditions.presenceOfElementLocated(locatorClick));
       driver.findElement(locatorClick).click();
     }
 
