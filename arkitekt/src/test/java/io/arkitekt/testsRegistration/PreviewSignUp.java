@@ -3,11 +3,12 @@ package io.arkitekt.testsRegistration;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class SignUp extends TestBase {
+public class PreviewSignUp extends TestBase {
 
-  @Test(enabled = false)
+
+  @Test(priority = 1, enabled = false)
   public void testSignUp() throws InterruptedException {
-    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+
     app.getNavHelperLeftPanel().click(By.xpath("//a[@class='btn btn-link']"));
     app.getNavHelperLeftPanel().click(By.xpath("//*[@id=\"new_user\"]/div/a[@class='btn-simple']"));
     app.getNavHelperLeftPanel().gotoMarathon();

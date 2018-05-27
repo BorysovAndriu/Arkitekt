@@ -107,8 +107,4 @@ public class HelperBase {
       driver.navigate().refresh();
     }
 
-   /**public String getAtrebut () {
-      String id = driver.findElement(By.xpath("//div[@id=\"site_pages\"]/div[1]")).getAttribute("id");
-      return id;
-    }*/
 }

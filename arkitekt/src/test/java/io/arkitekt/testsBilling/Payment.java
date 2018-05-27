@@ -8,8 +8,7 @@ public class Payment extends TestBase {
 
   @Test(priority = 1)
   public void paymentbyBuilder() throws InterruptedException {
-    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-    app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
+
     app.getNavHelperLeftPanel().click(By.xpath("//span[@class='subscription_toast']"));
     app.getNavHelperLeftPanel().gotoFrame(By.cssSelector("#new_subscription_iframe"));
     app.getLoginHelper().checkout("Andriu","4242-4242-4242-4242",
@@ -25,8 +24,7 @@ public class Payment extends TestBase {
 
   @Test(priority = 2)
   public void changeBillingCycle() throws InterruptedException {
-    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-    app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
+
     app.getNavHelperLeftPanel().gotoSettingBilling();
     app.getNavHelperLeftPanel().changeCycle();
     app.getNavHelperLeftPanel().checking("Annual",
@@ -38,8 +36,7 @@ public class Payment extends TestBase {
 
   @Test(priority = 3)
   public void updateBillingCycle() throws InterruptedException {
-    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-    app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
+
     app.getNavHelperLeftPanel().gotoSettingBilling();
     app.getLoginHelper().clickA(By.xpath("//a[@class='settings-billing-link']"));
     app.getNavHelperBuilder().gotoFrame(By.xpath("//iframe[@class='subscribe_iframe']"));
@@ -52,8 +49,7 @@ public class Payment extends TestBase {
 
   @Test(priority = 4)
   public void cancelSubscription() throws InterruptedException {
-    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-    app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
+
     app.getNavHelperLeftPanel().gotoSettingBilling();
     app.getNavHelperLeftPanel().cancelSubscribpition();
     app.getNavHelperLeftPanel().checkingText("Expired On:",
@@ -62,8 +58,7 @@ public class Payment extends TestBase {
 
   @Test(priority = 5)
   public void repeatSubscription() throws InterruptedException {
-    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-    app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
+
     app.getNavHelperLeftPanel().gotoSettingBilling();
     app.getNavHelperLeftPanel().click(By.id("billing_subscribe"));
     app.getNavHelperLeftPanel().gotoFrame(By.cssSelector("#new_subscription_iframe"));
