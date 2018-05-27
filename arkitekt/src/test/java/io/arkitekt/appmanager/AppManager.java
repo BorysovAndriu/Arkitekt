@@ -19,6 +19,8 @@ public class AppManager {
   private SiteEditHelper siteEditHelper;
   private NavHelperBuilder navHelperBuilder;
   private String browser;
+  private BillingHelper billingHelper;
+  private PagesHelper pagesHelper;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -43,6 +45,8 @@ public class AppManager {
     navHelperLeftPanel = new NavHelperLeftPanel(driver);
     siteEditHelper = new SiteEditHelper(driver);
     navHelperBuilder = new NavHelperBuilder(driver);
+    billingHelper = new BillingHelper();
+    pagesHelper = new PagesHelper();
 
   }
 
@@ -65,6 +69,10 @@ public class AppManager {
   public NavHelperBuilder getNavHelperBuilder() {
     return navHelperBuilder;
   }
+
+  public BillingHelper getBillingHelper() {return billingHelper;}
+
+  public PagesHelper getPagesHelper() {return pagesHelper;}
 
 }
 
