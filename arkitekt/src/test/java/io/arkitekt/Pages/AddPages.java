@@ -8,7 +8,7 @@ public class AddPages extends TestBase {
 
     @Test(priority = 1)
     public void addPage() throws Exception {
-        app.getNavHelperLeftPanel().gotoAddPages(By.xpath("//a[@id='add_new_page']"));
+        app.getPagesHelper().gotoAddPages(By.xpath("//a[@id='add_new_page']"));
         app.getNavHelperLeftPanel().gotoFrame(By.xpath("//div[3]/iframe[2]"));
         app.getNavHelperLeftPanel().checkingText("NEW PAGE", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
     }
@@ -27,11 +27,11 @@ public class AddPages extends TestBase {
     @Test(priority = 3)
     public void addContainer() throws Exception {
 
-        app.getNavHelperLeftPanel().gotoAddPages(By.xpath("//a[@id='add_new_container']"));
+        app.getPagesHelper().gotoAddPages(By.xpath("//a[@id='add_new_container']"));
         app.getNavHelperLeftPanel().gotoFrame(By.xpath("//div[3]/iframe[2]"));
         app.getNavHelperLeftPanel().checkingText("NEW CONTAINER", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a/span"));
         app.getNavHelperLeftPanel().stopFrame();
-        app.getNavHelperLeftPanel().addSubPagesC();
+        app.getPagesHelper().addSubPagesC();
     }
 
     @Test(priority = 4)
@@ -49,11 +49,11 @@ public class AddPages extends TestBase {
     @Test(priority = 5)
     public void addDropDown() throws Exception {
 
-        app.getNavHelperLeftPanel().gotoAddPages(By.xpath("//a[@id='add_new_folder']"));
+        app.getPagesHelper().gotoAddPages(By.xpath("//a[@id='add_new_folder']"));
         app.getNavHelperLeftPanel().gotoFrame(By.xpath("//div[3]/iframe[2]"));
         app.getNavHelperLeftPanel().checkingText("NEW DROPDOWN", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a/span[1]"));
         app.getNavHelperLeftPanel().stopFrame();
-        app.getNavHelperLeftPanel().addSubPagesD();
+        app.getPagesHelper().addSubPagesD();
     }
 
     @Test(priority = 6)
@@ -70,7 +70,7 @@ public class AddPages extends TestBase {
     @Test(priority = 7)
     public void addLink() throws Exception {
 
-        app.getNavHelperLeftPanel().gotoAddPages(By.xpath("//a[@id='add_new_link']"));
+        app.getPagesHelper().gotoAddPages(By.xpath("//a[@id='add_new_link']"));
         app.getNavHelperLeftPanel().gotoFrame(By.xpath("//div[3]/iframe[2]"));
         app.getNavHelperLeftPanel().refresh();
         app.getNavHelperLeftPanel().checkingText("New Link", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));

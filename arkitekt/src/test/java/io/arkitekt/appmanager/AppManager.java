@@ -45,8 +45,8 @@ public class AppManager {
     navHelperLeftPanel = new NavHelperLeftPanel(driver);
     siteEditHelper = new SiteEditHelper(driver);
     navHelperBuilder = new NavHelperBuilder(driver);
-    billingHelper = new BillingHelper();
-    pagesHelper = new PagesHelper();
+    billingHelper = new BillingHelper(driver);
+    pagesHelper = new PagesHelper(driver);
 
   }
 
