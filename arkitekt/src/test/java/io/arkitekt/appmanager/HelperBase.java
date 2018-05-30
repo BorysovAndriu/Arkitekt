@@ -32,7 +32,7 @@ public class HelperBase {
   }
 
   public void clickA(By locator) {
-    WebDriverWait wait = new WebDriverWait(driver, 30);
+    WebDriverWait wait = new WebDriverWait(driver, 60);
     WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     driver.findElement(locator).click();
   }
@@ -76,7 +76,7 @@ public class HelperBase {
     assertEquals(text, existingText);
   }
 
-  public void checkingText(String text, By locator) {
+  public void checkingText(String text, By locator) throws InterruptedException {
     WebDriverWait wait = new WebDriverWait(driver, 30);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     String existingText = driver.findElement(locator).getText();
@@ -90,6 +90,12 @@ public class HelperBase {
     } catch (NoSuchElementException ex) {
       return false;
     }
+  }
+
+  public String getId(By locator) {
+    String id = driver.findElement(locator).getAttribute("id");
+    id = id.replaceAll("[^0-9]", "");
+    return id;
   }
 
     public void hover(By locatorFind, By locatorClick) throws InterruptedException {
