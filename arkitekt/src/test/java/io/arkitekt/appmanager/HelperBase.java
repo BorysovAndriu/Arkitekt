@@ -14,8 +14,6 @@ import static org.testng.Assert.assertEquals;
 
 public class HelperBase {
   public WebDriver driver;
-  public Actions builder;
-
 
   public HelperBase(WebDriver driver) {
     this.driver = driver;
@@ -101,13 +99,11 @@ public class HelperBase {
     public void hover(By locatorFind, By locatorClick) throws InterruptedException {
       WebDriverWait wait = new WebDriverWait(driver, 60);
       WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorFind));
-      WebElement preview = driver.findElement(locatorFind);
       new Actions(driver).
-              moveToElement(preview).
-              perform();
-      element = wait.until(ExpectedConditions.presenceOfElementLocated(locatorClick));
-      driver.findElement(locatorClick).click();
-    }
+              moveToElement(driver.findElement(locatorFind)).build().perform();
+      Thread.sleep(5000);
+      click(locatorClick);
+  }
 
     public void refresh() {
       driver.navigate().refresh();
