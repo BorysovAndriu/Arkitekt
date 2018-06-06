@@ -96,12 +96,17 @@ public class HelperBase {
     return id;
   }
 
+  public String getIdPage(By locator) {
+    String id = driver.findElement(locator).getAttribute("id");
+    return id;
+  }
+
     public void hover(By locatorFind, By locatorClick) throws InterruptedException {
       WebDriverWait wait = new WebDriverWait(driver, 60);
       WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorFind));
       new Actions(driver).
               moveToElement(driver.findElement(locatorFind)).build().perform();
-      Thread.sleep(5000);
+      Thread.sleep(2000);
       click(locatorClick);
   }
 
