@@ -67,10 +67,10 @@ public class HelperBase {
     Thread.sleep(5000);
   }
 
-  public void checking(String text, By locator) {
+  public void checking(String text, By locator, String value) {
     WebDriverWait wait = new WebDriverWait(driver, 30);
     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    String existingText = driver.findElement(locator).getAttribute("value");
+    String existingText = driver.findElement(locator).getAttribute(value);
     assertEquals(text, existingText);
   }
 
@@ -96,8 +96,8 @@ public class HelperBase {
     return id;
   }
 
-  public String getIdPage(By locator) {
-    String id = driver.findElement(locator).getAttribute("id");
+  public String getIdPage(String text, By locator) {
+    String id = driver.findElement(locator).getAttribute(text);
     return id;
   }
 

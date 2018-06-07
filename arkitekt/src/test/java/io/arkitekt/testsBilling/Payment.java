@@ -11,14 +11,14 @@ public class Payment extends TestBasePay {
     app.getBillingHelper().checkout("Andriu","4242-4242-4242-4242",
             "123","12", "19");
     app.getNavHelperLeftPanel().checking("Monthly",
-            By.xpath("//*[@id='settings_billing_info']//input"));
+            By.xpath("//*[@id='settings_billing_info']//input"), "value");
   }
 
   @Test(priority = 2)
   public void changeBillingCycle() throws InterruptedException {
     app.getBillingHelper().changeCycle();
     app.getNavHelperLeftPanel().checking("Annual",
-            By.xpath("//*[@id='settings_billing_info']//input"));
+            By.xpath("//*[@id='settings_billing_info']//input"), "value");
   }
 
   @Test(priority = 3)
@@ -42,7 +42,7 @@ public class Payment extends TestBasePay {
     app.getBillingHelper().checkout("Andriu","4242-4242-4242-4242",
             "123","12", "19");
     app.getNavHelperLeftPanel().checking("Annual",
-            By.xpath("//*[@id='settings_billing_info']//input"));
+            By.xpath("//*[@id='settings_billing_info']//input"), "value");
   }
 
 }

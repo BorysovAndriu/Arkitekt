@@ -15,7 +15,6 @@ public class SiteDeleteCreate extends TestBase {
 
   @Test(priority = 2)
   public void testCreateSite() throws Exception {
-
     if (! app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))){
       app.getNavHelperLeftPanel().gotoMarathon();
       app.getNavHelperLeftPanel().click(By.name("commit"));
@@ -26,8 +25,6 @@ public class SiteDeleteCreate extends TestBase {
       app.getNavHelperLeftPanel().gotoMarathon();
       app.getNavHelperLeftPanel().click(By.name("commit"));
     }
-
     app.getNavHelperLeftPanel().initListSite();
   }
-
 }
