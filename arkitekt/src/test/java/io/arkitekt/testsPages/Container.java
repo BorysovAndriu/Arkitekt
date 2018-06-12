@@ -11,6 +11,14 @@ public class Container extends TestBasePages{
         app.getPagesHelper().addSubPages(By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]//a"));
     }
 
+    @Test
+    public void toggle() throws InterruptedException {
+        app.getPagesHelper().toggleOff(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
+                By.xpath("//input[@name='enable-page']/following-sibling::span"), "HOME");
+        app.getPagesHelper().toggleOn(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
+                By.xpath("//input[@name='enable-page']/following-sibling::span"), "NEW CONTAINER");
+    }
+
     @Test(priority = 2)
     public void renameContainer() throws InterruptedException {
         app.getPagesHelper().renamePage(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"), "Cont",
@@ -21,6 +29,17 @@ public class Container extends TestBasePages{
     public void renameUrl() throws InterruptedException {
         app.getPagesHelper().renameUrl(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"), "/cont-test",
                 By.xpath("//*[@name='url' and @placeholder='newpage']"));
+    }
+
+    @Test
+    public void lockscreenContainer() throws InterruptedException {
+        app.getPagesHelper().lockPages(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"));
+    }
+
+    @Test
+    public void unlockContainer() throws InterruptedException {
+        app.getPagesHelper().unlockPages(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
+                "NEW CONTAINER");
     }
 
     @Test(priority = 4)

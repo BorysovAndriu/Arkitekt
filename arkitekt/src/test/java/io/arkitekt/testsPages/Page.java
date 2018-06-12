@@ -12,9 +12,9 @@ public class Page extends TestBasePages {
 
     @Test
     public void toggle() throws InterruptedException {
-        app.getPagesHelper().toggle(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
-                By.xpath("//input[@name='enable-page']/following-sibling::span"), "NEW PAGE");
-        app.getPagesHelper().toggle(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
+        app.getPagesHelper().toggleOff(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
+                By.xpath("//input[@name='enable-page']/following-sibling::span"), "HOME");
+        app.getPagesHelper().toggleOn(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
                 By.xpath("//input[@name='enable-page']/following-sibling::span"), "NEW PAGE");
     }
 
@@ -28,6 +28,16 @@ public class Page extends TestBasePages {
     public void renameUrl() throws InterruptedException {
         app.getPagesHelper().renameUrl(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"), "/page-test",
                 By.xpath("//*[@name='url' and @placeholder='newpage']"));
+    }
+
+    @Test
+    public void lockscreenPage() throws InterruptedException {
+        app.getPagesHelper().lockPages(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"));
+    }
+
+    @Test
+    public void unlockPage() throws InterruptedException {
+        app.getPagesHelper().unlockPages(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"), "NEW PAGE");
     }
 
     @Test(priority = 4)
