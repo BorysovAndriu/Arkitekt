@@ -1,9 +1,6 @@
 package io.arkitekt.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,10 +20,15 @@ public class PagesHelper extends HelperBase{
         checkNavPagesSubdomain(checkNamePages);
     }
 
-    public void addSubPages(By addSubPage) throws InterruptedException {
+    public void addSubContainer(By addSubPage) throws InterruptedException {
         click(addSubPage);
-        checkingNavPagesBuilder("This page is empty." + "\n" + "Use the + button to add widgets.",
-                By.xpath("//p[@class='sb5-empty-text']"));
+        checkingNavSubPagesBuilder();
+    }
+
+    public void addSubDropDown(By addSubPage, String nameSubDropDown) throws InterruptedException {
+        click(addSubPage);
+        checkingNavDropDownBuilder(nameSubDropDown);
+        checkNavDropDownSubdomain(nameSubDropDown);
     }
 
     public void deletePage(By locatorFind, By locator) throws InterruptedException {
@@ -116,29 +118,29 @@ public class PagesHelper extends HelperBase{
         click(By.xpath("//a[@class='back-to-menu waves-circle waves-effect' and @href='#!/pages']"));
     }
 
-    public void renamePage(By locatorFind, String text, By type, String checkText) throws InterruptedException {
+    public void renamePage(By locatorFind, String namePage, By type, String checkText) throws InterruptedException {
         openSettingPages(locatorFind);
         Thread.sleep(5000);
-        rename(text, type);
+        rename(namePage, type);
         checkingNavPagesBuilder(checkText, By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
         checkNavPagesSubdomain(checkText);
     }
 
-    public void renameSubPage(By locatorFind, String text, By type, String checkText) throws InterruptedException {
+    public void renameSubPage(By locatorFind, By type, String nameSubDropDown) throws InterruptedException {
         openSettingPages(locatorFind);
         Thread.sleep(5000);
-        rename(text, type);
-        checkingNavDropDownBuilder(checkText, By.xpath("//nav[5]/div/div[1]/ul/li[1]/a/span"));
-        checkNavDropDownSubdomain(checkText);
+        rename(nameSubDropDown, type);
+        checkingNavDropDownBuilder(nameSubDropDown);
+        checkNavDropDownSubdomain(nameSubDropDown);
     }
 
-    public void renameUrl(By locatorFind, String text, By type) throws InterruptedException {
+    public void renameUrl(By locatorFind, String nameUrl, By type) throws InterruptedException {
         openSettingPages(locatorFind);
         Thread.sleep(5000);
-        rename(text, type);
+        rename(nameUrl, type);
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        checking(text, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"),"pathname");
+        checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"),"pathname");
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
@@ -154,7 +156,7 @@ public class PagesHelper extends HelperBase{
 
     public void unlockPages(By locatorFind, String namePage) throws InterruptedException {
         openSettingPages(locatorFind);
-        //Thread.sleep(5000);
+        Thread.sleep(5000);
         click(By.xpath("//input[@name='password']"));
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys(Keys.BACK_SPACE);
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
@@ -177,10 +179,10 @@ public class PagesHelper extends HelperBase{
     }
 
     public void checkingNavPagesBuilder(String text, By locator) throws InterruptedException {
-        gotoFrame(By.xpath("//div[3]/iframe[2]"));
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if(isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))){
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-            String existingText = driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a")).getText();
+            String existingText = driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a/span")).getText();
             assertEquals(text, existingText);
             stopFrame();
         } else {
@@ -190,8 +192,15 @@ public class PagesHelper extends HelperBase{
         }
     }
 
-    public void checkingNavDropDownBuilder(String text, By locator) throws InterruptedException {
-        gotoFrame(By.xpath("//div[3]/iframe[2]"));
+    public void checkingNavSubPagesBuilder() throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        String existingText = driver.findElement( By.xpath("//p[@class='sb5-empty-text']")).getText();
+        assertEquals("This page is empty." + "\n" + "Use the + button to add widgets.",existingText);
+        stopFrame();
+    }
+
+    public void checkingNavDropDownBuilder(String text) throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if(isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))){
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
             click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
@@ -199,8 +208,8 @@ public class PagesHelper extends HelperBase{
             assertEquals(text, existingText);
             stopFrame();
         } else {
-            click(locator);
-            String existingText = driver.findElement(By.xpath("//ul[@style='display: block;']//span")).getText();
+            click(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
+            String existingText = driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul//a")).getText();
             assertEquals(text, existingText);
             stopFrame();
         }
@@ -210,7 +219,7 @@ public class PagesHelper extends HelperBase{
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
-        checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+        checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul//a"));
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
@@ -218,9 +227,15 @@ public class PagesHelper extends HelperBase{
     public void checkNavPagesSubdomain(String namePage) throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
-        stopFrame();
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        if (isElementPressent (By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))){
+            checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
+            stopFrame();
+            hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));}
+        else {
+            stopFrame();
+            hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+            System.out.println("ErrorPreviewMode");
+        }
     }
 
     public void checkLockSubdomain() throws InterruptedException {
@@ -230,10 +245,5 @@ public class PagesHelper extends HelperBase{
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
-
-
-
-
-
 
 }

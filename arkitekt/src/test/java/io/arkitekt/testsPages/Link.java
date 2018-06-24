@@ -10,21 +10,25 @@ public class Link extends TestBasePages {
         app.getPagesHelper().addPages(By.xpath("//a[@id='add_new_link']"), "NEW LINK");
     }
 
-    @Test
-    public void toggle() throws InterruptedException {
+    @Test(priority = 2)
+    public void toggleOff() throws InterruptedException {
         app.getPagesHelper().toggleOff(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
                 By.xpath("//input[@name='enable-page']/following-sibling::span"), "HOME");
+    }
+
+    @Test(priority = 3)
+    public void toggleOn() throws InterruptedException {
         app.getPagesHelper().toggleOn(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
                 By.xpath("//input[@name='enable-page']/following-sibling::span"), "NEW LINK");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 4)
     public void renamePage() throws InterruptedException {
         app.getPagesHelper().renamePage(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"), "Link",
                 By.xpath("//input[@name='nav_title']"), "LINK");
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void deleteLink() throws Exception {
         app.getPagesHelper().deleteLink(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"));
     }

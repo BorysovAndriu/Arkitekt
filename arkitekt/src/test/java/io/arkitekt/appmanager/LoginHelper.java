@@ -16,14 +16,12 @@ public class LoginHelper extends HelperBase {
     click(By.name("commit"));
   }
 
-  public void registr(String name, String email, String password) {
-    type(name, By.id("user_first_name"));
-    type(email, By.id("user_email"));
-    type(password, By.id("user_password"));
+  public void registr(RegistrData registrData) {
+    type(registrData.getName(), By.id("user_first_name"));
+    type(registrData.getEmail(), By.id("user_email"));
+    type(registrData.getPassword(), By.id("user_password"));
     click(By.name("commit"));
   }
-
-
 
   public void logout() {
     click(By.name("commit"));

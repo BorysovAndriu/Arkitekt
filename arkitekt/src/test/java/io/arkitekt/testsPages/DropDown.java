@@ -8,13 +8,17 @@ public class DropDown extends TestBasePages {
     @Test(priority = 1)
     public void addDropDown() throws Exception {
         app.getPagesHelper().addPages(By.xpath("//a[@id='add_new_folder']"), "NEW DROPDOWN");
-        app.getPagesHelper().addSubPages(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]//a"));
+        app.getPagesHelper().addSubDropDown(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]//a"), "NEW PAGE");
     }
 
     @Test(priority = 2)
-    public void toggle() throws InterruptedException {
+    public void toggleOff() throws InterruptedException {
         app.getPagesHelper().toggleOff(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
                 By.xpath("//input[@name='enable-page']/following-sibling::span"), "HOME");
+    }
+
+    @Test(priority = 3)
+    public void toggleOn() throws InterruptedException {
         app.getPagesHelper().toggleOn(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
                 By.xpath("//input[@name='enable-page']/following-sibling::span"), "NEW DROPDOWN");
     }
@@ -27,8 +31,9 @@ public class DropDown extends TestBasePages {
 
     @Test(priority = 4)
     public void renameSubDropDown() throws InterruptedException {
-        app.getPagesHelper().renameSubPage(By.xpath("//div[@class='site-menu-item menu-item-page d-menu-sub-item active']/div[1]"),
-                "subPage", By.xpath("//input[@name='nav_title']"), "SUBPAGE");
+        app.getPagesHelper().renameSubPage
+                (By.xpath("//div[@class='site-menu-item menu-item-page d-menu-sub-item active']/div[1]"),
+                        By.xpath("//input[@name='nav_title']"), "SUBPAGE");
     }
 
     @Test(priority = 5)
