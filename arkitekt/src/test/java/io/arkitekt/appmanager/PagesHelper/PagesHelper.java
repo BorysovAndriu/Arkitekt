@@ -1,5 +1,6 @@
-package io.arkitekt.appmanager;
+package io.arkitekt.appmanager.PagesHelper;
 
+import io.arkitekt.appmanager.HelperBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.testng.Assert.assertEquals;
 
-public class PagesHelper extends HelperBase{
+public class PagesHelper extends HelperBase {
 
     public PagesHelper(WebDriver driver) {
         super(driver);

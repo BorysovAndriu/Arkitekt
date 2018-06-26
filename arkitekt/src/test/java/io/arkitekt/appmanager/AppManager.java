@@ -1,5 +1,7 @@
 package io.arkitekt.appmanager;
 
+import io.arkitekt.appmanager.PagesHelper.PagesBannerHelper;
+import io.arkitekt.appmanager.PagesHelper.PagesHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -11,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppManager {
 
-  WebDriver driver;
+  public WebDriver driver;
   Actions builder;
 
   private NavHelperLeftPanel navHelperLeftPanel;
@@ -21,6 +23,7 @@ public class AppManager {
   private String browser;
   private BillingHelper billingHelper;
   private PagesHelper pagesHelper;
+  private PagesBannerHelper bannerHelper;
 
   public AppManager(String browser) {
     this.browser = browser;
@@ -47,6 +50,7 @@ public class AppManager {
     navHelperBuilder = new NavHelperBuilder(driver);
     billingHelper = new BillingHelper(driver);
     pagesHelper = new PagesHelper(driver);
+    bannerHelper = new PagesBannerHelper(driver);
 
   }
 
@@ -73,6 +77,8 @@ public class AppManager {
   public BillingHelper getBillingHelper() {return billingHelper;}
 
   public PagesHelper getPagesHelper() {return pagesHelper;}
+
+  public PagesBannerHelper getBannerHelper() {return  bannerHelper;}
 
 }
 
