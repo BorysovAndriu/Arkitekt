@@ -6,7 +6,8 @@ import org.testng.annotations.Test;
 
 public class SignUp extends TestBase {
 
-  @Test(priority = 1, enabled = false)
+  @Test
+          //(priority = 1, enabled = false)
   public void testSignUp() throws InterruptedException {
     app.getNavHelperLeftPanel().click(By.xpath("//a[@class='btn btn-link']"));
     app.getNavHelperLeftPanel().click(By.xpath("//*[@id=\"new_user\"]/div/a[@class='btn-simple']"));

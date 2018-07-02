@@ -2,12 +2,17 @@ package io.arkitekt.appmanager;
 
 import io.arkitekt.appmanager.PagesHelper.PagesBannerHelper;
 import io.arkitekt.appmanager.PagesHelper.PagesHelper;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.CapabilityType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,11 +30,14 @@ public class AppManager {
   private PagesHelper pagesHelper;
   private PagesBannerHelper bannerHelper;
 
+
   public AppManager(String browser) {
     this.browser = browser;
   }
 
   public void init() {
+
+
     if (browser.equals(BrowserType.FIREFOX)) {
       driver = new FirefoxDriver();
     } else if(browser.equals(BrowserType.CHROME)) {

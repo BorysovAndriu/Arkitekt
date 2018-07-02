@@ -1,9 +1,10 @@
-package io.arkitekt.testsPages;
+package io.arkitekt.testsPages.Container;
 
+import io.arkitekt.testsPages.TestBasePages;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class Container extends TestBasePages{
+public class ContainerSetting extends TestBasePages {
 
     @Test(priority = 1)
     public void addContainer() throws Exception {

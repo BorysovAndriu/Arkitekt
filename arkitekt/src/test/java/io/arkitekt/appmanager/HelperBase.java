@@ -1,9 +1,7 @@
 package io.arkitekt.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,6 +26,11 @@ public class HelperBase {
         click(locator);
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
+    }
+    public void typeN(String text, By locator) throws InterruptedException {
+        click(locator);
+        Thread.sleep(5000);
+        driver.findElement(locator).sendKeys((Keys.ENTER), text);
     }
 
     public void clickA(By locator) {
@@ -82,6 +85,15 @@ public class HelperBase {
         assertEquals(text, existingText);
     }
 
+    public boolean isElementFound(String text, By locator, String value) {
+        try {
+            checking(text, locator, value);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
+
     public boolean isElementPressent(By locator) {
         try {
             driver.findElement(locator);
@@ -127,6 +139,10 @@ public class HelperBase {
     public void attachImage(By locator, String namepath) {
         File file = new File(namepath);
         driver.findElement(locator).sendKeys(file.getAbsolutePath());
+    }
+
+    public void doubleClick(By locator) {
+        new Actions(driver).doubleClick(driver.findElement(locator)).build().perform();
     }
 
 }
