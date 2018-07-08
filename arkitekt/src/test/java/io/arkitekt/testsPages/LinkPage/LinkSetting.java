@@ -1,9 +1,10 @@
-package io.arkitekt.testsPages;
+package io.arkitekt.testsPages.LinkPage;
 
+import io.arkitekt.testsPages.TestBasePages;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class Link extends TestBasePages {
+public class LinkSetting extends TestBasePages {
 
     @Test(priority = 1)
     public void addLink() throws Exception {
@@ -24,7 +25,7 @@ public class Link extends TestBasePages {
 
     @Test(priority = 4)
     public void renamePage() throws InterruptedException {
-        app.getPagesHelper().renamePage(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"), "Link",
+        app.getPagesHelper().renamePage(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"), "LinkSetting",
                 By.xpath("//input[@name='nav_title']"), "LINK");
     }
 
