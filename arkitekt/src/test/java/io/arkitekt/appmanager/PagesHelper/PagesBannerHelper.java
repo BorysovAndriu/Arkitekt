@@ -13,32 +13,32 @@ public class PagesBannerHelper extends PagesHelper {
         super(driver);
     }
 
-    public void openBannerTab(By locator) {
-        openSettingPages(locator);
+    public void openBannerTab(int x) {
+        openSettingPages(x);
         click(By.xpath("//a[@href='#page_banner']"));
     }
 
-    public void addImage(By locator) throws InterruptedException {
-        openBannerTab(locator);
+    public void addImage(String bannerNameClassB, By bannerClassB, String bannerNameClassS, By bannerClassSubd, int x) throws InterruptedException {
+        openBannerTab(x);
         attachImage(By.xpath("//input[@name='banner_tmp_image_file']"), "src/test/resources/carBanner.jpg");
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         //перевірка у білдері появи класу
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPressent(By.xpath("//header[@class='page-main-banner active_banner']"))) {
-            checking("page-main-banner active_banner", By.xpath("//header[@class='page-main-banner active_banner']"), "className");
+        if (isElementPressent(bannerClassB)) {
+            checking(bannerNameClassB, bannerClassB, "className");
         } else {
-            checking("active_banner page-main-banner", By.xpath("//header[@class='active_banner page-main-banner']"), "className");
+            checking("active_banner page-main-banner",
+                    By.xpath("//header[@class='active_banner page-main-banner']"), "className");
         }
         stopFrame();
         //перевірка в превю відображення банеру
-        checkingSubdomian("page-main-banner",
-                By.xpath("//header[@class='page-main-banner']"), "className");
+        checkingSubdomian(bannerNameClassS, bannerClassSubd, "className");
         //вихід з розділу банер
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void deleteImage(By locator) throws InterruptedException {
-        openBannerTab(locator);
+    public void deleteImage(int x) throws InterruptedException {
+        openBannerTab(x);
         click(By.xpath("//a[@class='uploaded-banner-image-delete waves-effect']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         chekingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip", By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
@@ -48,8 +48,8 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void deleteBannerText(By locator) throws InterruptedException {
-        openBannerTab(locator);
+    public void deleteBannerText(int x) throws InterruptedException {
+        openBannerTab(x);
         gotoFrame(By.xpath("//iframe[@id='banner_text_ifr']"));
         click(By.xpath("//body[@id='tinymce']"));
         driver.findElement(By.xpath("//body[@id='tinymce']")).
@@ -61,8 +61,8 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void addBannerText(By locator) throws InterruptedException {
-        openBannerTab(locator);
+    public void addBannerText(int x) throws InterruptedException {
+        openBannerTab(x);
         gotoFrame(By.xpath("//iframe[@id='banner_text_ifr']"));
         typeN("Banner", By.xpath("//body[@id='tinymce']"));
         stopFrame();
@@ -72,8 +72,8 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void moveBannerHeight(By locator) throws InterruptedException {
-        openBannerTab(locator);
+    public void moveBannerHeight(int x) throws InterruptedException {
+        openBannerTab(x);
         slider(By.xpath("//div[@id='banner_height_slider']"),
                 By.xpath("//div[@id='banner_height_slider']//div[@class='noUi-handle noUi-handle-lower']"),
                 -100, 0);
@@ -85,8 +85,8 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void insertContentHyperlink(By locator, String namePages, String Title) throws InterruptedException {
-        openBannerTab(locator);
+    public void insertContentHyperlink(int x, String namePages, String Title) throws InterruptedException {
+        openBannerTab(x);
         openEditWinHyperlink();
         //вибір Контент лінки
         String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
@@ -102,8 +102,8 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void insertFileHyperlink(By locator) throws InterruptedException, FileNotFoundException {
-        openBannerTab(locator);
+    public void insertFileHyperlink(int x) throws InterruptedException, FileNotFoundException {
+        openBannerTab(x);
         openEditWinHyperlink();
         String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
         click(By.xpath(String.format("//ul[@id='%s']/li[3]", hyperlinkID)));
@@ -124,8 +124,8 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void insertExtrenalHyperlink(By locator, String Title) throws InterruptedException {
-        openBannerTab(locator);
+    public void insertExtrenalHyperlink(String Title, int x) throws InterruptedException {
+        openBannerTab(x);
         openEditWinHyperlink();
         String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
         click(By.xpath(String.format("//ul[@id='%s']/li[4]", hyperlinkID)));
@@ -139,8 +139,8 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void insertNoneHyperlink(By locator) throws InterruptedException {
-        openBannerTab(locator);
+    public void insertNoneHyperlink(int x) throws InterruptedException {
+        openBannerTab(x);
         openEditWinHyperlink();
         String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
         click(By.xpath(String.format("//ul[@id='%s']/li[1]", hyperlinkID)));

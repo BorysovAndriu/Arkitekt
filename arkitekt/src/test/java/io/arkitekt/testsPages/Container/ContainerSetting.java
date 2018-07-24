@@ -14,42 +14,42 @@ public class ContainerSetting extends TestBasePages {
 
     @Test (priority = 2)
     public void toggleOff() throws InterruptedException {
-        app.getPagesHelper().toggleOff(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
-                By.xpath("//input[@name='enable-page']/following-sibling::span"), "HOME");
+        app.getPagesHelper().toggleOff(
+                By.xpath("//input[@name='enable-page']/following-sibling::span"), "HOME", 2);
     }
 
     @Test(priority = 3)
     public void toggleOn() throws InterruptedException {
-        app.getPagesHelper().toggleOn(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
-                By.xpath("//input[@name='enable-page']/following-sibling::span"), "NEW CONTAINER");
+        app.getPagesHelper().toggleOn(
+                By.xpath("//input[@name='enable-page']/following-sibling::span"), "NEW CONTAINER", 2);
     }
 
     @Test(priority = 4)
     public void renameContainer() throws InterruptedException {
-        app.getPagesHelper().renamePage(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"), "Cont",
-                By.xpath("//input[@name='nav_title']"), "CONT");
+        app.getPagesHelper().renamePage("Cont",
+                By.xpath("//input[@name='nav_title']"), "CONT", 2);
     }
 
     @Test(priority = 5)
     public void renameUrl() throws InterruptedException {
-        app.getPagesHelper().renameUrl(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"), "/cont-test",
-                By.xpath("//*[@name='url' and @placeholder='newpage']"));
+        app.getPagesHelper().renameUrl("/cont-test",
+                By.xpath("//*[@name='url' and @placeholder='newpage']"), 2);
     }
 
     @Test(priority = 6)
     public void lockscreenContainer() throws InterruptedException {
-        app.getPagesHelper().lockPages(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"));
+        app.getPagesHelper().lockPages(2);
     }
 
     @Test(priority = 7)
     public void unlockContainer() throws InterruptedException {
-        app.getPagesHelper().unlockPages(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]"),
-                "CONT");
+        app.getPagesHelper().unlockPages(
+                "CONT", 2);
     }
 
     @Test(priority = 8)
     public void deleteContainer() throws Exception {
-        app.getPagesHelper().deleteContainer(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
+        app.getPagesHelper().deleteContainer(2,
                 By.xpath("//*[@id=\"menu_item_remove\"]"));
     }
 }

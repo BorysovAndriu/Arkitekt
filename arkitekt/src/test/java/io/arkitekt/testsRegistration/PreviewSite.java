@@ -12,6 +12,5 @@ public class PreviewSite extends TestBasePreview {
         app1.getNavHelperLeftPanel().gotoTab();
         app1.getNavHelperBuilder().movetoNavOutPreview();
         app1.getNavHelperBuilder().closeTab();
-
     }
 }

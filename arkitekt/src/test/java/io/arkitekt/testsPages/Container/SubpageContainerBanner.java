@@ -6,59 +6,59 @@ import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 
-public class ContainerBanner extends TestBasePages {
+public class SubpageContainerBanner extends TestBasePages {
 
-    @Test(priority = 1)
-    public void addContainer() throws Exception {
+       @Test(priority = 1)
+    public void addSubpageContainer() throws Exception {
         app.getPagesHelper().addPages(By.xpath("//a[@id='add_new_container']"), "NEW CONTAINER");
         app.getPagesHelper().addSubContainer(By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]//a"));
     }
 
     @Test(priority = 2)
     public void addBanner() throws Exception {
-        app.getBannerHelper().addImage("page-main-banner active_banner",
-                By.xpath("//header[@class='page-main-banner active_banner']"),
-                "page-main-banner", By.xpath("//header[@class='page-main-banner']"), 2);
+        app.getBannerHelper().addImage("page-main-banner-section",
+                By.xpath("//header[@class='page-main-banner-section']"),"page-main-banner-section",
+                By.xpath("//header[@class='page-main-banner-section']"), 22);
     }
 
     @Test(priority = 3)
     public void addBannerText() throws Exception {
-        app.getBannerHelper().addBannerText(2);
+        app.getBannerHelper().addBannerText(22);
     }
 
     @Test(priority = 4)
     public void minBannerHeight() throws Exception {
-        app.getBannerHelper().moveBannerHeight(2);
+        app.getBannerHelper().moveBannerHeight(22);
     }
 
     @Test(priority = 5)
     public void addBannerButtonContent() throws Exception {
-        app.getBannerHelper().insertContentHyperlink(2,"/new-container", "New Container - Marathon");
+        app.getBannerHelper().insertContentHyperlink(22, "/new-container", "New Container - Marathon");
     }
 
     @Test(priority = 6)
     public void addBannerButtonFile() throws InterruptedException, FileNotFoundException {
-        app.getBannerHelper().insertFileHyperlink(2);
+        app.getBannerHelper().insertFileHyperlink(22);
     }
 
     @Test(priority = 7)
     public void addBannerButtonExternal() throws InterruptedException {
-        app.getBannerHelper().insertExtrenalHyperlink( "Google",2);
+        app.getBannerHelper().insertExtrenalHyperlink( "Google",22);
     }
 
     @Test(priority = 8)
     public void addBannerOffButton() throws InterruptedException {
-        app.getBannerHelper().insertNoneHyperlink(2);
+        app.getBannerHelper().insertNoneHyperlink(22);
     }
 
     @Test(priority = 9)
     public void deleteBannerText() throws Exception {
-        app.getBannerHelper().deleteBannerText(2);
+        app.getBannerHelper().deleteBannerText(22);
     }
 
     @Test(priority = 10)
     public void deleteBanner() throws Exception {
-        app.getBannerHelper().deleteImage(2);
+        app.getBannerHelper().deleteImage(22);
     }
 
     @Test(priority = 11)

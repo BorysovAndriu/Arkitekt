@@ -3,9 +3,9 @@ package io.arkitekt.testsBilling;
 import io.arkitekt.appmanager.AppManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 
 public class TestBasePay {
 
@@ -16,8 +16,6 @@ public class TestBasePay {
         app.init();
         app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
         app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-        //String subdonaim = app.getNavHelperLeftPanel().getIdPage("textContent",
-               // By.xpath("//span[@class='pull-left user-subdomain']"));
         app.getBillingHelper().gotoSettingBilling();
     }
 

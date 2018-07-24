@@ -20,7 +20,7 @@ public class TestBase {
   public void setUpp() throws Exception {
     app.init();
     app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-    //app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
+    app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
   }
 
   @AfterMethod

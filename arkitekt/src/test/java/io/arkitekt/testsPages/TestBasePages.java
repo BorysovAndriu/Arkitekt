@@ -11,8 +11,6 @@ import org.testng.annotations.BeforeMethod;
 public class TestBasePages {
 
     protected static final AppManager app = new AppManager(BrowserType.CHROME);
-    //public static String subdomain;
-
 
     @BeforeClass
     public void setUpp() throws Exception {

@@ -1,9 +1,8 @@
 package io.arkitekt.testsRegistration;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class NavBuilder extends TestBase {
+public class ClickNavigation extends TestBase {
 
     @Test
     public void navBuiler() throws InterruptedException {
@@ -11,4 +10,3 @@ public class NavBuilder extends TestBase {
         app.getNavHelperBuilder().movetoNavpreview();
     }
 }
-

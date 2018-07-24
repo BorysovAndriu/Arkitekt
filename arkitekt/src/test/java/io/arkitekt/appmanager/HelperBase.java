@@ -145,5 +145,44 @@ public class HelperBase {
         new Actions(driver).doubleClick(driver.findElement(locator)).build().perform();
     }
 
+    public By findPagesCards(int x){
+        By locator = By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]");
+        String idFirstPage = getId(locator);
+        String idSubPage = getIdPage ("id",
+                By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]",idFirstPage)));
+        By subpage = By.xpath(String.format("//div[@id='%s']",idSubPage));
+
+        if (x==2) {
+            checking("container", locator, "data-type");
+            By container = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
+            return container;
+        }
+        else if (x==22) {
+            checking("page", subpage, "data-type");
+            By subpageContainer = By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]", idFirstPage));
+            return subpageContainer;
+        }
+        else if (x==1) {
+            checking("page", locator, "data-type");
+            By page = By.xpath(String.format("//div[@id='page-%s']", idFirstPage));
+            return page;
+        }
+        else if (x==3) {
+            checking("folder", locator, "data-type");
+            By dropdown = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
+            return dropdown;
+        }
+        else if (x==33) {
+            checking("page", subpage, "data-type");
+            By subpageDropDown = By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]", idFirstPage));
+            return subpageDropDown;
+        }
+        else if (x==4) {
+            checking("link", locator, "data-type");
+            By link = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
+            return link;
+        } else return locator;
+    }
+
 }
 
