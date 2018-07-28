@@ -17,10 +17,7 @@ public class TestBasePages {
         app.init();
         app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
         app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-        //subdomain = app.getNavHelperLeftPanel().getIdPage("textContent",
-                //By.xpath("//span[@class='pull-left user-subdomain']"));
         app.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
-        //return subdomain;
     }
 
     @AfterMethod()

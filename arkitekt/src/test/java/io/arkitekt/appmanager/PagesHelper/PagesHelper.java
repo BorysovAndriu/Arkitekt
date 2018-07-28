@@ -1,12 +1,15 @@
 package io.arkitekt.appmanager.PagesHelper;
 
 import io.arkitekt.appmanager.HelperBase;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
 public class PagesHelper extends HelperBase {
 
@@ -14,177 +17,210 @@ public class PagesHelper extends HelperBase {
         super(driver);
     }
 
-    public void addPages(By locator, String checkNamePages) throws InterruptedException {
+    public By findPagesCards(int x) {
+        By locator = By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]");
+        String idFirstPage = getId(locator);
+        if (x == 2) {
+            checking("container", locator, "data-type");
+            By container = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
+            return container;
+        } else if (x == 22) {
+            String idSubPage = getIdPage("id",
+                    By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]", idFirstPage)));
+            By subpage = By.xpath(String.format("//div[@id='%s']", idSubPage));
+            checking("page", subpage, "data-type");
+            By subpageContainer = By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]", idFirstPage));
+            return subpageContainer;
+        } else if (x == 1) {
+            checking("page", locator, "data-type");
+            By page = By.xpath(String.format("//div[@id='page-%s']", idFirstPage));
+            return page;
+        } else if (x == 3) {
+            checking("folder", locator, "data-type");
+            By dropdown = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
+            return dropdown;
+        } else if (x == 33) {
+            String idSubPage = getIdPage("id",
+                    By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]", idFirstPage)));
+            By subpage = By.xpath(String.format("//div[@id='%s']", idSubPage));
+            checking("page", subpage, "data-type");
+            By subpageDropDown = By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]", idFirstPage));
+            return subpageDropDown;
+        } else if (x == 4) {
+            checking("link", locator, "data-type");
+            By link = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
+            return link;
+        } else return locator;
+    }
+
+    public void addPages(String namePage, int x) throws InterruptedException {
         click(By.xpath("//button[@id='sb5_add_new_page']"));
-        click(locator);
-        checkingNavPagesBuilder(checkNamePages, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
-        checkNavPagesSubdomain(checkNamePages);
+        if (x == 1) {
+            click(By.xpath("//a[@id='add_new_page']"));
+        } else if (x == 2) {
+            click(By.xpath("//a[@id='add_new_container']"));
+        } else if (x == 3) {
+            click(By.xpath("//a[@id='add_new_folder']"));
+        } else if (x == 4) {
+            click(By.xpath("//a[@id='add_new_link']"));
+        }
+        builderCheck(x, namePage);
+        subdomainCheck(x, namePage);
     }
 
-    public void addSubContainer(By addSubPage) throws InterruptedException {
-        click(addSubPage);
-        checkingNavSubPagesBuilder();
+    public void addSubPage(int x) throws InterruptedException {
+        if (x == 22) {
+            click(By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]//a"));
+            builderCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
+        } else if (x == 33) {
+            click(By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]//a"));
+            builderCheck(x, "NEW PAGE");
+            subdomainCheck(x, "NEW PAGE");
+        }
     }
 
-    public void addSubDropDown(By addSubPage, String nameSubDropDown) throws InterruptedException {
-        click(addSubPage);
-        checkingNavDropDownBuilder(nameSubDropDown);
-        checkNavDropDownSubdomain(nameSubDropDown);
-    }
-
-    public void deletePages(int x){
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+    public void deletePages(int x, String namePage) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(findPagesCards(x)));
         new Actions(driver).
                 moveToElement(driver.findElement(findPagesCards(x))).build().perform();
-        if (x==2) {
+        if (x == 2 || x == 33 || x == 1) {
             findxPathDeleteIcon(x);
-        }
-        else if (x==22){
+            click(By.xpath("//*[@id=\"menu_item_remove\"]"));
+            if (x == 33) {
+                assertFalse(driver.findElement(By.xpath("//ul[@style='display: block;']//span")).isDisplayed());
+            } else {
+                builderCheck(x, namePage);
+                subdomainCheck(x, namePage);
+            }
+        } else if (x == 22 || x == 3 || x == 4) {
             findxPathDeleteIcon(x);
-        }
-        else if (x==3){
-            findxPathDeleteIcon(x);
-        }
-        else if (x==33){
-            findxPathDeleteIcon(x);
-        }
-        else if (x==1){
-            findxPathDeleteIcon(x);
-        }
-        else if (x==4){
-            findxPathDeleteIcon(x);
+            if (x == 22) {
+                assertFalse(driver.findElement(By.xpath("//p[@class='sb5-empty-text']")).isDisplayed());
+            } else {
+                builderCheck(x, namePage);
+                subdomainCheck(x, namePage);
+            }
         }
     }
 
-    public void findxPathDeleteIcon(int x) {
-        if (x==1 || x==2 || x==4) {
-            String deleteIcon = new String (findPagesCards(x) + "//div[4]/button");
-            By delete = By.xpath(deleteIcon.substring(8));
-            click(delete);
+    private void findxPathDeleteIcon(int x) {
+        //String deletePage = new String(findPagesCards(x) + "//div[4]/button");
+        By xPathSimplePage = By.xpath((findPagesCards(x) + "//div[4]/button").substring(9).trim());
+        //String deleteContainer = new String(findPagesCards(x) + "//div[3]/button");
+        By xPathContainerPage = By.xpath((findPagesCards(x) + "//div[3]/button").substring(9).trim());
+
+        if (x == 1 || x == 4) {
+            click(xPathSimplePage);
+        } else if (x == 3 || x == 33 || x == 2) {
+            click(xPathContainerPage);
+        } else if (x == 22) {
+            if (isElementDesplayed(xPathContainerPage)) {
+                click(xPathContainerPage);
+            } else {
+                click(xPathSimplePage);
+            }
         }
-        else if (x==3) {
-            String deleteIcon = new String (findPagesCards(x) + "//div[3]/button");
-            By delete = By.xpath(deleteIcon.substring(8));
-            click(delete);
-        }
-
     }
 
-    public void deletePage(By locatorFind, By locator) throws InterruptedException {
-        String id= getIdPage("id", locatorFind);
-        hover(locatorFind, By.xpath(String.format("//div[@id='%s']//div[4]/button", id)));
-        click(locator);
-        checkingNavPagesBuilder("HOME", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a/span"));
-        checkNavPagesSubdomain("HOME");
-        //refresh();
-    }
-
-    public void deleteContainer (int x, By locator) throws InterruptedException {
-        //String idContainer = getId(locatorFind);
-        //String idSubPage = getIdPage ("id",
-                //By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]",idContainer)));
-        //hover(By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]",idContainer)),
-                        //By.xpath(String.format("//div[@id='%s']//div[4]/button",idSubPage)));
-        By iconDelete = By.xpath(findPagesCards(x)+"//div{4}/button");
-        hover(findPagesCards(x), iconDelete);
-        //hover(By.xpath("//div[@class='site-top-pages ui-sortable']/div[1]/div[1]"),
-                //By.xpath(String.format("//button[@data-id='%s']", idContainer)));
-        click(locator);
-        checkingNavPagesBuilder("HOME", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a/span"));
-        checkNavPagesSubdomain("HOME");
-        //refresh();
-    }
-
-    public void deleteDropDown(By locatorFind, By locator) throws InterruptedException {
-        String idContainer = getId(locatorFind);
-        String idSubPage = getIdPage ("id",
-                By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]",idContainer)));
-        hover(By.xpath(String.format("//div[@class='page-subs ui-sortable' and @data-parent-id='%s']/div[1]",idContainer)),
-                    By.xpath(String.format("//div[@id='%s']//div[3]/button",idSubPage)));
-        click(locator);
-        hover(By.xpath("//div[@class='site-top-pages ui-sortable']/div[1]/div[1]"),
-                By.xpath(String.format("//button[@data-id='%s']", idContainer)));
-        checkingNavPagesBuilder("HOME", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a/span"));
-        checkNavPagesSubdomain("HOME");
-        //refresh();
-    }
-
-    public void deleteLink(By locatorFind) throws InterruptedException {
-        String id= getIdPage("id", locatorFind);
-        hover(locatorFind, By.xpath(String.format("//div[@id='%s']//div[4]/button", id)));
-        checkingNavPagesBuilder("HOME", By.xpath("//nav[5]/div/div[1]/ul/li[1]/a/span"));
-        checkNavPagesSubdomain("HOME");
-        //refresh();
-    }
-
-    public void toggleOff(By toggle, String namePage, int x) throws InterruptedException {
-        openSettingPages(x);
-        Thread.sleep(5000);
-        click (toggle);
+    public void builderCheck(int x, String namePage) throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if(isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))){
-            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-            String existingText = driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a/span")).getText();
-            assertEquals("", existingText);
-            //click(By.xpath("//*[@id='mobilebar']/ul[1]/li[2]/a"));
-            stopFrame();
-        } else {
-            String existingText = driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a")).getText();
-            assertEquals("", existingText);
-            click(By.xpath("//nav[5]/div/div[1]/ul/li[2]/a"));
-            stopFrame();
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
+            if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+                click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                if (x == 33) {
+                    click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
+                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                } else
+                    checkingText(namePage, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a/span"));
+            } else {
+                if (x == 33) {
+                    click(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
+                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                } else
+                    checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
+            }
+        } else if (x == 22) {
+            checkingText(namePage, By.xpath("//p[@class='sb5-empty-text']"));
         }
-        checkNavPagesSubdomain(namePage);
-        click(By.xpath("//a[@class='back-to-menu waves-circle waves-effect' and @href='#!/pages']"));
+        stopFrame();
     }
 
-    public void toggleOn(By toggle, String namePage, int x) throws InterruptedException {
-        openSettingPages(x);
-        Thread.sleep(5000);
-        click (toggle);
-        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if(isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))){
-            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-            String existingText = driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a/span")).getText();
-            assertEquals(namePage, existingText);
-            //click(By.xpath("//*[@id='mobilebar']/ul[1]/li[2]/a"));
-            stopFrame();
-        } else {
-            String existingText = driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a")).getText();
-            assertEquals(namePage, existingText);
-            click(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
-            stopFrame();
-        }
-        checkNavPagesSubdomain(namePage);
-        click(By.xpath("//a[@class='back-to-menu waves-circle waves-effect' and @href='#!/pages']"));
-    }
-
-    public void renamePage(String namePage, By type, String checkText, int x) throws InterruptedException {
-        openSettingPages(x);
-        Thread.sleep(5000);
-        rename(namePage, type);
-        checkingNavPagesBuilder(checkText, By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
-        checkNavPagesSubdomain(checkText);
-    }
-
-    public void renameSubPage(By type, String nameSubDropDown, int x) throws InterruptedException {
-        openSettingPages(x);
-        Thread.sleep(5000);
-        rename(nameSubDropDown, type);
-        checkingNavDropDownBuilder(nameSubDropDown);
-        checkNavDropDownSubdomain(nameSubDropDown);
-    }
-
-    public void renameUrl(String nameUrl, By type, int x) throws InterruptedException {
-        openSettingPages(x);
-        Thread.sleep(5000);
-        rename(nameUrl, type);
+    public void subdomainCheck(int x, String namePage) throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"),"pathname");
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
+            if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+                click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                if (x == 33) {
+                    click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
+                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                } else
+                    checkingText(namePage, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
+            } else {
+                if (x == 33) {
+                    click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
+                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                } else checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
+            }
+        } else if (x == 22) {
+            checking("page-section", By.xpath("//section[@class='page-section']"), "className");
+        }
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+    }
+
+    public void checkLockSubdomain() throws InterruptedException {
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        gotoFrame(By.cssSelector("#page_preview_iframe"));
+        checkingText("PRIVATE PAGE", By.xpath("//h2[text()='PRIVATE PAGE']"));
+        stopFrame();
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+    }
+
+    public void toggle(String namePage, int x) throws InterruptedException {
+        openSettingPages(x);
+        Thread.sleep(5000);
+        click(By.xpath("//input[@name='enable-page']/following-sibling::span"));
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+        if (isElementFound("toggle untoggled", By.xpath("//input[@name='enable-page']/following-sibling::span"), "className")) {
+            if (x == 22) {
+                builderCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
+                subdomainCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
+            } else if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
+                builderCheck(x, "HOME");
+                subdomainCheck(x, "HOME");
+            }
+        } else if (isElementFound("toggle toggled", By.xpath("//input[@name='enable-page']/following-sibling::span"), "className")) {
+            builderCheck(x, namePage);
+            subdomainCheck(x, namePage);
+        }
+        click(By.xpath("//a[@class='back-to-menu waves-circle waves-effect' and @href='#!/pages']"));
+    }
+
+    public void renamePage(String namePage, int x) throws InterruptedException {
+        openSettingPages(x);
+        rename(namePage, By.xpath("//input[@name='nav_title']"));
+        builderCheck(x, namePage);
+        subdomainCheck(x, namePage);
+    }
+
+    public void renameUrl(String nameUrl, int x) throws InterruptedException {
+        openSettingPages(x);
+        Thread.sleep(5000);
+        rename(nameUrl, By.xpath("//*[@name='url' and @placeholder='newpage']"));
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        gotoFrame(By.cssSelector("#page_preview_iframe"));
+        checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
+        stopFrame();
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+    }
+
+    public void rename(String text, By type) throws InterruptedException {
+        Thread.sleep(5000);
+        type(text, type);
+        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
     public void lockPages(int x) throws InterruptedException {
@@ -203,10 +239,8 @@ public class PagesHelper extends HelperBase {
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys(Keys.BACK_SPACE);
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-        checkNavPagesSubdomain(namePage);
+        subdomainCheck(x, namePage);
     }
-
-
 
     public void openSettingPages(int x) {
         WebDriverWait wait = new WebDriverWait(driver, 60);
@@ -215,79 +249,4 @@ public class PagesHelper extends HelperBase {
         new Actions(driver).
                 moveToElement(driver.findElement(findPagesCards(x))).click().build().perform();
     }
-
-    public void rename(String text, By type) {
-        type(text, type);
-        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-    }
-
-    public void checkingNavPagesBuilder(String text, By locator) throws InterruptedException {
-        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if(isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))){
-            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-            String existingText = driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a/span")).getText();
-            assertEquals(text, existingText);
-            stopFrame();
-        } else {
-        String existingText = driver.findElement(locator).getText();
-        assertEquals(text, existingText);
-        stopFrame();
-        }
-    }
-
-    public void checkingNavSubPagesBuilder() throws InterruptedException {
-        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        String existingText = driver.findElement( By.xpath("//p[@class='sb5-empty-text']")).getText();
-        assertEquals("This page is empty." + "\n" + "Use the + button to add widgets.",existingText);
-        stopFrame();
-    }
-
-    public void checkingNavDropDownBuilder(String text) throws InterruptedException {
-        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if(isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))){
-            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-            click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
-            String existingText = driver.findElement(By.xpath("//ul[@style='display: block;']//span")).getText();
-            assertEquals(text, existingText);
-            stopFrame();
-        } else {
-            click(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
-            String existingText = driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul//a")).getText();
-            assertEquals(text, existingText);
-            stopFrame();
-        }
-    }
-
-    public void checkNavDropDownSubdomain(String namePage) throws InterruptedException {
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-        gotoFrame(By.cssSelector("#page_preview_iframe"));
-        click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
-        checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul//a"));
-        stopFrame();
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-    }
-
-    public void checkNavPagesSubdomain(String namePage) throws InterruptedException {
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-        gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))){
-            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-            checkingText(namePage, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
-            stopFrame();
-            hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));}
-        else {
-            checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
-            stopFrame();
-        }
-    }
-
-    public void checkLockSubdomain() throws InterruptedException {
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-        gotoFrame(By.cssSelector("#page_preview_iframe"));
-        checkingText("PRIVATE PAGE", By.xpath("//h2[text()='PRIVATE PAGE']"));
-        stopFrame();
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-    }
-
 }

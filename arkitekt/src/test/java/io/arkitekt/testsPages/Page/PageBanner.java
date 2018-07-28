@@ -10,7 +10,7 @@ public class PageBanner extends TestBasePages {
 
     @Test(priority = 1)
     public void addPage() throws Exception {
-        app.getPagesHelper().addPages(By.xpath("//a[@id='add_new_page']"), "NEW PAGE");
+        app.getPagesHelper().addPages("NEW PAGE", 1);
     }
 
     @Test(priority = 2)
@@ -62,8 +62,7 @@ public class PageBanner extends TestBasePages {
 
     @Test(priority = 11)
     public void deletePage() throws Exception {
-        app.getPagesHelper().deletePage(By.xpath("//div[@class='site-top-pages ui-sortable']/div[1]"),
-                By.xpath("//*[@id='menu_item_remove']"));
+        app.getPagesHelper().deletePages(1, "HOME");
     }
 
 }

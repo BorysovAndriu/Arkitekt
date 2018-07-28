@@ -8,12 +8,12 @@ public class SubpageDropDownBanner extends TestBasePages {
 
     @Test(priority = 1)
     public void addDropDown() throws Exception {
-        app.getPagesHelper().addPages(By.xpath("//a[@id='add_new_folder']"), "NEW DROPDOWN");
+        app.getPagesHelper().addPages( "NEW DROPDOWN", 3);
     }
 
     @Test(priority = 1)
     public void addSubDropDown() throws Exception {
-     app.getPagesHelper().addSubDropDown(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]//a"), "NEW PAGE");
+     app.getPagesHelper().addSubPage(33);
     }
 
     @Test(priority = 2)
@@ -26,8 +26,8 @@ public class SubpageDropDownBanner extends TestBasePages {
 
     @Test(priority = 9)
     public void deleteDropDown() throws Exception {
-        app.getPagesHelper().deleteDropDown(By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]"),
-                By.xpath("//button[@id=\"menu_item_remove\"]"));
+        app.getPagesHelper().deletePages(33, "NEW DROPDOWN");
+        app.getPagesHelper().deletePages(3, "HOME");
     }
     
     

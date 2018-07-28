@@ -10,8 +10,8 @@ public class SubpageContainerBanner extends TestBasePages {
 
        @Test(priority = 1)
     public void addSubpageContainer() throws Exception {
-        app.getPagesHelper().addPages(By.xpath("//a[@id='add_new_container']"), "NEW CONTAINER");
-        app.getPagesHelper().addSubContainer(By.xpath("//div[@id=\"site_pages\"]/div[1]//div[2]//a"));
+        app.getPagesHelper().addPages("NEW CONTAINER", 2);
+        app.getPagesHelper().addSubPage(22);
     }
 
     @Test(priority = 2)
@@ -63,8 +63,8 @@ public class SubpageContainerBanner extends TestBasePages {
 
     @Test(priority = 11)
     public void deleteContainer() throws Exception {
-        app.getPagesHelper().deleteContainer(2,
-                By.xpath("//*[@id=\"menu_item_remove\"]"));
+        app.getPagesHelper().deletePages(22, "CONT");
+        app.getPagesHelper().deletePages(2, "HOME");
     }
 }
 
