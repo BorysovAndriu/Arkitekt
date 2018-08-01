@@ -15,7 +15,7 @@ public class BillingHelper extends HelperBase{
         Thread.sleep(2000);
     }
 
-    public void gotoSubscribpition() {
+    public void gotoSubscribpition() throws InterruptedException {
         click(By.id("billing_subscribe"));
     }
 

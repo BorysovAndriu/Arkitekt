@@ -22,7 +22,7 @@ public class HelperBase {
         driver.navigate().to(url);
     }
 
-    public void type(String text, By locator) {
+    public void type(String text, By locator) throws InterruptedException {
         click(locator);
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
@@ -39,9 +39,10 @@ public class HelperBase {
         driver.findElement(locator).click();
     }
 
-    public void click(By locator) {
+    public void click(By locator) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        Thread.sleep(5000);
         driver.findElement(locator).click();
     }
 

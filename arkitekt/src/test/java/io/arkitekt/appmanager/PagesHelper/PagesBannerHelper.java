@@ -13,7 +13,7 @@ public class PagesBannerHelper extends PagesHelper {
         super(driver);
     }
 
-    public void openBannerTab(int x) {
+    public void openBannerTab(int x) throws InterruptedException {
         openSettingPages(x);
         click(By.xpath("//a[@href='#page_banner']"));
     }
@@ -151,7 +151,7 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void openNewWindow() {
+    public void openNewWindow() throws InterruptedException {
         click(By.xpath("//div[@id='edit_text_hyperlink_block']//following::div[@id='choose_link_content_text']//following-sibling::div//span[@class='check']"));
     }
 

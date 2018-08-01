@@ -36,7 +36,7 @@ public class NavHelperBuilder extends HelperBase{
         stopFrame();
     }
 
-    public void movetoNavOutPreview() {
+    public void movetoNavOutPreview() throws InterruptedException {
         click(By.xpath("//nav/div/div[1]/ul/li[1]/a"));
         click(By.xpath("//nav/div/div[1]/ul/li[2]/a"));
         click(By.xpath("//nav/div/div[1]/ul/li[3]/a"));

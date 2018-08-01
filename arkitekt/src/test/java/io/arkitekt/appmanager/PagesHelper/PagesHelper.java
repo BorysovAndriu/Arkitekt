@@ -104,22 +104,15 @@ public class PagesHelper extends HelperBase {
         }
     }
 
-    private void findxPathDeleteIcon(int x) {
-        //String deletePage = new String(findPagesCards(x) + "//div[4]/button");
+    private void findxPathDeleteIcon(int x) throws InterruptedException {
         By xPathSimplePage = By.xpath((findPagesCards(x) + "//div[4]/button").substring(9).trim());
-        //String deleteContainer = new String(findPagesCards(x) + "//div[3]/button");
         By xPathContainerPage = By.xpath((findPagesCards(x) + "//div[3]/button").substring(9).trim());
 
-        if (x == 1 || x == 4) {
-            click(xPathSimplePage);
-        } else if (x == 3 || x == 33 || x == 2) {
-            click(xPathContainerPage);
+        if (x == 1 || x == 4) { click(xPathSimplePage);
+        } else if (x == 3 || x == 33 || x == 2) { click(xPathContainerPage);
         } else if (x == 22) {
-            if (isElementDesplayed(xPathContainerPage)) {
-                click(xPathContainerPage);
-            } else {
-                click(xPathSimplePage);
-            }
+            if (isElementDesplayed(xPathContainerPage)) { click(xPathContainerPage);
+            } else { click(xPathSimplePage); }
         }
     }
 
@@ -182,23 +175,22 @@ public class PagesHelper extends HelperBase {
         openSettingPages(x);
         Thread.sleep(5000);
         click(By.xpath("//input[@name='enable-page']/following-sibling::span"));
-        if (isElementFound("toggle untoggled", By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle untoggled']"),
-                "className")) {
+        if (isElementPressent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle untoggled']"))) {
             if (x == 22) {
                 builderCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
                 subdomainCheck(x, "HOME");
             } else if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
                 gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-                if(!isElementPressent(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a")))
-                stopFrame();
+                if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))) {
+                    stopFrame();
+                }
                 subdomainCheck(x, "HOME");
             }
-        } else //if (isElementFound("toggle toggled", By.xpath("////input[@name='enable-page']/following-sibling::span[@class='toggle toggled']"),
-                //"className"))
-            {
+        } else if (isElementPressent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle toggled']"))) {
             builderCheck(x, namePage);
             subdomainCheck(x, namePage);
         }
+        Thread.sleep(5000);
         click(By.xpath("//a[@class='back-to-menu waves-circle waves-effect' and @href='#!/pages']"));
     }
 
@@ -246,7 +238,7 @@ public class PagesHelper extends HelperBase {
         subdomainCheck(x, namePage);
     }
 
-    public void openSettingPages(int x) {
+    public void openSettingPages(int x) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(findPagesCards(x)));
         click(By.xpath("//*[@id='site_pages']/h5"));

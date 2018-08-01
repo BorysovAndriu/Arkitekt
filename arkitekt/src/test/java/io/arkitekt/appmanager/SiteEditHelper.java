@@ -11,7 +11,7 @@ public class SiteEditHelper extends HelperBase{
     super(driver);
   }
 
-  public void createSite() {
+  public void createSite() throws InterruptedException {
     click(By.xpath("//*[@id=\"sites_list\"]/div/ul/li[1]/div/a"));
   }
 
