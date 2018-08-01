@@ -182,16 +182,20 @@ public class PagesHelper extends HelperBase {
         openSettingPages(x);
         Thread.sleep(5000);
         click(By.xpath("//input[@name='enable-page']/following-sibling::span"));
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-        if (isElementFound("toggle untoggled", By.xpath("//input[@name='enable-page']/following-sibling::span"), "className")) {
+        if (isElementFound("toggle untoggled", By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle untoggled']"),
+                "className")) {
             if (x == 22) {
                 builderCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
-                subdomainCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
+                subdomainCheck(x, "HOME");
             } else if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
-                builderCheck(x, "HOME");
+                gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+                if(!isElementPressent(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a")))
+                stopFrame();
                 subdomainCheck(x, "HOME");
             }
-        } else if (isElementFound("toggle toggled", By.xpath("//input[@name='enable-page']/following-sibling::span"), "className")) {
+        } else //if (isElementFound("toggle toggled", By.xpath("////input[@name='enable-page']/following-sibling::span[@class='toggle toggled']"),
+                //"className"))
+            {
             builderCheck(x, namePage);
             subdomainCheck(x, namePage);
         }
