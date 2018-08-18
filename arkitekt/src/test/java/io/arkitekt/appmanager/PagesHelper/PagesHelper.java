@@ -8,7 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
 public class PagesHelper extends HelperBase {
@@ -33,7 +35,7 @@ public class PagesHelper extends HelperBase {
             return subpageContainer;
         } else if (x == 1) {
             checking("page", locator, "data-type");
-            By page = By.xpath(String.format("//div[@id='page-%s']", idFirstPage));
+            By page = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
             return page;
         } else if (x == 3) {
             checking("folder", locator, "data-type");
@@ -105,8 +107,8 @@ public class PagesHelper extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathSimplePage = By.xpath((findPagesCards(x) + "//div[4]/button").substring(9).trim());
-        By xPathContainerPage = By.xpath((findPagesCards(x) + "//div[3]/button").substring(9).trim());
+        By xPathSimplePage = By.xpath((findPagesCards(x) + "//div[3]/button").substring(9).trim());
+        By xPathContainerPage = By.xpath((findPagesCards(x) + "//div[4]/button").substring(9).trim());
 
         if (x == 1 || x == 4) { click(xPathSimplePage);
         } else if (x == 3 || x == 33 || x == 2) { click(xPathContainerPage);
@@ -244,5 +246,137 @@ public class PagesHelper extends HelperBase {
         click(By.xpath("//*[@id='site_pages']/h5"));
         new Actions(driver).
                 moveToElement(driver.findElement(findPagesCards(x))).click().build().perform();
+    }
+
+    public void openBackgroundTab(int x) throws InterruptedException {
+        openSettingPages(x);
+        click(By.xpath("//a[@href='#page_background']"));
+    }
+
+    public void ColorEditor(By locator, By field) throws InterruptedException {
+        click(locator);
+        driver.findElement(field).
+                sendKeys(Keys.chord(Keys.CONTROL, "a") + Keys.DELETE);
+        type("#54E135", field);
+        click (By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+    }
+
+    public void backgroundColor(int x) throws InterruptedException {
+        openBackgroundTab(x);
+        ColorEditor(By.cssSelector("#page_background_color #colorPreview"),
+                By.xpath("//input[@name='page_background_color']"));
+        builderCheckBackground(x, "rgba(84, 225, 53, 1)");
+    }
+
+    public void resetToDefaultBackgroundColor(int x) throws InterruptedException {
+        openBackgroundTab(x);
+        click(By.cssSelector("#page_background_color #colorPreview"));
+        click(By.xpath("//button[@id='background_reset_button']"));
+        click (By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+        builderCheckBackground(x, "transparent");
+    }
+
+    public void addBackgroundImage(int x) throws InterruptedException {
+        openBackgroundTab(x);
+        attachImage(By.xpath("//input[@name='background_tmp_image_file']"), "src/test/resources/background.jpg");
+        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+        checkBuilderBackgroundImage();
+    }
+
+    public void deleteBackgroundImage(int x) throws InterruptedException {
+        openBackgroundTab(x);
+        click(By.xpath("//div[@id='background-page-image']//a"));
+        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+        checkBuilderoffBackgroundImage();
+    }
+
+    public void checkBuilderBackgroundImage() throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        Assert.assertTrue((driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
+                getCssValue("background-image")).length()>5, "none");
+        stopFrame();
+    }
+
+    public void checkBuilderoffBackgroundImage() throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        Assert.assertFalse((driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
+                getCssValue("background-image")).length()>5, "none");
+        stopFrame();
+    }
+
+    public void addBackgroundImageOverlay(int x) throws InterruptedException {
+        openBackgroundTab(x);
+        ColorEditor(By.cssSelector("#page_background_image_overlay_color #colorPreview"),
+                By.xpath("//input[@name='page_background_image_overlay_color']"));
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        String color = (driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
+                getCssValue("background-image"));
+        String c = color.substring(0, 38);
+        assertEquals(c, "linear-gradient(rgba(84, 225, 53, 0.3)");
+        stopFrame();
+    }
+
+    public void chooseImageSetting(int x, String type, String openGroup) throws InterruptedException {
+        openBackgroundTab(x);
+        click(By.xpath(openGroup));
+        click(By.xpath(type));
+        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+    }
+
+    public void ImageScalingFit(int x) throws InterruptedException {
+        chooseImageSetting(x, "//div[@class='form-group background_image_settings']//ul/li[2]",
+                "//div[@class='form-group background_image_settings']//input");
+        CheckBuilderScaling("background-repeat", "no-repeat, no-repeat");
+    }
+
+    public void ImageScalingPattenr(int x) throws InterruptedException {
+        chooseImageSetting(x, "//div[@class='form-group background_image_settings']//ul/li[3]",
+                "//div[@class='form-group background_image_settings']//input");
+        CheckBuilderScaling("background-repeat", "repeat, repeat");
+    }
+
+    public void ImageScalingFill(int x) throws InterruptedException {
+        chooseImageSetting(x, "//div[@class='form-group background_image_settings']//ul/li[1]",
+                "//div[@class='form-group background_image_settings']//input");
+        CheckBuilderScaling("background-size", "cover, cover");
+    }
+
+    public void ScrollingEffectFix(int x) throws InterruptedException {
+        chooseImageSetting(x, "//div[@class='form-group page-scrolling-effect background_image_settings']//ul/li[1]",
+                "//div[@class='form-group page-scrolling-effect background_image_settings']//input");
+        CheckBuilderScaling("background-attachment", "fixed, fixed");
+    }
+
+    public void ScrollingEffectNone(int x) throws InterruptedException {
+        chooseImageSetting(x, "//div[@class='form-group page-scrolling-effect background_image_settings']//ul/li[2]",
+                "//div[@class='form-group page-scrolling-effect background_image_settings']//input");
+        CheckBuilderScaling("background-attachment", "scroll, scroll");
+    }
+
+    public void CheckBuilderScaling(String valueName, String value) throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        String repeat = driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
+                getCssValue(valueName);
+        assertEquals(repeat, value);
+        stopFrame();
+    }
+
+    public void builderCheckBackground(int x, String backgroundColor) throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        if (x == 1  || x == 33) {
+            String color= driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
+                    getCssValue("background-color");
+            assertEquals(color, backgroundColor);
+        } else if (x == 22) {
+            String color= driver.findElement(By.xpath("//div[@class='content-wrapper']/section[1]")).
+                    getCssValue("background-color");
+            assertEquals(color, backgroundColor);
+        }
+        stopFrame();
     }
 }
