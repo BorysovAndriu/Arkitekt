@@ -1,4 +1,4 @@
-package io.arkitekt.appmanager;
+package io.arkitekt.appManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,13 +7,6 @@ public class LoginHelper extends HelperBase {
 
   public LoginHelper(WebDriver driver) {
     super(driver);
-  }
-
-  public void login(String email, String password) throws InterruptedException {
-    click(By.xpath("//a[@class='btn btn-link']"));
-    type(email, By.id("user_email"));
-    type(password, By.id("user_password"));
-    click(By.name("commit"));
   }
 
   public void registr(RegistrData registrData) throws InterruptedException {

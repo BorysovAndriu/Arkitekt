@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke" verbose="1">
-
     <test name="PreviewSite">
         <classes>
             <class name="io.arkitekt.testsRegistration.PreviewSite"/>
@@ -23,9 +22,21 @@
         </classes>
     </test>
 
+    <test name="PageBackground">
+        <classes>
+            <class name="io.arkitekt.testsPages.Page.PageBackground"/>
+        </classes>
+    </test>
+
     <test name="ContainerSetting">
         <classes>
             <class name="io.arkitekt.testsPages.Container.ContainerSetting"/>
+        </classes>
+    </test>
+
+    <test name="SubpageContainerSetting">
+        <classes>
+            <class name="io.arkitekt.testsPages.Container.SubPageContainerSetting"/>
         </classes>
     </test>
 
@@ -35,9 +46,15 @@
         </classes>
     </test>
 
-    <test name="SubpageContainer">
+    <test name="SubpageContainerBanner">
         <classes>
             <class name="io.arkitekt.testsPages.Container.SubpageContainerBanner"/>
+        </classes>
+    </test>
+
+    <test name="SubpageContainerBackground">
+        <classes>
+            <class name="io.arkitekt.testsPages.Container.SubpageContainerBackground"/>
         </classes>
     </test>
 
@@ -47,10 +64,21 @@
         </classes>
     </test>
 
+    <test name="SubpageDropDownBanner">
+        <classes>
+            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBanner"/>
+        </classes>
+    </test>
+
+    <test name="SubpageDropDownBanner">
+        <classes>
+            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBackground"/>
+        </classes>
+    </test>
+
     <test name="LinkPage">
         <classes>
             <class name="io.arkitekt.testsPages.LinkPage.LinkSetting"/>
         </classes>
     </test>
-
 </suite>

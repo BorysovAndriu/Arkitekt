@@ -1,4 +1,4 @@
-package io.arkitekt.appmanager;
+package io.arkitekt.appManager;
 
 public class RegistrData {
     private final String name;

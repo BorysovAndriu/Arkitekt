@@ -1,7 +1,6 @@
-package io.arkitekt.appmanager;
+package io.arkitekt.appManager;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +19,13 @@ public class HelperBase {
 
     public void openSite(String url) {
         driver.navigate().to(url);
+    }
+
+    public void login(String email, String password) throws InterruptedException {
+        click(By.xpath("//a[@class='btn btn-link']"));
+        type(email, By.id("user_email"));
+        type(password, By.id("user_password"));
+        click(By.name("commit"));
     }
 
     public void type(String text, By locator) throws InterruptedException {

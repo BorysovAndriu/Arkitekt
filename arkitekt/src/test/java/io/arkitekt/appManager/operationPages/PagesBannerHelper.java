@@ -1,21 +1,13 @@
-package io.arkitekt.appmanager.PagesHelper;
+package io.arkitekt.appManager.operationPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
-public class PagesBannerHelper extends PagesHelper {
+public class PagesBannerHelper extends PagesHelperBase {
 
     public PagesBannerHelper(WebDriver driver) {
         super(driver);
-    }
-
-    public void openBannerTab(int x) throws InterruptedException {
-        openSettingPages(x);
-        click(By.xpath("//a[@href='#page_banner']"));
     }
 
     public void addImage(String bannerNameClassB, By bannerClassB, String bannerNameClassS, By bannerClassSubd, int x) throws InterruptedException {
@@ -85,89 +77,6 @@ public class PagesBannerHelper extends PagesHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void insertContentHyperlink(int x, String namePages, String Title) throws InterruptedException {
-        openBannerTab(x);
-        openEditWinHyperlink();
-        //вибір Контент лінки
-        String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
-        click(By.xpath(String.format("//ul[@id='%s']/li[2]", hyperlinkID)));
-        //вибір сторінки
-        click(By.xpath("//ul[@id='pages_list_text_edit']/li[1]"));
-        openNewWindow();
-        click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
-        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        chekingBuilder("btn btn-default",
-                By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
-        checkingSubdomainOpenWin(Title);
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-    }
-
-    public void insertFileHyperlink(int x) throws InterruptedException, FileNotFoundException {
-        openBannerTab(x);
-        openEditWinHyperlink();
-        String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
-        click(By.xpath(String.format("//ul[@id='%s']/li[3]", hyperlinkID)));
-        attachImage(By.xpath("//div[@id='edit_text_hyperlink_block']//input[@name='file']"),
-                "src/test/resources/carBanner.jpg");
-        click(By.xpath("//div[@id='sb_text_file_list']/div/div[1]"));
-        click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
-        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        chekingBuilder("btn btn-default",
-                By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-        gotoFrame(By.cssSelector("#page_preview_iframe"));
-        click(By.xpath("//header[@class='page-main-banner']//a"));
-        File file = new File("C:\\Users\\Andrew\\Downloads\\carBanner.jpg");
-        file.exists();
-        stopFrame();
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-    }
-
-    public void insertExtrenalHyperlink(String Title, int x) throws InterruptedException {
-        openBannerTab(x);
-        openEditWinHyperlink();
-        String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
-        click(By.xpath(String.format("//ul[@id='%s']/li[4]", hyperlinkID)));
-        type("https://www.google.com.ua/", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@placeholder='Paste URL here...']"));
-        //openNewWindow();
-        click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
-        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        chekingBuilder("btn btn-default",
-                By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
-        checkingSubdomainOpenWin(Title);
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-    }
-
-    public void insertNoneHyperlink(int x) throws InterruptedException {
-        openBannerTab(x);
-        openEditWinHyperlink();
-        String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
-        click(By.xpath(String.format("//ul[@id='%s']/li[1]", hyperlinkID)));
-        click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
-        click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBannerTextBuilder("  Banner");
-        checkingBannerTextSubdomain("Banner", By.xpath("//header[@class='page-main-banner']//h4[2]"));
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-    }
-
-    public void openNewWindow() throws InterruptedException {
-        click(By.xpath("//div[@id='edit_text_hyperlink_block']//following::div[@id='choose_link_content_text']//following-sibling::div//span[@class='check']"));
-    }
-
-    public void openEditWinHyperlink() throws InterruptedException {
-        gotoFrame(By.xpath("//iframe[@id='banner_text_ifr']"));
-        //виділення тексту
-        doubleClick(By.xpath("//body[@id='tinymce']/h4[2]"));
-        //driver.findElement(By.xpath("//body[@id='tinymce']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        stopFrame();
-        //клік по едіторі на гіперлінку
-
-        click(By.xpath("//div[@id='page_options']//div[@class='mce-container-body mce-flow-layout']//div[1]/div[3]"));
-        //клік по дропдаун для вибору типу гіперлінки
-        click(By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
-    }
-
     public void checkingBannerTextBuilder(String bannerText) throws InterruptedException {
         //перевірка у білдері
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
@@ -191,9 +100,10 @@ public class PagesBannerHelper extends PagesHelper {
     public void checkingDeleteBannerTextSubdomain(String bannerText, By locator) throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if(!isElementPressent(locator)){
+        if (!isElementPressent(locator)) {
             stopFrame();
-            hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));}
+            hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        }
     }
 
     public void checkingSubdomian(String checkText, By locator, String nameValue) throws InterruptedException {
@@ -204,25 +114,10 @@ public class PagesBannerHelper extends PagesHelper {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 
-    public void checkingSubdomainOpenWin(String Title) throws InterruptedException {
-        String winbefore = driver.getWindowHandle();
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-        gotoFrame(By.cssSelector("#page_preview_iframe"));
-        click(By.xpath("//header[@class='page-main-banner']//a"));
-        stopFrame();
-        for (String winNew : driver.getWindowHandles()) {
-            driver.switchTo().window(winNew);
-        }
-        driver.getTitle().equals(Title);
-        driver.switchTo().window(winbefore);
-        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-    }
-
     public void chekingBuilder(String checkText, By locator, String value) throws InterruptedException {
         //перевірка у білдері появи класу
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         checking(checkText, locator, value);
         stopFrame();
     }
-
 }

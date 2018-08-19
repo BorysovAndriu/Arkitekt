@@ -1,28 +1,28 @@
 package io.arkitekt.testsPages;
 
-import io.arkitekt.appmanager.AppManager;
+import io.arkitekt.appManager.AppManager;
+import io.arkitekt.appManager.operationPages.AppManagerPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 public class TestBasePages {
 
-    protected static final AppManager app = new AppManager(BrowserType.CHROME);
+    protected static final AppManagerPages pages = new AppManagerPages(BrowserType.CHROME);
 
     @BeforeClass
     public void setUpp() throws Exception {
-        app.init();
-        app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-        app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-        app.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
+        pages.init();
+        pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
+        pages.getPagesHelper().login("andriu02.05.18@gmail.com","1111111111" );
+        pages.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
     }
 
     @AfterMethod()
     public void restartTest() throws Exception {
-        if(! app.getPagesHelper().isElementPressent(By.xpath("//h5[text()='Primary Navigation']"))) {
+        if(! pages.getPagesHelper().isElementPressent(By.xpath("//h5[text()='Primary Navigation']"))) {
             tearDown();
             setUpp();
         }
@@ -30,6 +30,6 @@ public class TestBasePages {
 
     @AfterClass
     public void tearDown() throws Exception {
-        app.stop();
+        pages.stop();
     }
 }

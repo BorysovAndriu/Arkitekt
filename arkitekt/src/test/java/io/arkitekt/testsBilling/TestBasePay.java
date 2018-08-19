@@ -1,6 +1,6 @@
 package io.arkitekt.testsBilling;
 
-import io.arkitekt.appmanager.AppManager;
+import io.arkitekt.appManager.AppManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;

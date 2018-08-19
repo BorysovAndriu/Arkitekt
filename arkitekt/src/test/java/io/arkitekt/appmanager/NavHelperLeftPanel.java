@@ -1,4 +1,4 @@
-package io.arkitekt.appmanager;
+package io.arkitekt.appManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

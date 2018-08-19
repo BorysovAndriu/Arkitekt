@@ -1,6 +1,6 @@
 package io.arkitekt.testsRegistration;
 
-import io.arkitekt.appmanager.RegistrData;
+import io.arkitekt.appManager.RegistrData;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 

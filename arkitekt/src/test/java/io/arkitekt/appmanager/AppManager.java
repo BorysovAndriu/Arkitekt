@@ -1,7 +1,5 @@
-package io.arkitekt.appmanager;
+package io.arkitekt.appManager;
 
-import io.arkitekt.appmanager.PagesHelper.PagesBannerHelper;
-import io.arkitekt.appmanager.PagesHelper.PagesHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -16,21 +14,21 @@ public class AppManager {
     public WebDriver driver;
     Actions builder;
 
-    private NavHelperLeftPanel navHelperLeftPanel;
-    private LoginHelper loginHelper;
-    private SiteEditHelper siteEditHelper;
-    private NavHelperBuilder navHelperBuilder;
+    public NavHelperLeftPanel navHelperLeftPanel;
+    public LoginHelper loginHelper;
+    public SiteEditHelper siteEditHelper;
+    public NavHelperBuilder navHelperBuilder;
     private String browser;
-    private BillingHelper billingHelper;
-    private PagesHelper pagesHelper;
-    private PagesBannerHelper bannerHelper;
+    public BillingHelper billingHelper;
 
     public AppManager(String browser) {
         this.browser = browser;
     }
 
-    public void init() {
+    public AppManager() {
+    }
 
+    public void init() {
 
         if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver();
@@ -51,9 +49,6 @@ public class AppManager {
         siteEditHelper = new SiteEditHelper(driver);
         navHelperBuilder = new NavHelperBuilder(driver);
         billingHelper = new BillingHelper(driver);
-        pagesHelper = new PagesHelper(driver);
-        bannerHelper = new PagesBannerHelper(driver);
-
     }
 
     public void stop() {
@@ -78,14 +73,6 @@ public class AppManager {
 
     public BillingHelper getBillingHelper() {
         return billingHelper;
-    }
-
-    public PagesHelper getPagesHelper() {
-        return pagesHelper;
-    }
-
-    public PagesBannerHelper getBannerHelper() {
-        return bannerHelper;
     }
 
 }
