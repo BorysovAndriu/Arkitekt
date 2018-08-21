@@ -33,7 +33,7 @@ public class PagesBannerHelper extends PagesHelperBase {
         openBannerTab(x);
         click(By.xpath("//a[@class='uploaded-banner-image-delete waves-effect']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        chekingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip", By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
+        checkingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip", By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
         checkingSubdomian("active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top",
                 By.xpath("//nav[@class='active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top']"),
                 "className");
@@ -71,7 +71,7 @@ public class PagesBannerHelper extends PagesHelperBase {
                 -100, 0);
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         //перевірка у білдері
-        chekingBuilder("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
+        checkingBuilder("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
         //перевірка в превю відображення банер тексту
         checkingSubdomian("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
@@ -114,7 +114,7 @@ public class PagesBannerHelper extends PagesHelperBase {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 
-    public void chekingBuilder(String checkText, By locator, String value) throws InterruptedException {
+    public void checkingBuilder(String checkText, By locator, String value) throws InterruptedException {
         //перевірка у білдері появи класу
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         checking(checkText, locator, value);

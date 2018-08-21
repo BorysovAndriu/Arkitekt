@@ -102,7 +102,6 @@ public class HelperBase {
     }
 
     public boolean isElementDesplayed (By locator) {
-
         try {
             driver.findElement(locator).click();
             return true;

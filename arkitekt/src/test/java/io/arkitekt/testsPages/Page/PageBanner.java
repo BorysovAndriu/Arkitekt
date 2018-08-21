@@ -42,7 +42,7 @@ public class PageBanner extends TestBasePages {
 
     @Test(priority = 7)
     public void addBannerButtonExternal() throws InterruptedException {
-        pages.getHyperlinkHelper().insertExtrenalHyperlink( "Google",1);
+        pages.getHyperlinkHelper().insertExternalHyperlink( "Google",1);
     }
 
     @Test(priority = 8)

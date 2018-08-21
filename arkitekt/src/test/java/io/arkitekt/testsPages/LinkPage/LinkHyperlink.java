@@ -16,6 +16,21 @@ public class LinkHyperlink extends TestBasePages {
     }
 
     @Test(priority = 3)
+    public void insertFileLinkPage() throws Exception {
+        pages.getHyperlinkHelper().insertFileLinkPage(4);
+    }
+
+    @Test(priority = 4)
+    public void insertExternalLinkPage() throws Exception {
+        pages.getHyperlinkHelper().insertExternalLinkPage(4);
+    }
+
+    @Test(priority = 5)
+    public void insertNoneLinkPage() throws Exception {
+        pages.getHyperlinkHelper().insertNoneLinkPage(4);
+    }
+
+    @Test(priority = 6)
     public void deleteLink() throws Exception {
         pages.getPagesHelper().deletePages(4, "HOME");
     }
