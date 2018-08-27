@@ -226,7 +226,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath(String.format("//ul[@id='%s']/li[1]", hyperlinkID)));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-        chekingBuilderNoneLinkPage();
+        checkingBuilderNoneLinkPage();
         checkingSubdomian();
     }
 
@@ -244,7 +244,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 
-    public void chekingBuilderNoneLinkPage() throws InterruptedException {
+    public void checkingBuilderNoneLinkPage() throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));

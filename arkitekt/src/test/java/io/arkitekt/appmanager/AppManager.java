@@ -14,12 +14,12 @@ public class AppManager {
     public WebDriver driver;
     Actions builder;
 
-    public NavHelperLeftPanel navHelperLeftPanel;
-    public LoginHelper loginHelper;
-    public SiteEditHelper siteEditHelper;
-    public NavHelperBuilder navHelperBuilder;
+    public io.arkitekt.appManager.NavHelperLeftPanel navHelperLeftPanel;
+    public io.arkitekt.appManager.LoginHelper loginHelper;
+    public io.arkitekt.appManager.SiteEditHelper siteEditHelper;
+    public io.arkitekt.appManager.NavHelperBuilder navHelperBuilder;
     private String browser;
-    public BillingHelper billingHelper;
+    public io.arkitekt.appManager.BillingHelper billingHelper;
 
     public AppManager(String browser) {
         this.browser = browser;
@@ -44,34 +44,34 @@ public class AppManager {
 
         builder = new Actions(driver);
 
-        loginHelper = new LoginHelper(driver);
-        navHelperLeftPanel = new NavHelperLeftPanel(driver);
-        siteEditHelper = new SiteEditHelper(driver);
-        navHelperBuilder = new NavHelperBuilder(driver);
-        billingHelper = new BillingHelper(driver);
+        loginHelper = new io.arkitekt.appManager.LoginHelper(driver);
+        navHelperLeftPanel = new io.arkitekt.appManager.NavHelperLeftPanel(driver);
+        siteEditHelper = new io.arkitekt.appManager.SiteEditHelper(driver);
+        navHelperBuilder = new io.arkitekt.appManager.NavHelperBuilder(driver);
+        billingHelper = new io.arkitekt.appManager.BillingHelper(driver);
     }
 
     public void stop() {
         driver.quit();
     }
 
-    public LoginHelper getLoginHelper() {
+    public io.arkitekt.appManager.LoginHelper getLoginHelper() {
         return loginHelper;
     }
 
-    public NavHelperLeftPanel getNavHelperLeftPanel() {
+    public io.arkitekt.appManager.NavHelperLeftPanel getNavHelperLeftPanel() {
         return navHelperLeftPanel;
     }
 
-    public SiteEditHelper getSiteEditHelper() {
+    public io.arkitekt.appManager.SiteEditHelper getSiteEditHelper() {
         return siteEditHelper;
     }
 
-    public NavHelperBuilder getNavHelperBuilder() {
+    public io.arkitekt.appManager.NavHelperBuilder getNavHelperBuilder() {
         return navHelperBuilder;
     }
 
-    public BillingHelper getBillingHelper() {
+    public io.arkitekt.appManager.BillingHelper getBillingHelper() {
         return billingHelper;
     }
 

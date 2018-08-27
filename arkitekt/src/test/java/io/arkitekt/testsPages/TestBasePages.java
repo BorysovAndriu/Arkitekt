@@ -1,6 +1,5 @@
 package io.arkitekt.testsPages;
 
-import io.arkitekt.appManager.AppManager;
 import io.arkitekt.appManager.operationPages.AppManagerPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
