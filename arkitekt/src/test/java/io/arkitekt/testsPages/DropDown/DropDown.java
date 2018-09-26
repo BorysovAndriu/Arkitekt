@@ -20,15 +20,9 @@ public class DropDown extends TestBasePages {
         pages.getPagesHelper().toggle("NEW DROPDOWN", 3);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void renameDropDown() throws InterruptedException {
         pages.getPagesHelper().renamePage( "DROP", 3);
-    }
-
-    @Test(priority = 4)
-    public void renameSubDropDown() throws InterruptedException {
-        pages.getPagesHelper().renamePage
-                ("SUBPAGE", 33);
     }
 
     @Test(priority = 5)

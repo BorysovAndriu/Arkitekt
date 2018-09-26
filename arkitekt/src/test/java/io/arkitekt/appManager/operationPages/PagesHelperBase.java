@@ -84,7 +84,7 @@ public class PagesHelperBase extends HelperBase {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(findPagesCards(x)));
         new Actions(driver).
-                moveToElement(driver.findElement(findPagesCards(x))).build().perform();
+                moveToElement(driver.findElement(findPagesCards(x))).click().build().perform();
         if (x == 2 || x == 33 || x == 1) {
             findxPathDeleteIcon(x);
             click(By.xpath("//*[@id=\"menu_item_remove\"]"));
