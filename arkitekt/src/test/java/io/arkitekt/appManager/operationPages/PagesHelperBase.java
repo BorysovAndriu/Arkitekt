@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class PagesHelperBase extends HelperBase {
 
@@ -18,8 +19,8 @@ public class PagesHelperBase extends HelperBase {
     }
 
     public By findPagesCards(int x) {
-        By locator = By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]");
-        String idFirstPage = getId(locator);
+        By locator = By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]");
+        String idFirstPage = getIdPage("id", locator);
         if (x == 2) {
             checking("container", locator, "data-type");
             By container = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
@@ -33,11 +34,11 @@ public class PagesHelperBase extends HelperBase {
             return subpageContainer;
         } else if (x == 1) {
             checking("page", locator, "data-type");
-            By page = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
+            By page = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
             return page;
         } else if (x == 3) {
             checking("folder", locator, "data-type");
-            By dropdown = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
+            By dropdown = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
             return dropdown;
         } else if (x == 33) {
             String idSubPage = getIdPage("id",
@@ -48,7 +49,7 @@ public class PagesHelperBase extends HelperBase {
             return subpageDropDown;
         } else if (x == 4) {
             checking("link", locator, "data-type");
-            By link = By.xpath(String.format("//div[@id='page-%s']/div[1]", idFirstPage));
+            By link = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
             return link;
         } else return locator;
     }
@@ -87,14 +88,16 @@ public class PagesHelperBase extends HelperBase {
         if (x == 2 || x == 33 || x == 1) {
             findxPathDeleteIcon(x);
             click(By.xpath("//*[@id=\"menu_item_remove\"]"));
+            click(By.xpath("//button[@id='delete_page']"));
             if (x == 33) {
-                assertFalse(driver.findElement(By.xpath("//ul[@style='display: block;']//span")).isDisplayed());
+                assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Empty DropDown')]")).isDisplayed());
             } else {
                 builderCheck(x, namePage);
                 subdomainCheck(x, namePage);
             }
         } else if (x == 22 || x == 3 || x == 4) {
             findxPathDeleteIcon(x);
+            click(By.xpath("//button[id='delete_page']"));
             if (x == 22) {
                 assertFalse(driver.findElement(By.xpath("//p[@class='sb5-empty-text']")).isDisplayed());
             } else {
@@ -105,14 +108,9 @@ public class PagesHelperBase extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathSimplePage = By.xpath((findPagesCards(x) + "//div[3]/button").substring(9).trim());
-        By xPathContainerPage = By.xpath((findPagesCards(x) + "//div[4]/button").substring(9).trim());
-
-        if (x == 1 || x == 4) {
-            click(xPathSimplePage);
-        } else if (x == 3 || x == 33 || x == 2) {
-            click(xPathContainerPage);
-        } else if (x == 22) {
+        By xPathSimplePage = By.xpath((findPagesCards(x) + "//div[3]//button").substring(9).trim());
+        By xPathContainerPage = By.xpath((findPagesCards(x) + "//div[4]//button").substring(9).trim());
+        if(x==4 || x==22 || x==3 || x==1 || x==2 || x==33) {
             if (isElementDesplayed(xPathContainerPage)) {
                 click(xPathContainerPage);
             } else {
@@ -212,7 +210,10 @@ public class PagesHelperBase extends HelperBase {
         rename(nameUrl, By.xpath("//*[@name='url' and @placeholder='newpage']"));
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
+        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
         checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
+        } else checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }

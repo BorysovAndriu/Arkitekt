@@ -30,8 +30,7 @@ public class NavHelperLeftPanel extends HelperBase{
 
   public void gotoSettingSiteGeneraInfo() throws InterruptedException {
     click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
-    click(By.xpath("//li//a[@href='#!/settings/site/general']"));
+    click(By.xpath("//div[@class='second left-block-item']//li/a[@href='#!/settings/site/general']"));
   }
-
 
 }
