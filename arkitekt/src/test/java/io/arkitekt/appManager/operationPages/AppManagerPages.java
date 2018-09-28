@@ -1,6 +1,7 @@
 package io.arkitekt.appManager.operationPages;
 
 import io.arkitekt.appManager.AppManager;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class AppManagerPages extends AppManager {
@@ -20,6 +22,7 @@ public class AppManagerPages extends AppManager {
     private PagesBannerHelper bannerHelper;
     private PagesBackgroundHelper backgroundHelper;
     private PagesHyperlinkHelper hyperlinkHelper;
+    private Set<Cookie> cookies1;
 
     public AppManagerPages(String browser) {
         this.browser = browser;
@@ -34,9 +37,7 @@ public class AppManagerPages extends AppManager {
         } else if (browser.equals(BrowserType.EDGE)) {
             driver = new EdgeDriver();
         }
-
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
         driver.manage().window().maximize();
 
         builder = new Actions(driver);
@@ -45,6 +46,17 @@ public class AppManagerPages extends AppManager {
         bannerHelper = new PagesBannerHelper(driver);
         backgroundHelper = new PagesBackgroundHelper(driver);
         hyperlinkHelper = new PagesHyperlinkHelper(driver);
+    }
+
+    public void getCookies() throws InterruptedException {
+        cookies1 = driver.manage().getCookies();
+    }
+
+    public void addCookies() {
+        for(Cookie cookie : cookies1){
+            driver.manage().addCookie(cookie);
+        }
+        driver.navigate().to("http://staging-my.arkitekt.io/users/sign_in");
     }
 
     public void stop() {

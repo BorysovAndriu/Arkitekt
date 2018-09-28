@@ -40,13 +40,13 @@ public class HelperBase {
     }
 
     public void clickA(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         driver.findElement(locator).click();
     }
 
     public void click(By locator) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         Thread.sleep(5000);
         driver.findElement(locator).click();
@@ -131,7 +131,7 @@ public class HelperBase {
     }
 
     public void hover(By locatorFind, By locatorClick) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorFind));
         new Actions(driver).
                 moveToElement(driver.findElement(locatorFind)).build().perform();
@@ -140,7 +140,7 @@ public class HelperBase {
     }
 
     public void slider(By container, By slider, int x, int y) {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (container));
         new Actions(driver).

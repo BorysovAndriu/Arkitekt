@@ -33,6 +33,5 @@ public class TestBasePay {
     @AfterClass
     public void tearDown() throws Exception {
         app.stop();
-
     }
 }

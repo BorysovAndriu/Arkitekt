@@ -11,20 +11,20 @@ import java.util.Date;
 public class TestBase {
 
     Date date = new Date();
-  SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd");
 
-  protected static final AppManager app = new AppManager(BrowserType.CHROME);
+    protected static final AppManager app = new AppManager(BrowserType.CHROME);
 
-  @BeforeMethod
-  public void setUpp() throws Exception {
-    app.init();
-    app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-    app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
-  }
+    @BeforeMethod
+    public void setUpp() throws Exception {
+        app.init();
+        app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+        app.getLoginHelper().login("andriu02.05.18@gmail.com", "1111111111");
+    }
 
-  @AfterMethod
-  public void tearDown() throws Exception {
-    app.stop();
-  }
+    @AfterMethod
+    public void tearDown() throws Exception {
+        app.stop();
+    }
 
 }

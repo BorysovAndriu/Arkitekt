@@ -28,7 +28,7 @@ public class AppManager {
     public AppManager() {
     }
 
-    public void init() {
+    public void init() throws InterruptedException {
 
         if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver();

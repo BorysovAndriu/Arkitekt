@@ -3,9 +3,7 @@ package io.arkitekt.testsPages;
 import io.arkitekt.appManager.operationPages.AppManagerPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.*;
 
 public class TestBasePages {
 
@@ -15,15 +13,17 @@ public class TestBasePages {
     public void setUpp() throws Exception {
         pages.init();
         pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
-        pages.getPagesHelper().login("andriu02.05.18@gmail.com","1111111111" );
+        pages.getPagesHelper().login("andriu02.05.18@gmail.com","1111111111");
+        pages.getCookies();
         pages.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
     }
 
     @AfterMethod()
-    public void restartTest() throws Exception {
+    public void restartTestt() throws Exception {
         if(! pages.getPagesHelper().isElementPressent(By.xpath("//h5[text()='Primary Navigation']"))) {
             tearDown();
-            setUpp();
+            pages.init();
+            pages.addCookies();
         }
     }
 
