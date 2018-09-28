@@ -108,15 +108,14 @@ public class PagesHelperBase extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathSimplePage = By.xpath((findPagesCards(x) + "//div[3]//button").substring(9).trim());
-        By xPathContainerPage = By.xpath((findPagesCards(x) + "//div[4]//button").substring(9).trim());
-        if(x==4 || x==22 || x==3 || x==1 || x==2 || x==33) {
-            if (isElementDesplayed(xPathContainerPage)) {
-                click(xPathContainerPage);
-            } else {
-                click(xPathSimplePage);
+        By xPathContainerPage = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option a-builder-icon-dots-vertical menu-item-options']").substring(9).trim());
+        By xPathSimplePage = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
+
+        if(x==1 || x==2 || x==33) {
+            click(xPathContainerPage);
+        } else {
+            click(xPathSimplePage);
             }
-        }
     }
 
     public void builderCheck(int x, String namePage) throws InterruptedException {
