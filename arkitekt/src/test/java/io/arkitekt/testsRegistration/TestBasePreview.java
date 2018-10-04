@@ -12,8 +12,7 @@ public class TestBasePreview {
     @BeforeMethod
     public void setUpp() throws Exception {
         app1.init();
-        app1.getNavHelperLeftPanel().openSite("http://arkitekt.io/");
-
+        app1.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
 }
 
     @AfterMethod

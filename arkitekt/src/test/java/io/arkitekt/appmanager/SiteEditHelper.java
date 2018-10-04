@@ -17,8 +17,8 @@ public class SiteEditHelper extends HelperBase{
 
 
   public void deleteSite() throws InterruptedException {
-    click(By.xpath("//*[@id=\"settings_site_general\"]/div/div[2]/div[5]/button"));
-    Thread.sleep(10000);
+    click(By.xpath("//div[@class=\"site_delete\"]//button"));
+    click(By.id("delete"));
   }
 
   public int getSiteCount() {

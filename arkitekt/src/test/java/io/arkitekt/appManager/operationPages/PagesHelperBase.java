@@ -84,7 +84,7 @@ public class PagesHelperBase extends HelperBase {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(findPagesCards(x)));
         new Actions(driver).
-                moveToElement(driver.findElement(findPagesCards(x))).click().build().perform();
+                moveToElement(driver.findElement(findPagesCards(x))).build().perform();
         if (x == 2 || x == 33 || x == 1) {
             findxPathDeleteIcon(x);
             click(By.xpath("//*[@id=\"menu_item_remove\"]"));
@@ -108,13 +108,13 @@ public class PagesHelperBase extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathContainerPage = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option a-builder-icon-dots-vertical menu-item-options']").substring(9).trim());
-        By xPathSimplePage = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
+        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim());
+        By xPathDeleteIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
 
         if(x==1 || x==2 || x==33) {
-            click(xPathContainerPage);
+            click(xPathMoreIcon);
         } else {
-            click(xPathSimplePage);
+            click(xPathDeleteIcon);
             }
     }
 

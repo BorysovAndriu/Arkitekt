@@ -1,15 +1,16 @@
 package io.arkitekt.appManager;
 
-public class RegistrData {
-    private final String name;
-    private final String email;
-    private final String password;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-    public RegistrData(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+public class RegistrData {
+
+    Date date = new Date();
+    SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd");
+
+    private String name = "Andriu";
+    private String  email = "andriu"+format.format(date)+"@gmail.com";
+    private String password = "1111111111";
 
     public String getName() {
         return name;
