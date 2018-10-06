@@ -38,7 +38,7 @@ public class AppManager {
             driver = new EdgeDriver();
         }
 
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         driver.manage().window().maximize();
 

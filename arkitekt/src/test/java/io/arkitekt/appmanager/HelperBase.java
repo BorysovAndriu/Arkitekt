@@ -6,7 +6,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static org.testng.Assert.assertEquals;
 
@@ -21,11 +23,11 @@ public class HelperBase {
         driver.navigate().to(url);
     }
 
-    public void login(String email, String password) throws InterruptedException {
-        click(By.xpath("//a[@class='btn btn-link']"));
-        type(email, By.id("user_email"));
-        type(password, By.id("user_password"));
-        click(By.name("commit"));
+    public void openSite() throws InterruptedException {
+        while(isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))){
+            click(By.cssSelector("#choose_template"));
+        }
+
     }
 
     public void type(String text, By locator) throws InterruptedException {

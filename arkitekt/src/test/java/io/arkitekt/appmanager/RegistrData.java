@@ -9,7 +9,7 @@ public class RegistrData {
     SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd");
 
     private String name = "Andriu";
-    private String  email = "andriu"+format.format(date)+"@gmail.com";
+    private String email = "andriu"+format.format(date)+"@gmail.com";
     private String password = "1111111111";
 
     public String getName() {

@@ -13,8 +13,7 @@ public class TestBasePages {
     public void setUpp() throws Exception {
         pages.init();
         pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
-        pages.getPagesHelper().login("andriu02.05.18@gmail.com","1111111111");
-        //pages.getCookies();
+        pages.getLoginHelper().login("andriu2018.10.04@gmail.com","1111111111");
         pages.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
     }
 
@@ -23,7 +22,6 @@ public class TestBasePages {
         if(! pages.getPagesHelper().isElementPressent(By.xpath("//h5[text()='Primary Navigation']"))) {
             tearDown();
             pages.init();
-            //pages.addCookies();
         }
     }
 

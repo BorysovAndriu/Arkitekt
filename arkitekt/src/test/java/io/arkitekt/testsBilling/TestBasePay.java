@@ -15,17 +15,15 @@ public class TestBasePay {
     public void setUpp() throws Exception {
         app.init();
         app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-        app.getLoginHelper().login("andriu02.05.18@gmail.com","1111111111" );
+        app.getLoginHelper().login("andriu2018.10.04@gmail.com", "1111111111");
+
         app.getBillingHelper().gotoSettingBilling();
     }
 
     @AfterMethod()
     public void restartTest() throws Exception {
-        if(app.getBillingHelper().isElementPressent(By.xpath("//*[@id='settings_billing_info']//input"))) {
-            return;
-        }
-        else {
-            tearDown();
+        if (!app.getBillingHelper().isElementPressent(By.xpath("//*[@id='settings_billing_info']//input"))) {
+            app.stop();
             setUpp();
         }
     }

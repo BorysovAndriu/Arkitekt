@@ -37,7 +37,7 @@ public class AppManagerPages extends AppManager {
         } else if (browser.equals(BrowserType.EDGE)) {
             driver = new EdgeDriver();
         }
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
         builder = new Actions(driver);

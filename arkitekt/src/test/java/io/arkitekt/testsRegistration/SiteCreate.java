@@ -1,6 +1,7 @@
 package io.arkitekt.testsRegistration;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SiteCreate extends TestBase {
@@ -10,13 +11,19 @@ public class SiteCreate extends TestBase {
     if (! app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))){
       app.getNavHelperLeftPanel().gotoMarathon();
       app.getNavHelperLeftPanel().click(By.name("commit"));
+      app.getNavHelperLeftPanel().initListSite(true);
+      int after = app.getNavHelperLeftPanel().getCountSite();
+      Assert.assertEquals(after,1);
     }
     else {
-      app.getNavHelperLeftPanel().initListSite();
+      app.getNavHelperLeftPanel().initListSite(true);
+      int before = app.getNavHelperLeftPanel().getCountSite();
       app.getSiteEditHelper().createSite();
       app.getNavHelperLeftPanel().gotoMarathon();
       app.getNavHelperLeftPanel().click(By.name("commit"));
+      app.getNavHelperLeftPanel().initListSite(true);
+      int after = app.getNavHelperLeftPanel().getCountSite();
+      Assert.assertEquals(after, before+1);
     }
-    app.getNavHelperLeftPanel().initListSite();
   }
 }

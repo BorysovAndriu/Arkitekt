@@ -15,10 +15,16 @@ public class SiteEditHelper extends HelperBase{
     click(By.xpath("//*[@id=\"sites_list\"]/div/ul/li[1]/div/a"));
   }
 
-
   public void deleteSite() throws InterruptedException {
     click(By.xpath("//div[@class=\"site_delete\"]//button"));
-    click(By.id("delete"));
+    if(isElementPressent(By.xpath("//p[starts-with(text(),'Are you sure, you want to delete')]"))) {
+      click(By.id("delete"));
+    } else if (isElementPressent(By.xpath("//p[starts-with(text(), 'To delete')]"))) {
+      click(By.xpath("//div[@id='delete_site_subscribed']//button[text()='Done']"));
+      click(By.xpath("//div[@id='settings_site_general']//a[@href='#!/settings']"));
+      click(By.xpath("//a[text()=\"Billing Info\"]"));
+      new BillingHelper(driver).cancelSubscribpition();
+    }
   }
 
   public int getSiteCount() {
