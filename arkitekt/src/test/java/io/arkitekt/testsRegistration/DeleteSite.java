@@ -10,12 +10,19 @@ public class DeleteSite extends TestBase {
     public void testDeleteSite() throws Exception {
         app.getNavHelperLeftPanel().initListSite(true);
         int before = app.getNavHelperLeftPanel().getCountSite();
-        app.getNavHelperLeftPanel().initListSite(false);
+        if (before == 1) {
+            app.getNavHelperLeftPanel().initListSite(false);
+        } else {
+            app.getNavHelperLeftPanel().openFirstSite();
+        }
         app.getNavHelperLeftPanel().gotoSettingSiteGeneraInfo();
         app.getSiteEditHelper().deleteSite();
-        app.getNavHelperLeftPanel().gotoMarathon();
-        app.getNavHelperLeftPanel().initListSite(true);
-        int after = app.getNavHelperLeftPanel().getCountSite();
-        Assert.assertEquals(after, before-1);
+        if (!app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))) {
+            app.getNavHelperLeftPanel().gotoMarathon();
+        } else {
+            app.getNavHelperLeftPanel().initListSite(true);
+            int after = app.getNavHelperLeftPanel().getCountSite();
+            Assert.assertEquals(after, before - 1);
+        }
     }
 }

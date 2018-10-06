@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class NavHelperLeftPanel extends HelperBase {
-    private WebDriver driver;
 
     public NavHelperLeftPanel(WebDriver driver) {
         super(driver);
@@ -34,12 +33,9 @@ public class NavHelperLeftPanel extends HelperBase {
         }
     }
 
-        public void gotoSettingSiteGeneraInfo () throws InterruptedException {
-            click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
-            click(By.xpath("//div[@class='left-block-item-inner settings active-menu']//li[2]/a"));
-        }
-
-        public int getCountSite () {
-            return driver.findElements(By.xpath("/div[@id='sites_list']//li[@class='data-created_at']")).size();
-        }
+    public void gotoSettingSiteGeneraInfo() throws InterruptedException {
+        click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[5]/a"));
+        click(By.xpath("//div[@class='left-block-item-inner settings active-menu']//li[2]/a"));
     }
+
+}

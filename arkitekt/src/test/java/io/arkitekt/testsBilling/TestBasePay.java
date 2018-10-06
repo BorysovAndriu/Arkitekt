@@ -16,7 +16,13 @@ public class TestBasePay {
         app.init();
         app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
         app.getLoginHelper().login("andriu2018.10.04@gmail.com", "1111111111");
-
+        app.getNavHelperLeftPanel().initListSite(true);
+        int before = app.getNavHelperLeftPanel().getCountSite();
+        if (before == 1) {
+            app.getNavHelperLeftPanel().initListSite(false);
+        } else {
+            app.getNavHelperLeftPanel().openFirstSite();
+        }
         app.getBillingHelper().gotoSettingBilling();
     }
 

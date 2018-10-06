@@ -16,6 +16,6 @@ public class SignUp extends TestBasePreview {
         app1.getNavHelperLeftPanel().click(By.xpath("//div/form/input[@name='commit']"));
         app1.getLoginHelper().
                 registr(new RegistrData());
-        app1.getNavHelperLeftPanel().initListSite();
+        app1.getNavHelperLeftPanel().initListSite(true);
     }
 }

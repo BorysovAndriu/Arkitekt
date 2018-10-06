@@ -2,16 +2,11 @@ package io.arkitekt.appManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import static org.testng.Assert.assertEquals;
 
 public class BillingHelper extends HelperBase {
 
@@ -56,10 +51,14 @@ public class BillingHelper extends HelperBase {
         }
         type(billingData.getName(), By.xpath("//input[@name='subscription[card_holder_name]']"));
         type(billingData.getCard(), By.xpath("//input[@class='credit-card-number']"));
-        type(billingData.getCvv(), By.xpath("//input[@class='credit-card-cvv']"));
         type(billingData.getMonth(), By.xpath("//input[@class='exp_month']"));
         type(billingData.getYear(), By.xpath("//input[@class='exp_year']"));
-        if (checkout ==true) {
+        if (checkout == true) {
+            type(billingData.getCvv(), By.xpath("//input[@class='credit-card-cvv']"));
+        } else {
+            type(billingData.getCvv(), By.xpath("//input[@data-stripe='cvv']"));
+        }
+        if (checkout == true) {
             click(By.xpath("//button[@name='button']"));
         } else {
             click(By.xpath("//input[@value='UPDATE PAYMENT INFO']"));
@@ -69,23 +68,23 @@ public class BillingHelper extends HelperBase {
 
     public void checkingBillingCycle(String billingCycle) {
         Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("dd.mm.yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         String curentDate = format.format(date);
         Calendar calendar = new GregorianCalendar();
 
         if (billingCycle == "Monthly") {
-            checking(curentDate, By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
+            checking(("\n" + curentDate + "\n"), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
                     "textContent");
             calendar.add(Calendar.MONTH, 1);
             String afterMonth = format.format(calendar.getTime());
-            checking(afterMonth, By.xpath("By.xpath(//div[@id='next_payment_date']"), "textContent");
-        } else if(billingCycle == "Annual") {
-            checking(curentDate, By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
+            checking(("\n" + afterMonth + "\n"), By.xpath("//div[@id='next_payment_date']"), "textContent");
+        } else if (billingCycle == "Annual") {
+            checking(("\n" + curentDate + "\n"), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
                     "textContent");
             calendar.add(Calendar.YEAR, 1);
             String afterMonth = format.format(calendar.getTime());
-            checking(afterMonth, By.xpath("By.xpath(//div[@id='next_payment_date']"), "textContent");
-            //метод зафейлиця якщо запускати тест повторної підписку сайту через деякий час (день два ...).
+            checking(("\n" + afterMonth + "\n"), By.xpath("//div[@id='next_payment_date']"), "textContent");
+            //метод зафейлиця якщо запускати тест повторнa підписку сайту через деякий час (день два ...).
         }
     }
 }

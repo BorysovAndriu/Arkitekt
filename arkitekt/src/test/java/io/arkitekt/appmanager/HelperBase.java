@@ -4,11 +4,11 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
@@ -23,11 +23,13 @@ public class HelperBase {
         driver.navigate().to(url);
     }
 
-    public void openSite() throws InterruptedException {
-        while(isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))){
-            click(By.cssSelector("#choose_template"));
-        }
+    public int getCountSite() {
+        List<WebElement> listsite = driver.findElements(By.xpath("//div[@id='sites_list']//li[@data-created_at]"));
+        return listsite.size();
+    }
 
+    public void openFirstSite() throws InterruptedException {
+        click(By.xpath("//div[@id='sites_list']//li[2]"));
     }
 
     public void type(String text, By locator) throws InterruptedException {
@@ -35,6 +37,7 @@ public class HelperBase {
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text);
     }
+
     public void typeN(String text, By locator) throws InterruptedException {
         click(locator);
         Thread.sleep(5000);
@@ -84,7 +87,7 @@ public class HelperBase {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         String existingText = driver.findElement(locator).getAttribute(value);
-        assertEquals(text, existingText);
+        Assert.assertEquals(text, existingText);
     }
 
     public void checkingText(String text, By locator) throws InterruptedException {
@@ -103,7 +106,7 @@ public class HelperBase {
         }
     }
 
-    public boolean isElementDesplayed (By locator) {
+    public boolean isElementDesplayed(By locator) {
         try {
             driver.findElement(locator).click();
             return true;
