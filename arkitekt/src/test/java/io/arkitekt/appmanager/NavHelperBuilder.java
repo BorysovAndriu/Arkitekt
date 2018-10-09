@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class NavHelperBuilder extends HelperBase{
-    private WebDriver driver;
 
     public NavHelperBuilder(WebDriver driver) {
         super(driver);
@@ -34,15 +33,6 @@ public class NavHelperBuilder extends HelperBase{
         stopFrame();
     }
 
-    public void movetoNavOutPreview() throws InterruptedException {
-        click(By.xpath("//nav/div/div[1]/ul/li[1]/a"));
-        click(By.xpath("//nav/div/div[1]/ul/li[2]/a"));
-        click(By.xpath("//nav/div/div[1]/ul/li[3]/a"));
-        click(By.xpath("//nav/div/div[1]/ul/li[4]/a"));
-        click(By.xpath("//nav/div/div[1]/ul/li[5]/a"));
-        click(By.xpath("//div/h1/a/span[1]"));
-    }
-
     public void movetoNavpreview() throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
@@ -66,7 +56,5 @@ public class NavHelperBuilder extends HelperBase{
         click(By.xpath("//div[@class='container']/div[1]//a[@href='/home']"));
         stopFrame();
     }
-
-
 
 }

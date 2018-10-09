@@ -10,7 +10,7 @@ public class Payment extends TestBasePay {
   @Test()
   public void createSite() throws InterruptedException {
     if (!app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))) {
-      app.getNavHelperLeftPanel().gotoMarathon();
+      app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
       app.getNavHelperLeftPanel().click(By.name("commit"));
       app.getNavHelperLeftPanel().initListSite(true);
       int after = app.getNavHelperLeftPanel().getCountSite();
@@ -19,7 +19,7 @@ public class Payment extends TestBasePay {
       app.getNavHelperLeftPanel().initListSite(true);
       int before = app.getNavHelperLeftPanel().getCountSite();
       app.getSiteEditHelper().createSite();
-      app.getNavHelperLeftPanel().gotoMarathon();
+      app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
       app.getNavHelperLeftPanel().click(By.name("commit"));
       app.getNavHelperLeftPanel().initListSite(true);
       int after = app.getNavHelperLeftPanel().getCountSite();

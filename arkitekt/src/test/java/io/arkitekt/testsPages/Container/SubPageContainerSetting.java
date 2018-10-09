@@ -33,7 +33,7 @@ public class SubPageContainerSetting extends TestBasePages {
 
     @Test(priority = 6)
     public void lockscreenContainer() throws InterruptedException {
-        pages.getPagesHelper().lockPages(22);
+        pages.getPagesHelper().lockPages(22, "NEW CONTAINER");
     }
 
     @Test(priority = 7)

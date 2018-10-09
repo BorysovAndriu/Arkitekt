@@ -108,8 +108,8 @@ public class PagesHelperBase extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim());
-        By xPathDeleteIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
+        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//span[@class='tooltips left_pagel_page_more']/button").substring(9).trim());
+        By xPathDeleteIcon = By.xpath((findPagesCards(x) + "//span[@class='tooltips left_pagel_page_remove']/button").substring(9).trim());
 
         if(x==1 || x==2 || x==33) {
             click(xPathMoreIcon);
@@ -165,10 +165,13 @@ public class PagesHelperBase extends HelperBase {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 
-    public void checkLockSubdomain() throws InterruptedException {
+    public void checkLockSubdomain(int x, String namePage) throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         checkingText("PRIVATE PAGE", By.xpath("//h2[text()='PRIVATE PAGE']"));
+        type("1111", By.xpath("//input[@type='password']"));
+        click(By.xpath("//button[text()]"));
+        subdomainCheck(x, namePage);
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
@@ -224,13 +227,13 @@ public class PagesHelperBase extends HelperBase {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void lockPages(int x) throws InterruptedException {
+    public void lockPages(int x, String namePage) throws InterruptedException {
         openSettingPages(x);
         type("1111", By.xpath("//input[@name='password']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
         checkingText("Extra Pages", By.xpath("//h5[text()='Extra Pages']"));
-        checkLockSubdomain();
+        checkLockSubdomain(x, namePage);
     }
 
     public void unlockPages(String namePage, int x) throws InterruptedException {

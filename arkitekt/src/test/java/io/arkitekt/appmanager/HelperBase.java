@@ -19,8 +19,24 @@ public class HelperBase {
         this.driver = driver;
     }
 
+    public void login(String email, String password) throws InterruptedException {
+        click(By.xpath("//a[@class='btn btn-link']"));
+        type(email, By.id("user_email"));
+        type(password, By.id("user_password"));
+        click(By.name("commit"));
+    }
+
     public void openSite(String url) {
         driver.navigate().to(url);
+    }
+
+    public void clickNavigation() throws InterruptedException {
+        By locatorLink = By.xpath("//following-sibling::div[starts-with(@class,'navbar_links')]//li");
+        List<WebElement> links = driver.findElements(locatorLink);
+        for (int i = 0 ; i< links.size(); i++) {
+            WebElement link = driver.findElement(By.xpath("//following-sibling::div[starts-with(@class,'navbar_links')]//li["+(i+1)+"]"));
+            link.click();
+        }
     }
 
     public int getCountSite() {
@@ -79,8 +95,9 @@ public class HelperBase {
     }
 
     public void closeTab() throws InterruptedException {
+        ArrayList<String> firstTab = new ArrayList<String>(driver.getWindowHandles());
         driver.close();
-        Thread.sleep(5000);
+        driver.switchTo().window(firstTab.get(0));
     }
 
     public void checking(String text, By locator, String value) {
@@ -164,6 +181,18 @@ public class HelperBase {
 
     public void doubleClick(By locator) {
         new Actions(driver).doubleClick(driver.findElement(locator)).build().perform();
+    }
+
+    public void initListSite(boolean collapse) throws InterruptedException {
+        if (collapse == true) {
+            while (isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))) {
+                click(By.cssSelector("#choose_template"));
+            }
+        } else {
+            while (isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"true\"]"))) {
+                click(By.cssSelector("#choose_template"));
+            }
+        }
     }
 }
 

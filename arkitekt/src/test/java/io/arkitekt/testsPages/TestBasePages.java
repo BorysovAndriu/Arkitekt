@@ -13,13 +13,13 @@ public class TestBasePages {
     public void setUpp() throws Exception {
         pages.init();
         pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
-        pages.getLoginHelper().login("andriu2018.10.04@gmail.com","1111111111");
-        pages.getNavHelperLeftPanel().initListSite(true);
-        int before = pages.getNavHelperLeftPanel().getCountSite();
+        pages.getPagesHelper().login("andriu2018.10.04@gmail.com","1111111111");
+        pages.getPagesHelper().initListSite(true);
+        int before = pages.getPagesHelper().getCountSite();
         if (before == 1) {
-            pages.getNavHelperLeftPanel().initListSite(false);
+            pages.getPagesHelper().initListSite(false);
         } else {
-            pages.getNavHelperLeftPanel().openFirstSite();
+            pages.getPagesHelper().openFirstSite();
         }
         pages.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
     }
@@ -27,8 +27,8 @@ public class TestBasePages {
     @AfterMethod()
     public void restartTestt() throws Exception {
         if(! pages.getPagesHelper().isElementPressent(By.xpath("//h5[text()='Primary Navigation']"))) {
-            tearDown();
-            pages.init();
+            pages.stop();
+            setUpp();
         }
     }
 

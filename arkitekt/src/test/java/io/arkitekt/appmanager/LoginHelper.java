@@ -16,13 +16,6 @@ public class LoginHelper extends HelperBase {
     click(By.name("commit"));
   }
 
-  public void login(String email, String password) throws InterruptedException {
-    click(By.xpath("//a[@class='btn btn-link']"));
-    type(email, By.id("user_email"));
-    type(password, By.id("user_password"));
-    click(By.name("commit"));
-  }
-
   public void logout() throws InterruptedException {
     click(By.name("commit"));
   }
