@@ -26,7 +26,7 @@ public class TestBasePages {
 
     @AfterMethod()
     public void restartTestt() throws Exception {
-        if(! pages.getPagesHelper().isElementPressent(By.xpath("//h5[text()='Primary Navigation']"))) {
+        if(! pages.getPagesHelper().isElementDesplayed(By.xpath("//h5[text()='Primary Navigation']"))) {
             pages.stop();
             setUpp();
         }

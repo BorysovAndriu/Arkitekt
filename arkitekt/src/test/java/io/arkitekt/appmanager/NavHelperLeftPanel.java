@@ -18,7 +18,6 @@ public class NavHelperLeftPanel extends HelperBase {
     }
 
     public void gotoThemes(By theme) throws InterruptedException {
-        gotoGetStart();
         click(theme);
     }
 
@@ -28,6 +27,7 @@ public class NavHelperLeftPanel extends HelperBase {
     }
 
     public void previewThemes(By locator) throws InterruptedException {
+        gotoGetStart();
         gotoThemes(locator);
         gotoTab();
         clickNavigation();

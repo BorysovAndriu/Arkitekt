@@ -171,7 +171,23 @@ public class PagesHelperBase extends HelperBase {
         checkingText("PRIVATE PAGE", By.xpath("//h2[text()='PRIVATE PAGE']"));
         type("1111", By.xpath("//input[@type='password']"));
         click(By.xpath("//button[text()]"));
-        subdomainCheck(x, namePage);
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
+            if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+                click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                if (x == 33) {
+                    click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
+                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                } else
+                    checkingText(namePage, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
+            } else {
+                if (x == 33) {
+                    click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
+                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                } else checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
+            }
+        } else if (x == 22) {
+            checking("page-section", By.xpath("//section[@class='page-section']"), "className");
+        }
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }

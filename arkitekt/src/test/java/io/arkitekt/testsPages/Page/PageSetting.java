@@ -7,7 +7,7 @@ public class PageSetting extends TestBasePages {
 
     @Test(groups ={"PageSetting"}, priority = 1 )
     public void addPage() throws Exception {
-        pages.getPagesHelper().addPages( "New Page", 1);
+        pages.getPagesHelper().addPages( "NEW PAGE", 1);
     }
 
     @Test(groups ={"PageSetting"}, priority = 2)
@@ -32,7 +32,7 @@ public class PageSetting extends TestBasePages {
 
     @Test(groups ={"PageSetting"},priority = 6)
     public void lockscreenPage() throws InterruptedException {
-        pages.getPagesHelper().lockPages(1, "New Page");
+        pages.getPagesHelper().lockPages(1, "NEW PAGE");
     }
 
     @Test(groups ={"PageSetting"},priority = 7)
@@ -42,6 +42,6 @@ public class PageSetting extends TestBasePages {
 
     @Test(groups ={"PageSetting"},priority = 8)
     public void deletePage() throws Exception {
-        pages.getPagesHelper().deletePages(1, "Home");
+        pages.getPagesHelper().deletePages(1, "HOME");
     }
 }
