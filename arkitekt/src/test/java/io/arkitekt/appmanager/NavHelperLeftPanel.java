@@ -35,5 +35,4 @@ public class NavHelperLeftPanel extends HelperBase {
         logo();
     }
 
-
 }

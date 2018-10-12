@@ -4,6 +4,8 @@ import io.arkitekt.appManager.RegistrData;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class SignUp extends TestBasePreview {
 
     @Test
@@ -15,6 +17,12 @@ public class SignUp extends TestBasePreview {
         app1.getNavHelperLeftPanel().click(By.xpath("//div/form/input[@name='commit']"));
         app1.getLoginHelper().
                 registr(new RegistrData());
+        try {
+            app1.getNavHelperLeftPanel().writeEmail();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         app1.getNavHelperLeftPanel().initListSite(true);
     }
 }

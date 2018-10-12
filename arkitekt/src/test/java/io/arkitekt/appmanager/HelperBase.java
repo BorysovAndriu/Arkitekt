@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +19,9 @@ public class HelperBase {
         this.driver = driver;
     }
 
-    public void login(String email, String password) throws InterruptedException {
+    public void login(String email, String password) throws InterruptedException, IOException {
         click(By.xpath("//a[@class='btn btn-link']"));
-        type(email, By.id("user_email"));
+        type(readeEmail(), By.id("user_email"));
         type(password, By.id("user_password"));
         click(By.name("commit"));
     }
@@ -194,5 +194,20 @@ public class HelperBase {
             }
         }
     }
+
+    public void writeEmail () throws IOException {
+        RegistrData lastEmail = new RegistrData();
+        File file = new File("src/test/resources/email.csv");
+        PrintWriter writer = new PrintWriter(file.getAbsoluteFile());
+        writer.print(lastEmail.getEmail());
+        writer.close();
+    }
+
+    public String readeEmail() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/email.csv")));
+        String email = reader.readLine();
+        return email;
+    }
+
 }
 

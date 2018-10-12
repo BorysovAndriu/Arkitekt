@@ -6,9 +6,10 @@ import java.util.Date;
 public class RegistrData {
 
     Date date = new Date();
-    SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 
     private String name = "Andriu";
+
     private String email = "andriu"+format.format(date)+"@gmail.com";
     private String password = "1111111111";
 

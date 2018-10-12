@@ -146,7 +146,7 @@ public class PagesBackgroundHelper extends PagesHelperBase{
     public void checkBuilderBackground(int x, String valueName, String value) throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if (x == 1 || x == 33) {
-            String color = driver.findElement(By.xpath("//div[@class='content-wrapper']")).
+            String color = driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
                     getCssValue(valueName);
             assertEquals(color, value);
         } else if (x == 22) {

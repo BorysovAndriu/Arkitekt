@@ -2,9 +2,11 @@ package io.arkitekt.appManager.operationPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class PagesHyperlinkHelper extends PagesBannerHelper {
 
@@ -41,7 +43,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath(String.format("//ul[@id='%s']/li[3]", hyperlinkID)));
         attachImage(By.xpath("//div[@id='edit_text_hyperlink_block']//input[@name='file']"),
                 "src/test/resources/carBanner.jpg");
-        click(By.xpath("//div[@id='sb_text_file_list']/div/div[1]"));
+        click(By.xpath("(//div[starts-with(@id,'img_link_file')])[1]"));
         click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         checkingBuilder("btn btn-default",
@@ -49,8 +51,9 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         click(By.xpath("//header[@class='page-main-banner']//a"));
-        File file = new File("C:\\Users\\Andrew\\Downloads\\carBanner.jpg");
-        file.exists();
+    //don't work checking download file
+        //File file = new File("C:\\Users\\Andrew\\Downloads\\carBanner.jpg");
+        //file.exists();
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
@@ -109,8 +112,8 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
             driver.switchTo().window(winNew);
         }
         driver.getTitle().equals(Title);
-        driver.switchTo().window(winbefore);
         driver.close();
+        driver.switchTo().window(winbefore);
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 

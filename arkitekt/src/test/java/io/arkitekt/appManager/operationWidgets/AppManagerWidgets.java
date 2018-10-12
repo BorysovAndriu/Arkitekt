@@ -1,0 +1,51 @@
+package io.arkitekt.appManager.operationWidgets;
+
+import io.arkitekt.appManager.AppManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.BrowserType;
+
+import java.util.concurrent.TimeUnit;
+
+public class AppManagerWidgets extends AppManager {
+
+    private String browser;
+    public WebDriver driver;
+    Actions builder;
+
+    private WidgetsHelperBase widgetsHelper;
+
+    public AppManagerWidgets(String browser) {
+        this.browser = browser;
+    }
+
+    public void init() {
+
+        if (browser.equals(BrowserType.FIREFOX)) {
+            driver = new FirefoxDriver();
+        } else if (browser.equals(BrowserType.CHROME)) {
+            driver = new ChromeDriver();
+        } else if (browser.equals(BrowserType.EDGE)) {
+            driver = new EdgeDriver();
+        }
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+
+        builder = new Actions(driver);
+
+        widgetsHelper = new WidgetsHelperBase(driver);
+    }
+
+    public void stop() {
+        driver.quit();
+    }
+
+    public WidgetsHelperBase getWidgetsHelper() {
+        return widgetsHelper;
+    }
+
+}
+
