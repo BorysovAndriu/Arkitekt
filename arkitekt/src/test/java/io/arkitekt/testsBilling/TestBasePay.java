@@ -28,7 +28,7 @@ public class TestBasePay {
 
     @AfterMethod()
     public void restartTest() throws Exception {
-        if (!app.getBillingHelper().isElementPressent(By.xpath("//*[@id='settings_billing_info']//input"))) {
+        if (!app.getBillingHelper().isElementPresent(By.xpath("//*[@id='settings_billing_info']//input"))) {
             app.stop();
             setUpp();
         }

@@ -132,7 +132,7 @@ public class HelperBase {
         }
     }
 
-    public boolean isElementPressent(By locator) {
+    public boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
             return true;
@@ -141,8 +141,8 @@ public class HelperBase {
         }
     }
 
-    public String getId(By locator) {
-        String id = driver.findElement(locator).getAttribute("id");
+    public String getId(String text, By locator) {
+        String id = driver.findElement(locator).getAttribute(text);
         id = id.replaceAll("[^0-9]", "");
         return id;
     }
@@ -157,7 +157,7 @@ public class HelperBase {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locatorFind));
         new Actions(driver).
                 moveToElement(driver.findElement(locatorFind)).build().perform();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         click(locatorClick);
     }
 
@@ -185,11 +185,11 @@ public class HelperBase {
 
     public void initListSite(boolean collapse) throws InterruptedException {
         if (collapse == true) {
-            while (isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))) {
+            while (isElementPresent(By.cssSelector("#choose_template[aria-expanded=\"false\"]"))) {
                 click(By.cssSelector("#choose_template"));
             }
         } else {
-            while (isElementPressent(By.cssSelector("#choose_template[aria-expanded=\"true\"]"))) {
+            while (isElementPresent(By.cssSelector("#choose_template[aria-expanded=\"true\"]"))) {
                 click(By.cssSelector("#choose_template"));
             }
         }

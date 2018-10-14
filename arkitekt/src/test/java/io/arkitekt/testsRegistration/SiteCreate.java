@@ -8,7 +8,7 @@ public class SiteCreate extends TestBase {
 
   @Test
   public void testCreateSite() throws Exception {
-    if (! app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))){
+    if (! app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))){
       app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
       app.getNavHelperLeftPanel().click(By.name("commit"));
       app.getNavHelperLeftPanel().initListSite(true);

@@ -19,7 +19,7 @@ public class TestBasePreview {
 
     @AfterMethod
     public void restart() throws Exception {
-        if (!app1.getNavHelperLeftPanel().isElementPressent(By.xpath("//a[text()='Get started']"))) {
+        if (!app1.getNavHelperLeftPanel().isElementPresent(By.xpath("//a[text()='Get started']"))) {
             app1.stop();
             app1.init();
             app1.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");

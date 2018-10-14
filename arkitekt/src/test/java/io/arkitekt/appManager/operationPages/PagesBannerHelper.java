@@ -16,7 +16,7 @@ public class PagesBannerHelper extends PagesHelperBase {
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         //перевірка у білдері появи класу
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPressent(bannerClassB)) {
+        if (isElementPresent(bannerClassB)) {
             checking(bannerNameClassB, bannerClassB, "className");
         } else {
             checking("active_banner page-main-banner",
@@ -80,7 +80,7 @@ public class PagesBannerHelper extends PagesHelperBase {
     public void checkingBannerTextBuilder(String bannerText) throws InterruptedException {
         //перевірка у білдері
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPressent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
+        if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
             checkingText(bannerText, By.xpath("//header[@class='active_banner page-main-banner']"));
         } else {
             checkingText(bannerText, By.xpath("//header[@class='page-main-banner active_banner']"));
@@ -100,7 +100,7 @@ public class PagesBannerHelper extends PagesHelperBase {
     public void checkingDeleteBannerTextSubdomain(String bannerText, By locator) throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (!isElementPressent(locator)) {
+        if (!isElementPresent(locator)) {
             stopFrame();
             hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         }

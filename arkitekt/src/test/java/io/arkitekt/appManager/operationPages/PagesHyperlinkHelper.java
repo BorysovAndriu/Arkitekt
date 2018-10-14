@@ -2,11 +2,9 @@ package io.arkitekt.appManager.operationPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class PagesHyperlinkHelper extends PagesBannerHelper {
 
@@ -136,7 +134,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
     public void checkBuilderContentLinkPage(String Title) throws InterruptedException {
         String winbefore = driver.getWindowHandle();
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
             click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
         } else click(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
@@ -154,7 +152,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         String winbefore = driver.getWindowHandle();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
             click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
         } else click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
@@ -185,7 +183,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
 
     public void checkBuilderFileLinkPage() throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
             click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
         } else click(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
@@ -197,7 +195,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
     public void checkSubdomianLinkPage() throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
             click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
         } else click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
@@ -236,7 +234,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
     public void checkingSubdomian() throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
             checking("javascript:undefined;", By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"), "href");
         } else
@@ -249,7 +247,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
 
     public void checkingBuilderNoneLinkPage() throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
             checking("javascript:undefined;", By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"), "href");
         } else

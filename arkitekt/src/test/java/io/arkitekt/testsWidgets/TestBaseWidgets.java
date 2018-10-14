@@ -25,16 +25,17 @@ public class TestBaseWidgets {
             widgets.getWidgetsHelper().openFirstSite();
         }
         widgets.getWidgetsHelper().click(By.xpath("//li//a[@href='#!/pages']"));
+        //widgets.getPagesHelper().openSettingPages(1);
     }
 
-    @AfterMethod()
+    /**@AfterMethod()
     public void restartTestt() throws Exception {
         if(! widgets.getWidgetsHelper().isElementDesplayed(By.xpath("//h5[text()='Primary Navigation']"))) {
             widgets.stop();
             setUpp();
         }
     }
-
+*/
     @AfterClass
     public void tearDown() throws Exception {
         widgets.stop();

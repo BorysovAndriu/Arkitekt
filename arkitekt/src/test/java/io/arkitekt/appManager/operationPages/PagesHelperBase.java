@@ -121,7 +121,7 @@ public class PagesHelperBase extends HelperBase {
     public void builderCheck(int x, String namePage) throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
-            if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+            if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                 if (x == 33) {
                     click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
@@ -145,7 +145,7 @@ public class PagesHelperBase extends HelperBase {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
-            if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+            if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                 if (x == 33) {
                     click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
@@ -172,7 +172,7 @@ public class PagesHelperBase extends HelperBase {
         type("1111", By.xpath("//input[@type='password']"));
         click(By.xpath("//button[text()]"));
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
-            if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+            if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                 if (x == 33) {
                     click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
@@ -196,7 +196,7 @@ public class PagesHelperBase extends HelperBase {
         openSettingPages(x);
         Thread.sleep(5000);
         click(By.xpath("//input[@name='enable-page']/following-sibling::span"));
-        if (isElementPressent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle untoggled']"))) {
+        if (isElementPresent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle untoggled']"))) {
             if (x == 22) {
                 builderCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
                 subdomainCheck(x, "HOME");
@@ -207,7 +207,7 @@ public class PagesHelperBase extends HelperBase {
                 }
                 subdomainCheck(x, "HOME");
             }
-        } else if (isElementPressent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle toggled']"))) {
+        } else if (isElementPresent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle toggled']"))) {
             builderCheck(x, namePage);
             subdomainCheck(x, namePage);
         }
@@ -228,7 +228,7 @@ public class PagesHelperBase extends HelperBase {
         rename(nameUrl, By.xpath("//*[@name='url' and @placeholder='newpage']"));
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (isElementPressent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
         checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
         } else checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");

@@ -1,6 +1,7 @@
 package io.arkitekt.appManager.operationWidgets;
 
 import io.arkitekt.appManager.AppManager;
+import io.arkitekt.appManager.operationPages.PagesHelperBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -17,6 +18,7 @@ public class AppManagerWidgets extends AppManager {
     Actions builder;
 
     private WidgetsHelperBase widgetsHelper;
+    private PagesHelperBase pagesHelper;
 
     public AppManagerWidgets(String browser) {
         this.browser = browser;
@@ -37,6 +39,7 @@ public class AppManagerWidgets extends AppManager {
         builder = new Actions(driver);
 
         widgetsHelper = new WidgetsHelperBase(driver);
+        pagesHelper = new PagesHelperBase(driver);
     }
 
     public void stop() {
@@ -46,6 +49,7 @@ public class AppManagerWidgets extends AppManager {
     public WidgetsHelperBase getWidgetsHelper() {
         return widgetsHelper;
     }
+    public PagesHelperBase getPagesHelper() {return  pagesHelper;}
 
 }
 

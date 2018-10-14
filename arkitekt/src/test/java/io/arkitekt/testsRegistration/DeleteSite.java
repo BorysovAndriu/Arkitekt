@@ -17,7 +17,7 @@ public class DeleteSite extends TestBase {
         }
         app.getNavHelperLeftPanel().gotoSettingSiteGeneraInfo();
         app.getSiteEditHelper().deleteSite();
-        if (!app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))) {
+        if (!app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))) {
             app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
         } else {
             app.getNavHelperLeftPanel().initListSite(true);

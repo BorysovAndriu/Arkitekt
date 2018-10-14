@@ -9,7 +9,7 @@ public class Payment extends TestBasePay {
 
   @Test()
   public void createSite() throws InterruptedException {
-    if (!app.getSiteEditHelper().isElementPressent(By.cssSelector("#choose_template"))) {
+    if (!app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))) {
       app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
       app.getNavHelperLeftPanel().click(By.name("commit"));
       app.getNavHelperLeftPanel().initListSite(true);
