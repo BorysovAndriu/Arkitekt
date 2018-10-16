@@ -25,15 +25,15 @@ public class TestBasePages {
     }
 
     @AfterMethod()
-    public void restartTestt() throws Exception {
-        if(! pages.getPagesHelper().isElementDesplayed(By.xpath("//h5[text()='Primary Navigation']"))) {
-            pages.stop();
+    public void restartTest() throws Exception {
+        if(! pages.getPagesHelper().isElementPresent(By.xpath("//h5[text()='Primary Navigation']"))) {
+            tearDown();
             setUpp();
         }
     }
 
     @AfterClass
-    public void tearDown() throws Exception {
+    public void tearDown() {
         pages.stop();
     }
 }

@@ -36,7 +36,7 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         click(By.xpath("//button[@id='background_reset_button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-        checkBuilderBackground(x, "background-color", "rgba(0, 0, 0, 0)");
+        checkBuilderBackgroundReset(x, "background-color", "rgba(0, 0, 0, 0)");
         checkSubdomainBackground(x, "background-color", "rgba(0, 0, 0, 0)");
     }
 
@@ -86,7 +86,7 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (x == 1 || x == 33) {
-            String color = (driver.findElement(By.xpath("//div[@class='content-wrapper]")).
+            String color = (driver.findElement(By.xpath("//div[@class='content-wrapper']")).
                     getCssValue("background-image"));
             String c = color.substring(0, 38);
             assertEquals(c, "linear-gradient(rgba(84, 225, 53, 0.3)");
@@ -147,6 +147,20 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if (x == 1 || x == 33) {
             String color = driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
+                    getCssValue(valueName);
+            assertEquals(color, value);
+        } else if (x == 22) {
+            String cssValue = driver.findElement(By.xpath("//div[@class='content-wrapper']/section[1]")).
+                    getCssValue(valueName);
+            assertEquals(cssValue, value);
+        }
+        stopFrame();
+    }
+
+    public void checkBuilderBackgroundReset(int x, String valueName, String value) throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        if (x == 1 || x == 33) {
+            String color = driver.findElement(By.xpath("//div[@class='content-wrapper']")).
                     getCssValue(valueName);
             assertEquals(color, value);
         } else if (x == 22) {
