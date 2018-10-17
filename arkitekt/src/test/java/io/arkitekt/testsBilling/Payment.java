@@ -1,31 +1,20 @@
 package io.arkitekt.testsBilling;
 
 import io.arkitekt.appManager.BillingData;
+import io.arkitekt.testsRegistration.SiteCreate;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Payment extends TestBasePay {
 
   @Test()
-  public void createSite() throws InterruptedException {
-    if (!app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))) {
-      app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
-      app.getNavHelperLeftPanel().click(By.name("commit"));
-      app.getNavHelperLeftPanel().initListSite(true);
-      int after = app.getNavHelperLeftPanel().getCountSite();
-      Assert.assertEquals(after, 1);
-    } else {
-      app.getNavHelperLeftPanel().initListSite(true);
-      int before = app.getNavHelperLeftPanel().getCountSite();
-      app.getSiteEditHelper().createSite();
-      app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
-      app.getNavHelperLeftPanel().click(By.name("commit"));
-      app.getNavHelperLeftPanel().initListSite(true);
-      int after = app.getNavHelperLeftPanel().getCountSite();
-      app.getNavHelperLeftPanel().initListSite(false);
-      Assert.assertEquals(after, before + 1);
-    }
+  public void createSite() throws Exception {
+    SiteCreate newSite = new SiteCreate();
+    if(app.billingHelper.isElementPresent(By.xpath("//h4[text()='Billing Info']"))){
+      app.getNavHelperLeftPanel().click(By.xpath("//div[@id='settings_billing_info']//a[@href='#!/settings']"));
+      app.getNavHelperLeftPanel().click(By.xpath("//h4[text()='Settings']/preceding-sibling::a[@href='#!/main-menu']"));
+      newSite.testCreateSite();
+    } else newSite.testCreateSite();
   }
 
   @Test(priority = 1)

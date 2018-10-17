@@ -36,8 +36,8 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         click(By.xpath("//button[@id='background_reset_button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-        checkBuilderBackgroundReset(x, "background-color", "rgba(0, 0, 0, 0)");
-        checkSubdomainBackground(x, "background-color", "rgba(0, 0, 0, 0)");
+        checkBuilderBackgroundReset(x, "background-color", "rgba(255, 255, 255, 1)");
+        checkSubdomainBackground(x, "background-color", "rgba(255, 255, 255, 1)");
     }
 
     public void addBackgroundImage(int x) throws InterruptedException {
@@ -74,7 +74,7 @@ public class PagesBackgroundHelper extends PagesHelperBase{
             String c = color.substring(0, 38);
             assertEquals(c, "linear-gradient(rgba(84, 225, 53, 0.3)");
         } else if (x == 22) {
-            String color = (driver.findElement(By.xpath("//div[@class='content-wrapper important_color']/section[1]")).
+            String color = (driver.findElement(By.xpath("//div[@class='content-wrapper']/section[1]")).
                     getCssValue("background-image"));
             String c = color.substring(0, 38);
             assertEquals(c, "linear-gradient(rgba(84, 225, 53, 0.3)");
@@ -193,7 +193,7 @@ public class PagesBackgroundHelper extends PagesHelperBase{
             Assert.assertTrue((driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
                     getCssValue("background-image")).length() > 5, "none");
         } else if (x == 22) {
-            Assert.assertTrue((driver.findElement(By.xpath("//div[@class='content-wrapper important_color']/section[1]")).
+            Assert.assertTrue((driver.findElement(By.xpath("//div[@class='content-wrapper']/section[1]")).
                     getCssValue("background-image")).length() > 5, "none");
         }
         stopFrame();
@@ -219,7 +219,7 @@ public class PagesBackgroundHelper extends PagesHelperBase{
             Assert.assertFalse((driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
                     getCssValue("background-image")).length() > 5, "none");
         } else if (x == 22) {
-            Assert.assertFalse((driver.findElement(By.xpath("//div[@class='content-wrapper important_color']/section[1]")).
+            Assert.assertFalse((driver.findElement(By.xpath("//div[@class='content-wrapper']/section[1]")).
                     getCssValue("background-image")).length() > 5, "none");
         }
         stopFrame();

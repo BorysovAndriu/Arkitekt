@@ -19,7 +19,7 @@ public class PagesHelperBase extends HelperBase {
     }
 
     public By findPagesCards(int x) {
-        By locator = By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]/div[1]");
+        By locator = By.xpath("//div[@id=\"site_pages\"]/div[1]/div[1]");
         String idFirstPage = getIdPage("id", locator);
         if (x == 2) {
             checking("container", locator, "data-type");
@@ -34,7 +34,7 @@ public class PagesHelperBase extends HelperBase {
             return subpageContainer;
         } else if (x == 1) {
             checking("page", locator, "data-type");
-            By page = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
+            By page = By.xpath(String.format("//div[@id='%s']", idFirstPage));
             return page;
         } else if (x == 3) {
             checking("folder", locator, "data-type");
@@ -49,7 +49,7 @@ public class PagesHelperBase extends HelperBase {
             return subpageDropDown;
         } else if (x == 4) {
             checking("link", locator, "data-type");
-            By link = By.xpath(String.format("//div[@id='%s']/div[1]", idFirstPage));
+            By link = By.xpath(String.format("//div[@id='%s']", idFirstPage));
             return link;
         } else return locator;
     }
@@ -81,8 +81,6 @@ public class PagesHelperBase extends HelperBase {
     }
 
     public void deletePages(int x, String namePage) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(findPagesCards(x)));
         new Actions(driver).
                 moveToElement(driver.findElement(findPagesCards(x))).build().perform();
         if (x == 2 || x == 33 || x == 1) {
@@ -97,7 +95,7 @@ public class PagesHelperBase extends HelperBase {
             }
         } else if (x == 22 || x == 3 || x == 4) {
             findxPathDeleteIcon(x);
-            click(By.xpath("//button[id='delete_page']"));
+            click(By.xpath("//button[@id='delete_page']"));
             if (x == 22) {
                 assertFalse(driver.findElement(By.xpath("//p[@class='sb5-empty-text']")).isDisplayed());
             } else {
@@ -108,14 +106,14 @@ public class PagesHelperBase extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//span[@class='tooltips left_pagel_page_more']/button").substring(9).trim());
-        By xPathDeleteIcon = By.xpath((findPagesCards(x) + "//span[@class='tooltips left_pagel_page_remove']/button").substring(9).trim());
+        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option a-builder-icon-dots-vertical menu-item-options']").substring(9).trim());
+        By xPathDeleteIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
 
-        if(x==1 || x==2 || x==33) {
+        if (x == 1 || x == 2 || x == 33) {
             click(xPathMoreIcon);
         } else {
             click(xPathDeleteIcon);
-            }
+        }
     }
 
     public void builderCheck(int x, String namePage) throws InterruptedException {
@@ -230,7 +228,7 @@ public class PagesHelperBase extends HelperBase {
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-        checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
+            checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
         } else checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));

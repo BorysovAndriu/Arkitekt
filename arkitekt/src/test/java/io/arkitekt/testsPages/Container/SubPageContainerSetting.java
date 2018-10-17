@@ -42,9 +42,12 @@ public class SubPageContainerSetting extends TestBasePages {
     }
 
     @Test(priority = 8)
-    public void deleteContainer() throws Exception {
+    public void deleteSubContainer() throws Exception {
         pages.getPagesHelper().deletePages(22, "NEW CONTAINER");
-        pages.getPagesHelper().deletePages(2, "HOME");
     }
 
+    @Test(priority = 8)
+    public void deleteContainer() throws Exception {
+        pages.getPagesHelper().deletePages(2, "HOME");
+    }
 }
