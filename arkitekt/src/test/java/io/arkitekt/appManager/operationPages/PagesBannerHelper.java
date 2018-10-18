@@ -48,7 +48,7 @@ public class PagesBannerHelper extends PagesHelperBase {
                 sendKeys(Keys.chord(Keys.CONTROL, "a") + Keys.DELETE);
         stopFrame();
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBannerTextBuilder(" ");
+        checkingBannerTextBuilder(" ", x);
         checkingDeleteBannerTextSubdomain(" ", By.xpath("//div[@id='page_main_banner']//h4"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
@@ -59,8 +59,8 @@ public class PagesBannerHelper extends PagesHelperBase {
         typeN("Banner", By.xpath("//body[@id='tinymce']"));
         stopFrame();
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBannerTextBuilder("  Banner");
-        checkingBannerTextSubdomain("Banner", By.xpath("//div[@id='page_main_banner']//h4[2]"));
+        checkingBannerTextBuilder("Banner", x);
+        checkingBannerTextSubdomain("Banner", x);
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
@@ -77,22 +77,26 @@ public class PagesBannerHelper extends PagesHelperBase {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void checkingBannerTextBuilder(String bannerText) throws InterruptedException {
+    public void checkingBannerTextBuilder(String bannerText, int x) throws InterruptedException {
         //перевірка у білдері
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
-            checkingText(bannerText, By.xpath("//header[@class='active_banner page-main-banner']"));
-        } else {
+        if (x == 1 || x==2 || x==33) {
             checkingText(bannerText, By.xpath("//header[@class='page-main-banner active_banner']"));
+        } else if (x==22) {
+            checkingText(bannerText, By.xpath("//header[@class='page-main-banner-section']"));
         }
         stopFrame();
     }
 
-    public void checkingBannerTextSubdomain(String bannerText, By locator) throws InterruptedException {
+    public void checkingBannerTextSubdomain(String bannerText, int x) throws InterruptedException {
         //перевірка в превю відображення банер тексту
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        checkingText(bannerText, locator);
+        if (x == 1 || x==2 || x==33) {
+            checkingText(bannerText, By.xpath("//header[@class='page-main-banner']//h4"));
+        } else if (x==22) {
+            checkingText(bannerText, By.xpath("//header[@class='page-main-banner-section']//h4"));
+        }
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }

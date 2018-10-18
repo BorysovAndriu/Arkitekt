@@ -9,7 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class PagesHelperBase extends HelperBase {
@@ -97,7 +96,7 @@ public class PagesHelperBase extends HelperBase {
             findxPathDeleteIcon(x);
             click(By.xpath("//button[@id='delete_page']"));
             if (x == 22) {
-                assertFalse(driver.findElement(By.xpath("//p[@class='sb5-empty-text']")).isDisplayed());
+                isElementPresent(By.xpath("//p[@class='sb5-empty-text']"));
             } else {
                 builderCheck(x, namePage);
                 subdomainCheck(x, namePage);
@@ -134,7 +133,8 @@ public class PagesHelperBase extends HelperBase {
                     checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
             }
         } else if (x == 22) {
-            checkingText(namePage, By.xpath("//p[@class='sb5-empty-text']"));
+            checkingText("This page is empty." + "\n" + "Use the + button to add widgets.",
+                    By.xpath("//p[@class='sb5-empty-text']"));
         }
         stopFrame();
     }
@@ -169,6 +169,7 @@ public class PagesHelperBase extends HelperBase {
         checkingText("PRIVATE PAGE", By.xpath("//h2[text()='PRIVATE PAGE']"));
         type("1111", By.xpath("//input[@type='password']"));
         click(By.xpath("//button[text()]"));
+
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));

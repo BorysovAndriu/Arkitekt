@@ -27,7 +27,7 @@ public class WidgetsHelperBase extends HelperBase {
     public void deleteWidgetTAB(String nameWidget, String nameIcon) throws InterruptedException {
         moveWidgetTAB(nameWidget, nameIcon);
         click(By.cssSelector("#delete_widget_page"));
-        isElementPresent(By.cssSelector(".sb-5-empty-ingorm"));
+        isElementPresent(By.cssSelector(".sb-5-empty-ingorm"));//шукати ров блок якщо є віджет якшо немає то він зникає
         stopFrame();
     }
 

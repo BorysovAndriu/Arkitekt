@@ -56,7 +56,8 @@ public class HelperBase {
 
     public void typeN(String text, By locator) throws InterruptedException {
         click(locator);
-        Thread.sleep(5000);
+        Thread.sleep(1000);
+        driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys((Keys.ENTER), text);
     }
 
