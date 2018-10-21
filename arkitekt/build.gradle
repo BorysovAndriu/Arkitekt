@@ -26,5 +26,9 @@ task Site(type: Test) {
     if(project.hasProperty('target')) {
         systemProperty 'target', "${target}"
     }
+
+    if(project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
 }
 
