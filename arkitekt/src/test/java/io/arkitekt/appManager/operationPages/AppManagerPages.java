@@ -8,10 +8,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class AppManagerPages extends AppManager {
 
+    private final Properties properties;
     private String browser;
     public WebDriver driver;
     Actions builder;
@@ -23,6 +25,7 @@ public class AppManagerPages extends AppManager {
 
     public AppManagerPages(String browser) {
         this.browser = browser;
+        properties = new Properties();
     }
 
     public void init() {
