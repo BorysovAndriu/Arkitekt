@@ -62,9 +62,9 @@ public class AppManager {
                 }
             } else {
                 if (browser == "firefox") {
-                    System.getProperty("webdriver.gecko.driver", "/usr/local/bin");
+                    System.getProperty("webdriver.gecko.driver", "C:\\Users\\Andrew\\workspace\\gekodriver\\gekodriver.exe");
                 } else if (browser == "chrome") {
-                    System.getProperty("webdriver.chrome.driver", "D:\\chromedriver_win32\\chromedriver.exe");
+                    System.getProperty("webdriver.chrome.driver", "c:\\Users\\Andrew\\workspace\\chromedriver\\chromedriver.exe");
                 }
             }
         }
