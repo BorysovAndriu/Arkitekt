@@ -12,7 +12,7 @@ public class TestBase {
     @BeforeMethod
     public void setUpp() throws Exception {
         app.init();
-        //app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+        app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
         app.getLoginHelper().login("andriu2018.10.04@gmail.com", "1111111111");
     }
 
