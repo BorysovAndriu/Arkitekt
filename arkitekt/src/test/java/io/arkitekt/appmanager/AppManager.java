@@ -48,8 +48,8 @@ public class AppManager {
                 driver = new EdgeDriver();
             }
         } else {
-            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-            //capabilities.setBrowserName(browser);
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName(browser);
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
