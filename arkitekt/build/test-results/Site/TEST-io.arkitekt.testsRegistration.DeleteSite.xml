@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.arkitekt.testsRegistration.DeleteSite" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-10-21T08:38:39" hostname="AndriuPC" time="125.135">
+  <properties/>
+  <testcase name="testDeleteSite" classname="io.arkitekt.testsRegistration.DeleteSite" time="125.135"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 2.36.540470 (e522d04694c7ebea4ba8821272dbef4f9b818c91) on port 39100
+Only local connections are allowed.
+Oct 21, 2018 11:38:05 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+</testsuite>
