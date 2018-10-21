@@ -14,7 +14,7 @@ dependencies {
     compile 'com.thoughtworks.xstream:xstream:1.4.10-java7'
 }
 
-task DeleteSite(type: Test) {
+task Site(type: Test) {
     useTestNG {
         suites 'src/test/resources/Site.xml'
     }
