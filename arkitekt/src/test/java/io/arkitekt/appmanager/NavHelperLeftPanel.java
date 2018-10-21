@@ -19,6 +19,7 @@ public class NavHelperLeftPanel extends HelperBase {
 
     public void gotoThemes(By theme) throws InterruptedException {
         click(theme);
+        click(By.name("commit"));
     }
 
     public void gotoSettingSiteGeneraInfo() throws InterruptedException {
