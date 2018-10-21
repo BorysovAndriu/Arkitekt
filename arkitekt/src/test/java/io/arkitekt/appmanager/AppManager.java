@@ -54,19 +54,7 @@ public class AppManager {
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
 
-            if(System.getProperty("platform") == "linux") {
-                if (browser == "firefox") {
-                    System.getProperty("webdriver.gecko.driver", "/usr/local/bin");
-                } else if (browser == "chrome") {
-                    System.getProperty("webdriver.chrome.driver", "/usr/local/share");
-                }
-            } else {
-                if (browser == "firefox") {
-                    System.getProperty("webdriver.gecko.driver", "C:\\Users\\Andrew\\workspace\\gekodriver\\gekodriver.exe");
-                } else if (browser == "chrome") {
-                    System.getProperty("webdriver.chrome.driver", "c:\\Users\\Andrew\\workspace\\chromedriver\\chromedriver.exe");
-                }
-            }
+           
         }
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
