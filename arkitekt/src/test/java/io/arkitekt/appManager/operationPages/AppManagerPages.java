@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.BrowserType;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class AppManagerPages extends AppManager {
+public class AppManagerPages{
 
     private final Properties properties;
     private String browser;

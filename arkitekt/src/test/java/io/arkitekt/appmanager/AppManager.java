@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppManager {
 
-    private Properties properties;
+    private final Properties properties;
     public WebDriver driver;
     Actions builder;
 
@@ -32,9 +32,6 @@ public class AppManager {
     public AppManager(String browser) {
         this.browser = browser;
         properties = new Properties();
-    }
-
-    public AppManager() {
     }
 
     public void init() throws IOException {

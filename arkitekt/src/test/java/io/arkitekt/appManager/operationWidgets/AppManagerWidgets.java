@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
-public class AppManagerWidgets extends AppManager {
+public class AppManagerWidgets{
 
     private String browser;
     public WebDriver driver;
