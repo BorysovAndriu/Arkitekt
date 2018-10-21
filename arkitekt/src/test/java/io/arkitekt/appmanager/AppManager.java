@@ -48,9 +48,11 @@ public class AppManager {
                 driver = new EdgeDriver();
             }
         } else {
+
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+            System.getProperty("webdriver.gecko.driver", "/usr/local/bin");
         }
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
