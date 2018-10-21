@@ -12,7 +12,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -52,7 +51,13 @@ public class AppManager {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-            System.getProperty("webdriver.gecko.driver", "/usr/local/bin");
+
+            if (browser == "firefox") {
+                System.getProperty("webdriver.gecko.driver", "/usr/local/bin");
+            } else if (browser == "chrome") {
+                System.getProperty("webdriver.chrome.driver", "/usr/local/bin");
+            }
+
         }
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
