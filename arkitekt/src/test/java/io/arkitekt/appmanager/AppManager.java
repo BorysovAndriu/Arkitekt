@@ -55,9 +55,8 @@ public class AppManager {
             if (browser == "firefox") {
                 System.getProperty("webdriver.gecko.driver", "/usr/local/bin");
             } else if (browser == "chrome") {
-                System.getProperty("webdriver.chrome.driver", "/usr/local/bin");
+                System.getProperty("webdriver.chrome.driver", "/usr/local/share");
             }
-
         }
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
