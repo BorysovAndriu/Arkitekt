@@ -105,7 +105,7 @@ public class PagesHelperBase extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option a-builder-icon-dots-vertical menu-item-options']").substring(9).trim());
+        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//i[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim());
         By xPathDeleteIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
 
         if (x == 1 || x == 2 || x == 33) {
