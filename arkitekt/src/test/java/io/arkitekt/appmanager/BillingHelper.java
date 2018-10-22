@@ -19,12 +19,17 @@ public class BillingHelper extends HelperBase {
         click(By.xpath("//a[text()=\"Billing Info\"]"));
     }
 
+    public void gotoSettingBillingExpired() throws InterruptedException {
+        click(By.xpath("//div[@class='col-xs-12 user-box-list']/ul/li[1]/a"));
+        click(By.xpath("//a[text()=\"Billing Info\"]"));
+    }
+
     public void gotoSubscribpition() throws InterruptedException {
         click(By.id("billing_subscribe"));
     }
 
     public void chooseSubscribtionPrice() throws InterruptedException {
-        click(By.id("billing_subscribe"));
+        gotoSubscribpition();
         gotoFrame(By.cssSelector("#new_subscription_iframe"));
         click(By.xpath("//label[@for='subscription_price_id_2']"));
         stopFrame();
@@ -81,7 +86,7 @@ public class BillingHelper extends HelperBase {
         } else if (billingCycle == "Annual") {
             checking(("\n" + curentDate + "\n"), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
                     "textContent");
-            calendar.add(Calendar.YEAR, 1);
+            calendar.add(Calendar.MONTH, 1);
             String afterMonth = format.format(calendar.getTime());
             checking(("\n" + afterMonth + "\n"), By.xpath("//div[@id='next_payment_date']"), "textContent");
             //метод зафейлиця якщо запускати тест повторно підписку сайту через деякий час (день два ...).

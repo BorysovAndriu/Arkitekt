@@ -12,6 +12,7 @@ public class SiteCreate extends TestBase {
       app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
       app.getNavHelperLeftPanel().initListSite(true);
       int oneSitemustBe = app.getNavHelperLeftPanel().getCountSite();
+      app.getNavHelperLeftPanel().initListSite(false);
       Assert.assertEquals(oneSitemustBe,1);
     }
     else {
@@ -21,6 +22,7 @@ public class SiteCreate extends TestBase {
       app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
       app.getNavHelperLeftPanel().initListSite(true);
       int after = app.getNavHelperLeftPanel().getCountSite();
+      app.getNavHelperLeftPanel().initListSite(false);
       Assert.assertEquals(after, before+1);
     }
   }

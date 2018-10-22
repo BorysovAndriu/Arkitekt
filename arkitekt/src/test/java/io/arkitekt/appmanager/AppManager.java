@@ -36,11 +36,8 @@ public class AppManager {
     }
 
     public void init() throws IOException {
-
-
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
         if ("".equals(properties.getProperty("selenium.server"))) {
             if (browser.equals(BrowserType.FIREFOX)) {
                 driver = new FirefoxDriver();
@@ -50,14 +47,11 @@ public class AppManager {
                 driver = new EdgeDriver();
             }
         } else {
-
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-
-            System.getProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-
+            //System.getProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
             /**
             if(System.getProperty("platform") == "linux") {
                 if (browser == "firefox") {
