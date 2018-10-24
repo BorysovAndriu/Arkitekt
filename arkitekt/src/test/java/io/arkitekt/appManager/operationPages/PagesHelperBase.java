@@ -105,13 +105,13 @@ public class PagesHelperBase extends HelperBase {
     }
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
-        By xPathMoreIcon = By.xpath((findPagesCards(x) + "//i[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim());
-        By xPathDeleteIcon = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
 
-        if (x == 1 || x == 2 || x == 33) {
-            click(xPathMoreIcon);
-        } else {
-            click(xPathDeleteIcon);
+        if (x == 1) {
+            click(By.xpath((findPagesCards(x) + "//i[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
+        } else if (x==2 || x==33) {
+            click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
+        } else if (x==3 || x==4 || x==22) {
+            click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim()));
         }
     }
 
@@ -168,7 +168,7 @@ public class PagesHelperBase extends HelperBase {
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         checkingText("PRIVATE PAGE", By.xpath("//h2[text()='PRIVATE PAGE']"));
         type("1111", By.xpath("//input[@type='password']"));
-        click(By.xpath("//button[text()]"));
+        click(By.xpath("//button[text()='Submit']"));
 
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {

@@ -58,7 +58,7 @@ public class HelperBase {
         click(locator);
         Thread.sleep(1000);
         driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys((Keys.ENTER), text);
+        driver.findElement(locator).sendKeys(Keys.ENTER, Keys.ENTER, text);
     }
 
     public void clickA(By locator) {
@@ -182,6 +182,7 @@ public class HelperBase {
 
     public void doubleClick(By locator) {
         new Actions(driver).doubleClick(driver.findElement(locator)).build().perform();
+        //driver.findElement(locator).sendKeys(Keys.CONTROL+"a");
     }
 
     public void initListSite(boolean collapse) throws InterruptedException {

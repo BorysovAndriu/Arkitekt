@@ -36,8 +36,8 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         click(By.xpath("//button[@id='background_reset_button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-        checkBuilderBackgroundReset(x, "background-color", "rgba(255, 255, 255, 1)");
-        checkSubdomainBackground(x, "background-color", "rgba(255, 255, 255, 1)");
+        checkBuilderBackgroundReset(x, "background-color", "rgba(0, 0, 0, 0)");
+        checkSubdomainBackground(x, "background-color", "rgba(0, 0, 0, 0)");
     }
 
     public void addBackgroundImage(int x) throws InterruptedException {

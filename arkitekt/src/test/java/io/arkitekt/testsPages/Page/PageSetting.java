@@ -32,7 +32,7 @@ public class PageSetting extends TestBasePages {
 
     @Test(priority = 6)
     public void lockscreenPage() throws InterruptedException {
-        pages.getPagesHelper().lockPages(1, "NEW PAGE");
+        pages.getPagesHelper().lockPages(1, "PAGE");
     }
 
     @Test(priority = 7)

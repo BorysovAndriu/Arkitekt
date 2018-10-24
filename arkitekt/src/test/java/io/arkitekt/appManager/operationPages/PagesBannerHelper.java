@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
+import static org.testng.Assert.assertEquals;
+
 public class PagesBannerHelper extends PagesHelperBase {
 
     public PagesBannerHelper(WebDriver driver) {
@@ -33,7 +35,8 @@ public class PagesBannerHelper extends PagesHelperBase {
         openBannerTab(x);
         click(By.xpath("//a[@class='uploaded-banner-image-delete waves-effect']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip", By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
+        checkingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip",
+                By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
         checkingSubdomian("active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top",
                 By.xpath("//nav[@class='active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top']"),
                 "className");
@@ -81,7 +84,13 @@ public class PagesBannerHelper extends PagesHelperBase {
         //перевірка у білдері
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if (x == 1 || x==2 || x==33) {
-            checkingText(bannerText, By.xpath("//header[@class='page-main-banner active_banner']"));
+            if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
+                String existingText = driver.findElement(By.xpath("//header[@class='active_banner page-main-banner']")).getText();
+                assertEquals(bannerText, existingText);
+            } else {
+                String existingText = driver.findElement(By.xpath("//header[@class='page-main-banner active_banner ']")).getText();
+                assertEquals(bannerText, existingText);
+            }
         } else if (x==22) {
             checkingText(bannerText, By.xpath("//header[@class='page-main-banner-section']"));
         }
