@@ -96,7 +96,8 @@ public class PagesHelperBase extends HelperBase {
             findxPathDeleteIcon(x);
             click(By.xpath("//button[@id='delete_page']"));
             if (x == 22) {
-                isElementPresent(By.xpath("//p[@class='sb5-empty-text']"));
+                if (!isElementPresent(By.xpath("//section[@class='page-section']"))) {
+                }
             } else {
                 builderCheck(x, namePage);
                 subdomainCheck(x, namePage);
@@ -106,12 +107,24 @@ public class PagesHelperBase extends HelperBase {
 
     private void findxPathDeleteIcon(int x) throws InterruptedException {
 
+        By more = By.xpath((findPagesCards(x) + "//i[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim());
+        By delete = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
+        By moreSpan = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option a-builder-icon-dots-vertical menu-item-options']").substring(9).trim());
+
         if (x == 1) {
-            click(By.xpath((findPagesCards(x) + "//i[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
-        } else if (x==2 || x==33) {
-            click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
-        } else if (x==3 || x==4 || x==22) {
-            click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim()));
+            click(more);
+        } else if (x == 2 || x==33) {
+            if (isElementPresent(moreSpan)) {
+                click(moreSpan);
+            } else {
+                click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
+            }
+        } else if (x == 3 || x == 4 || x == 22) {
+            if(isElementPresent(delete)) {
+                click(delete);
+            } else {
+                click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete a-builder-icon-delete menu-item-options']").substring(9).trim()));
+            }
         }
     }
 
@@ -121,14 +134,18 @@ public class PagesHelperBase extends HelperBase {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                 if (x == 33) {
-                    click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
-                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
+                            build().perform();
+                    checkingText(namePage, By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"));
                 } else
                     checkingText(namePage, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a/span"));
             } else {
                 if (x == 33) {
-                    click(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
-                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                            build().perform();
+                    checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"));
                 } else
                     checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"));
             }
@@ -146,14 +163,18 @@ public class PagesHelperBase extends HelperBase {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                 if (x == 33) {
-                    click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
-                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
+                            build().perform();
+                    checkingText(namePage, By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"));
                 } else
                     checkingText(namePage, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
             } else {
                 if (x == 33) {
-                    click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
-                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                            build().perform();
+                    checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"));
                 } else checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
             }
         } else if (x == 22) {
@@ -174,14 +195,18 @@ public class PagesHelperBase extends HelperBase {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                 if (x == 33) {
-                    click(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
-                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
+                            build().perform();
+                    checkingText(namePage, By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"));
                 } else
                     checkingText(namePage, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"));
             } else {
                 if (x == 33) {
-                    click(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
-                    checkingText(namePage, By.xpath("//ul[@style='display: block;']//span"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                            build().perform();
+                    checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"));
                 } else checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
             }
         } else if (x == 22) {
@@ -199,17 +224,51 @@ public class PagesHelperBase extends HelperBase {
             if (x == 22) {
                 builderCheck(x, "This page is empty." + "\n" + "Use the + button to add widgets.");
                 subdomainCheck(x, "HOME");
-            } else if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
+            } else if (x == 1 || x == 2 || x == 3 || x == 4) {
                 gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-                if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))) {
-                    stopFrame();
+                if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+                    click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                    if (!isElementDesplayed(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a/span"))) {
+                        stopFrame();
+                    }
+                    subdomainCheck(x, "HOME");
+                } else {
+                    if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))) {
+                        stopFrame();
+                    }
                 }
-                subdomainCheck(x, "HOME");
+            } else if (x == 33) {
+                gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+                if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+                    click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
+                            build().perform();
+                    if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
+                        stopFrame();
+                    }
+                    hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+                    gotoFrame(By.cssSelector("#page_preview_iframe"));
+                    click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
+                            build().perform();
+                    if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
+                        stopFrame();
+                    }
+                } else {
+                    new Actions(driver).moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                            build().perform();
+                    if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"))) {
+                        stopFrame();
+                    }
+                }
             }
         } else if (isElementPresent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle toggled']"))) {
             builderCheck(x, namePage);
             subdomainCheck(x, namePage);
         }
+
         Thread.sleep(5000);
         click(By.xpath("//a[@class='back-to-menu waves-circle waves-effect' and @href='#!/pages']"));
     }

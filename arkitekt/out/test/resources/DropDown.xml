@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="DropDown">
+
+    <test name="DropDownSetting">
+        <classes>
+            <class name="io.arkitekt.testsPages.DropDown.DropDown"/>
+        </classes>
+    </test>
+
+    <test name="SubPageDropDownSetting">
+        <classes>
+            <class name="io.arkitekt.testsPages.DropDown.SubPageDropDownSetting"/>
+        </classes>
+    </test>
+
+    <test name="SubPageDropDownBannerBanner">
+        <classes>
+            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBanner"/>
+        </classes>
+    </test>
+
+    <test name="SubpageDropDownBannerBackground">
+        <classes>
+            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBackground"/>
+        </classes>
+    </test>
+
+</suite>

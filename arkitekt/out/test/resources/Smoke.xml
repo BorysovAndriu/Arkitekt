@@ -6,10 +6,8 @@
             <class name="io.arkitekt.testsRegistration.PreviewSite"/>
             <class name="io.arkitekt.testsRegistration.DeleteSite"/>
             <class name="io.arkitekt.testsRegistration.SiteCreate"/>
-            <class name="io.arkitekt.testsRegistration.ClickNavigation"/>
         </classes>
     </test>
-
     <test name="PageSetting">
         <classes>
             <class name="io.arkitekt.testsPages.Page.PageSetting"/>
@@ -34,15 +32,15 @@
         </classes>
     </test>
 
-    <test name="SubpageContainerSetting">
-        <classes>
-            <class name="io.arkitekt.testsPages.Container.SubPageContainerSetting"/>
-        </classes>
-    </test>
-
     <test name="ContainerBanner">
         <classes>
             <class name="io.arkitekt.testsPages.Container.ContainerBanner"/>
+        </classes>
+    </test>
+
+    <test name="SubPageContainerSetting">
+        <classes>
+            <class name="io.arkitekt.testsPages.Container.SubPageContainerSetting"/>
         </classes>
     </test>
 
@@ -58,19 +56,25 @@
         </classes>
     </test>
 
-    <test name="DropDown">
+    <test name="DropDownSetting">
         <classes>
             <class name="io.arkitekt.testsPages.DropDown.DropDown"/>
         </classes>
     </test>
 
-    <test name="SubpageDropDownBanner">
+    <test name="SubPageDropDownSetting">
+        <classes>
+            <class name="io.arkitekt.testsPages.DropDown.SubPageDropDownSetting"/>
+        </classes>
+    </test>
+
+    <test name="SubPageDropDownBannerBanner">
         <classes>
             <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBanner"/>
         </classes>
     </test>
 
-    <test name="SubpageDropDownBanner">
+    <test name="SubpageDropDownBannerBackground">
         <classes>
             <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBackground"/>
         </classes>

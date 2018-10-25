@@ -166,7 +166,7 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         } else if (x == 22) {
             String cssValue = driver.findElement(By.xpath("//div[@class='content-wrapper']/section[1]")).
                     getCssValue(valueName);
-            assertEquals(cssValue, value);
+            assertEquals(cssValue, "rgba(255, 255, 255, 1)");
         }
         stopFrame();
     }

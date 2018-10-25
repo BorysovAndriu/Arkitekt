@@ -12,21 +12,37 @@ public class PagesBannerHelper extends PagesHelperBase {
         super(driver);
     }
 
-    public void addImage(String bannerNameClassB, By bannerClassB, String bannerNameClassS, By bannerClassSubd, int x) throws InterruptedException {
+    public void addImage(int x) throws InterruptedException {
         openBannerTab(x);
         attachImage(By.xpath("//input[@name='banner_tmp_image_file']"), "src/test/resources/carBanner.jpg");
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         //перевірка у білдері появи класу
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (isElementPresent(bannerClassB)) {
-            checking(bannerNameClassB, bannerClassB, "className");
-        } else {
-            checking("active_banner page-main-banner",
-                    By.xpath("//header[@class='active_banner page-main-banner']"), "className");
+        if (x==1 || x==2 || x==3 | x==33) {
+            if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
+                stopFrame();
+            } else if (isElementPresent(By.xpath("//header[@class='page-main-banner active_banner']"))) {
+                stopFrame();
+            }
+        } else if (x==22) {
+            if (isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
+                stopFrame();
+            }
         }
-        stopFrame();
         //перевірка в превю відображення банеру
-        checkingSubdomian(bannerNameClassS, bannerClassSubd, "className");
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        gotoFrame(By.cssSelector("#page_preview_iframe"));
+        if (x==1 || x==2 || x==3 | x==33) {
+            if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
+                stopFrame();
+            } else if (isElementPresent(By.xpath("//header[@class='page-main-banner active_banner']"))) {
+                stopFrame();
+            }
+        } else if (x==22) {
+            if (isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
+                stopFrame();
+            }
+        }
         //вихід з розділу банер
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
@@ -35,12 +51,50 @@ public class PagesBannerHelper extends PagesHelperBase {
         openBannerTab(x);
         click(By.xpath("//a[@class='uploaded-banner-image-delete waves-effect']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip",
-                By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
-        checkingSubdomian("active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top",
-                By.xpath("//nav[@class='active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top']"),
-                "className");
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        if (x==1 || x==2 || x==3 | x==33) {
+            if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner hidden']"))) {
+                stopFrame();
+            } else if (isElementPresent(By.xpath("//header[@class='page-main-banner active_banner hidden']"))) {
+                stopFrame();
+            }
+        } else if (x==22) {
+            if (isElementPresent(By.xpath("//header[@class='page-main-banner-section hidden']"))) {
+                stopFrame();
+            } else if (isElementPresent(By.xpath("//header[@class='hidden page-main-banner-section']"))) {
+                stopFrame();
+            }
+        }
+        //перевірка в превю відображення банеру
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        gotoFrame(By.cssSelector("#page_preview_iframe"));
+        if (x==1 || x==2 || x==3 | x==33) {
+            if (isElementPresent(By.xpath(" By.xpath(//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"))) {
+                stopFrame();
+            }
+        } else if (x==22) {
+            if (!isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
+                stopFrame();
+            }
+        }
+        //вихід з розділу банер
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+
+        /*
+        if(x!=22) {
+            checkingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip",
+                    By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
+        } else {
+            isElementPresent(By.xpath("//header[@class='page-main-banner-section hidden']/div"));
+        }
+
+        if(x!=22) {
+            checkingSubdomian("active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top",
+                    By.xpath("//nav[@class='active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top']"),
+                    "className");
+        } else {
+            isElementPresent(By.xpath("//header[@class='page-main-banner-section']/div"));
+        }*/
     }
 
     public void deleteBannerText(int x) throws InterruptedException {
@@ -74,9 +128,17 @@ public class PagesBannerHelper extends PagesHelperBase {
                 -100, 0);
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         //перевірка у білдері
-        checkingBuilder("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
+        if(x!=22) {
+            checkingBuilder("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
+        } else {
+            checkingBuilder("220", By.xpath("//header[@class='page-main-banner-section']"), "offsetHeight");
+        }
         //перевірка в превю відображення банер тексту
-        checkingSubdomian("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
+        if(x!=22) {
+            checkingSubdomian("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
+        } else {
+            checkingSubdomian("220", By.xpath("//header[@class='page-main-banner-section']"), "offsetHeight");
+        }
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
@@ -88,7 +150,7 @@ public class PagesBannerHelper extends PagesHelperBase {
                 String existingText = driver.findElement(By.xpath("//header[@class='active_banner page-main-banner']")).getText();
                 assertEquals(bannerText, existingText);
             } else {
-                String existingText = driver.findElement(By.xpath("//header[@class='page-main-banner active_banner ']")).getText();
+                String existingText = driver.findElement(By.xpath("//header[@class='page-main-banner active_banner']")).getText();
                 assertEquals(bannerText, existingText);
             }
         } else if (x==22) {

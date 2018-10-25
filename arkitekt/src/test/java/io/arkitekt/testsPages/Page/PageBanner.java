@@ -15,9 +15,7 @@ public class PageBanner extends TestBasePages {
 
     @Test(priority = 2)
     public void addBanner() throws Exception {
-        pages.getBannerHelper().addImage("page-main-banner active_banner",
-                By.xpath("//header[@class='page-main-banner active_banner']"), "page-main-banner",
-                By.xpath("//header[@class='page-main-banner']"), 1);
+        pages.getBannerHelper().addImage(1);
     }
 
     @Test(priority = 3)

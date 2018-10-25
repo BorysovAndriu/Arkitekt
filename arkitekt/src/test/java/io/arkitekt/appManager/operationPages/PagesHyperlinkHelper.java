@@ -28,9 +28,16 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         openNewWindow();
         click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBuilder("btn btn-default",
-                By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
-        checkingSubdomainOpenWin(Title);
+
+        if(x!=22) {
+            checkingBuilder("btn btn-default",
+                    By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
+        } else {
+            checkingBuilder("_blank",
+                    By.xpath("//header[@class='page-main-banner-section']//a[@class='btn btn-default']"), "target");
+        }
+
+        checkingSubdomainOpenWin(x, Title);
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
@@ -44,12 +51,25 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath("(//div[starts-with(@id,'img_link_file')])[1]"));
         click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBuilder("btn btn-default",
-                By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
+
+        if(x!=22) {
+            checkingBuilder("btn btn-default",
+                    By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
+        } else {
+            checkingBuilder("_blank",
+                    By.xpath("//header[@class='page-main-banner-section']//a[@class='btn btn-default']"), "target");
+        }
+
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        click(By.xpath("//header[@class='page-main-banner']//a"));
-    //don't work checking download file
+
+        if(x!=22) {
+            click(By.xpath("//header[@class='page-main-banner']//a"));
+        } else {
+            click(By.xpath("//header[@class='page-main-banner-section']//a"));
+        }
+
+        //don't work checking download file
         //File file = new File("C:\\Users\\Andrew\\Downloads\\carBanner.jpg");
         //file.exists();
         stopFrame();
@@ -66,9 +86,16 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         //openNewWindow();
         click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBuilder("btn btn-default",
-                By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
-        checkingSubdomainOpenWin(Title);
+
+        if(x!=22) {
+            checkingBuilder("btn btn-default",
+                    By.xpath("//div[@id='page_main_banner']//a[@class='btn btn-default']"), "className");
+        } else {
+            checkingBuilder("_blank",
+                    By.xpath("//header[@class='page-main-banner-section']//a[@class='btn btn-default']"), "target");
+        }
+
+        checkingSubdomainOpenWin(x, Title);
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
@@ -100,11 +127,17 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
     }
 
-    public void checkingSubdomainOpenWin(String Title) throws InterruptedException {
+    public void checkingSubdomainOpenWin(int x, String Title) throws InterruptedException {
         String winbefore = driver.getWindowHandle();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        click(By.xpath("//header[@class='page-main-banner']//a"));
+
+        if(x!=22) {
+            click(By.xpath("//header[@class='page-main-banner']//a"));
+        } else {
+            click(By.xpath("//header[@class='page-main-banner-section']//a"));
+        }
+
         stopFrame();
         for (String winNew : driver.getWindowHandles()) {
             driver.switchTo().window(winNew);

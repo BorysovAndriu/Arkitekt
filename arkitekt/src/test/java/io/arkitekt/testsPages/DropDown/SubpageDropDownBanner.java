@@ -20,9 +20,7 @@ public class SubpageDropDownBanner extends TestBasePages {
 
     @Test(priority = 2)
     public void addBanner() throws Exception {
-        pages.getBannerHelper().addImage("page-main-banner-section",
-                By.xpath("//header[@class='page-main-banner-section']"),"page-main-banner-section",
-                By.xpath("//header[@class='page-main-banner-section']"), 33);
+        pages.getBannerHelper().addImage( 33);
     }
     @Test(priority = 3)
     public void addBannerText() throws Exception {

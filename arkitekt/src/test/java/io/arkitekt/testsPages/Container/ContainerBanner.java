@@ -15,9 +15,7 @@ public class ContainerBanner extends TestBasePages {
 
     @Test(priority = 2)
     public void addBanner() throws Exception {
-        pages.getBannerHelper().addImage("page-main-banner active_banner",
-                By.xpath("//header[@class='page-main-banner active_banner']"),
-                "page-main-banner", By.xpath("//header[@class='page-main-banner']"), 2);
+        pages.getBannerHelper().addImage( 2);
     }
 
     @Test(priority = 3)
