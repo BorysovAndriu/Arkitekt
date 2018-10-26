@@ -35,12 +35,15 @@ public class PagesBannerHelper extends PagesHelperBase {
         if (x==1 || x==2 || x==3 | x==33) {
             if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
                 stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             } else if (isElementPresent(By.xpath("//header[@class='page-main-banner active_banner']"))) {
                 stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
         } else if (x==22) {
             if (isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
                 stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
         }
         //вихід з розділу банер
@@ -70,10 +73,12 @@ public class PagesBannerHelper extends PagesHelperBase {
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (x==1 || x==2 || x==3 | x==33) {
             if (isElementPresent(By.xpath(" By.xpath(//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"))) {
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
                 stopFrame();
             }
         } else if (x==22) {
             if (!isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
                 stopFrame();
             }
         }

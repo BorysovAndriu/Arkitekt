@@ -112,7 +112,13 @@ public class PagesHelperBase extends HelperBase {
         By moreSpan = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option a-builder-icon-dots-vertical menu-item-options']").substring(9).trim());
 
         if (x == 1) {
-            click(more);
+           if(isElementPresent(more)) {
+               click(more);
+           } else if (isElementPresent(moreSpan)) {
+               click(moreSpan);
+           } else {
+               click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
+           }
         } else if (x == 2 || x==33) {
             if (isElementPresent(moreSpan)) {
                 click(moreSpan);
@@ -288,7 +294,7 @@ public class PagesHelperBase extends HelperBase {
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
             click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-            checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
+            checking(nameUrl, By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"), "pathname");
         } else checking(nameUrl, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"), "pathname");
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));

@@ -22,15 +22,14 @@ public class SubPageDropDownSetting extends TestBasePages {
     }
 
     @Test(priority = 4)
-    public void renameContainer() throws InterruptedException {
-        pages.getPagesHelper().renamePage( "SUBCONT", 33);
+    public void renameSubPageDropDown() throws InterruptedException {
+        pages.getPagesHelper().renamePage( "SUBDROP", 33);
     }
 
-    /** немає можливовсті перевірити частину зміненної урл оскільки сабпейдж не містить урл.
     @Test(priority = 5)
     public void renameUrl() throws InterruptedException {
-        pages.getPagesHelper().renameUrl("/subcont-test", 22);
-    }*/
+        pages.getPagesHelper().renameUrl("/subdrop-test", 33);
+    }
 
     @Test(priority = 6)
     public void lockscreenSubPageDropDownr() throws InterruptedException {

@@ -208,6 +208,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath(String.format("//ul[@id='%s']/li[3]", hyperlinkID)));
         attachImage(By.xpath("//div[@id='page_hyperlink']//input[@name='file']"),
                 "src/test/resources/carBanner.jpg");
+        click(By.xpath("(//div[starts-with(@id,'img_link_file')])[1]"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
         checkBuilderFileLinkPage();

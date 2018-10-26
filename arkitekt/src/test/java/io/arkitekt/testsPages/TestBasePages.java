@@ -14,6 +14,8 @@ public class TestBasePages {
         pages.init();
         pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
         pages.getPagesHelper().login("andriu2018.10.04@gmail.com","1111111111");
+
+        /**
         pages.getPagesHelper().initListSite(true);
         int before = pages.getPagesHelper().getCountSite();
         if (before == 1) {
@@ -21,6 +23,7 @@ public class TestBasePages {
         } else {
             pages.getPagesHelper().openFirstSite();
         }
+        */
         pages.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
     }
 

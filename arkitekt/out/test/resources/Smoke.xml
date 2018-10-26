@@ -80,9 +80,15 @@
         </classes>
     </test>
 
-    <test name="LinkPage">
+    <test name="LinkPageSetting">
         <classes>
             <class name="io.arkitekt.testsPages.LinkPage.LinkSetting"/>
+        </classes>
+    </test>
+
+    <test name="LinkPageHyperlink">
+        <classes>
+            <class name="io.arkitekt.testsPages.LinkPage.LinkHyperlink"/>
         </classes>
     </test>
 </suite>

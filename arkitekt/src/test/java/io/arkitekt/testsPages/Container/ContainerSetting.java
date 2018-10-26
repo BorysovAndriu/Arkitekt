@@ -9,7 +9,7 @@ public class ContainerSetting extends TestBasePages {
     public void addContainer() throws Exception {
         pages.getPagesHelper().addPages("NEW CONTAINER",2);
     }
-
+/*
     @Test (priority = 2)
     public void toggleOff() throws InterruptedException {
         pages.getPagesHelper().toggle( "HOME", 2);
@@ -19,7 +19,7 @@ public class ContainerSetting extends TestBasePages {
     public void toggleOn() throws InterruptedException {
         pages.getPagesHelper().toggle("NEW CONTAINER", 2);
     }
-
+*/
     @Test(priority = 4)
     public void renameContainer() throws InterruptedException {
         pages.getPagesHelper().renamePage( "CONT", 2);
