@@ -1,10 +1,7 @@
 package io.arkitekt.testsPages.Container;
 
 import io.arkitekt.testsPages.TestBasePages;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
-import java.io.FileNotFoundException;
 
 public class SubpageContainerBanner extends TestBasePages {
 
@@ -31,11 +28,11 @@ public class SubpageContainerBanner extends TestBasePages {
 
     @Test(priority = 5)
     public void addBannerButtonContent() throws Exception {
-        pages.getHyperlinkHelper().insertContentHyperlink(22, "/new-container", "New Container - Marathon");
+        pages.getHyperlinkHelper().insertContentHyperlink(22,  "New Page - Marathon");
     }
 
     @Test(priority = 6)
-    public void addBannerButtonFile() throws InterruptedException, FileNotFoundException {
+    public void addBannerButtonFile() throws InterruptedException {
         pages.getHyperlinkHelper().insertFileHyperlink(22);
     }
 

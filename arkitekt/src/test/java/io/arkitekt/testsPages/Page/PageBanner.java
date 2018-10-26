@@ -1,7 +1,6 @@
 package io.arkitekt.testsPages.Page;
 
 import io.arkitekt.testsPages.TestBasePages;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
@@ -30,7 +29,7 @@ public class PageBanner extends TestBasePages {
 
     @Test(priority = 5)
     public void addBannerButtonContent() throws Exception {
-        pages.getHyperlinkHelper().insertContentHyperlink(1, "/new-page", "New Page - Marathon");
+        pages.getHyperlinkHelper().insertContentHyperlink(1, "New Page - Marathon");
     }
 
     @Test(priority = 6)

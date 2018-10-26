@@ -2,9 +2,9 @@ package io.arkitekt.appManager.operationPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public class PagesHyperlinkHelper extends PagesBannerHelper {
 
@@ -17,7 +17,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath("//a[@href='#page_hyperlink']"));
     }
 
-    public void insertContentHyperlink(int x, String namePages, String Title) throws InterruptedException {
+    public void insertContentHyperlink(int x, String Title) throws InterruptedException {
         openBannerTab(x);
         openEditWinHyperlink();
         //вибір Контент лінки
@@ -41,7 +41,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
-    public void insertFileHyperlink(int x) throws InterruptedException, FileNotFoundException {
+    public void insertFileHyperlink(int x) throws InterruptedException {
         openBannerTab(x);
         openEditWinHyperlink();
         String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
@@ -106,7 +106,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath(String.format("//ul[@id='%s']/li[1]", hyperlinkID)));
         click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBannerTextBuilder("  Banner", x);
+        checkingBannerTextBuilder("Banner", x);
         checkingBannerTextSubdomain("Banner", x);
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
@@ -142,7 +142,8 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         for (String winNew : driver.getWindowHandles()) {
             driver.switchTo().window(winNew);
         }
-        driver.getTitle().equals(Title);
+        String title = driver.getTitle();
+        Assert.assertEquals(title, Title);
         driver.close();
         driver.switchTo().window(winbefore);
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
