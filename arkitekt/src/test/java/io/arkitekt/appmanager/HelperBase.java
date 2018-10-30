@@ -58,7 +58,7 @@ public class HelperBase {
         click(locator);
         Thread.sleep(1000);
         driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(Keys.ENTER, Keys.ENTER, text);
+        driver.findElement(locator).sendKeys(text); //Keys.ENTER, Keys.ENTER,
     }
 
     public void clickA(By locator) {

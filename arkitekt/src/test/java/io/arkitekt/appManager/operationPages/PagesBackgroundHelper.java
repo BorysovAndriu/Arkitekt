@@ -35,9 +35,9 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         click(By.cssSelector("#page_background_color #colorPreview"));
         click(By.xpath("//button[@id='background_reset_button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
         checkBuilderBackgroundReset(x, "background-color", "rgba(0, 0, 0, 0)");
         checkSubdomainBackground(x, "background-color", "rgba(0, 0, 0, 0)");
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
     public void addBackgroundImage(int x) throws InterruptedException {
@@ -53,9 +53,9 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         openBackgroundTab(x);
         click(By.xpath("//div[@id='background-page-image']//a"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
         checkBuilderBackgroundImageOff(x);
         checkSubdomainBackgroundImageOff(x);
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
 
     public void addBackgroundImageOverlay(int x) throws InterruptedException {

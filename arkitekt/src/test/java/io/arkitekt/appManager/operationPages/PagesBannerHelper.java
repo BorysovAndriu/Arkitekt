@@ -3,9 +3,6 @@ package io.arkitekt.appManager.operationPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
@@ -76,13 +73,13 @@ public class PagesBannerHelper extends PagesHelperBase {
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (x==1 || x==2 || x==3 | x==33) {
             if (isElementPresent(By.xpath(" By.xpath(//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"))) {
-                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
                 stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
         } else if (x==22) {
             if (!isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
-                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
                 stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
         }
         //вихід з розділу банер
@@ -133,19 +130,19 @@ public class PagesBannerHelper extends PagesHelperBase {
         openBannerTab(x);
         slider(By.xpath("//div[@id='banner_height_slider']"),
                 By.xpath("//div[@id='banner_height_slider']//div[@class='noUi-handle noUi-handle-lower']"),
-                -100, 0);
+                100, 0);
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         //перевірка у білдері
         if(x!=22) {
-            checkingBuilder("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
+            checkingBuilder("780", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
         } else {
-            checkingBuilder("220", By.xpath("//header[@class='page-main-banner-section']"), "offsetHeight");
+            checkingBuilder("780", By.xpath("//header[@class='page-main-banner-section']"), "offsetHeight");
         }
         //перевірка в превю відображення банер тексту
         if(x!=22) {
-            checkingSubdomian("220", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
+            checkingSubdomian("780", By.xpath("//div[@id='page_main_banner']"), "offsetHeight");
         } else {
-            checkingSubdomian("220", By.xpath("//header[@class='page-main-banner-section']"), "offsetHeight");
+            checkingSubdomian("780", By.xpath("//header[@class='page-main-banner-section']"), "offsetHeight");
         }
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }
@@ -155,28 +152,16 @@ public class PagesBannerHelper extends PagesHelperBase {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
         if (x == 1 || x==2 || x==33) {
             if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
-                String existingText = driver.findElement(By.xpath("//header[@class='active_banner page-main-banner']//h4[3]")).getText();
+                String existingText = driver.findElement(By.xpath("//header[@class='active_banner page-main-banner']//h4[1]")).getText();
                 assertEquals(bannerText, existingText);
             } else {
-                String existingText = driver.findElement(By.xpath("//header[@class='page-main-banner active_banner']//h4[3]")).getText();
+                String existingText = driver.findElement(By.xpath("//header[@class='page-main-banner active_banner']//h4[1]")).getText();
                 assertEquals(bannerText, existingText);
             }
         } else if (x==22) {
-            countBannerText(x);
-            //checkingText(bannerText, By.xpath("//header[@class='page-main-banner-section']//h4[]"));
+            checkingText(bannerText, By.xpath("//header[@class='page-main-banner-section']//h4[1]"));
         }
         stopFrame();
-    }
-
-    public void countBannerText(int x) {
-        List<WebElement> listsite = driver.findElements(By.xpath("//header[@class='page-main-banner-section']//h4"));
-        String banner = "Banner";
-        for (int i = 0; i > listsite.size(); i++) {
-            String getBanner = driver.findElement(By.xpath("//header[@class='page-main-banner-section']//h4["+i+"]")).getText();
-            if(banner.equals(getBanner)) {
-                i=100;
-            }
-        }
     }
 
     public void checkingBannerTextSubdomain(String bannerText, int x) throws InterruptedException {
@@ -184,9 +169,9 @@ public class PagesBannerHelper extends PagesHelperBase {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (x == 1 || x==2 || x==33) {
-            checkingText(bannerText, By.xpath("//header[@class='page-main-banner']//h4[3]"));
+            checkingText(bannerText, By.xpath("//header[@class='page-main-banner']//h4[1]"));
         } else if (x==22) {
-            checkingText(bannerText, By.xpath("//header[@class='page-main-banner-section']//h4[3]"));
+            checkingText(bannerText, By.xpath("//header[@class='page-main-banner-section']//h4[1]"));
         }
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));

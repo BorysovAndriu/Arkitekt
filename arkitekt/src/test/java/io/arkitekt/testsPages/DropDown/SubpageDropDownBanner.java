@@ -12,58 +12,58 @@ public class SubpageDropDownBanner extends TestBasePages {
         pages.getPagesHelper().addPages( "NEW DROPDOWN", 3);
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void addSubDropDown() throws Exception {
      pages.getPagesHelper().addSubPage(33);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void addBanner() throws Exception {
         pages.getBannerHelper().addImage( 33);
     }
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void addBannerText() throws Exception {
         pages.getBannerHelper().addBannerText(33);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void minBannerHeight() throws Exception {
         pages.getBannerHelper().moveBannerHeight(33);
     }
 
-    @Test(priority = 5)
+    @Test(priority = 6)
     public void addBannerButtonContent() throws Exception {
         pages.getHyperlinkHelper().insertContentHyperlink(33, "New Page - Marathon");
     }
 
-    @Test(priority = 6)
+    @Test(priority = 7)
     public void addBannerButtonFile() throws InterruptedException, FileNotFoundException {
         pages.getHyperlinkHelper().insertFileHyperlink(33);
     }
 
-    @Test(priority = 7)
+    @Test(priority = 8)
     public void addBannerButtonExternal() throws InterruptedException {
         pages.getHyperlinkHelper().insertExternalHyperlink( "Google",33);
     }
 
-    @Test(priority = 8)
+    @Test(priority = 9)
     public void addBannerOffButton() throws InterruptedException {
         pages.getHyperlinkHelper().insertNoneHyperlink(33);
     }
 
-    @Test(priority = 9)
+    @Test(priority = 10)
     public void deleteBannerText() throws Exception {
         pages.getBannerHelper().deleteBannerText(33);
     }
 
-    @Test(priority = 10)
+    @Test(priority = 11)
     public void deleteBanner() throws Exception {
         pages.getBannerHelper().deleteImage(33);
     }
 
-    @Test(priority = 11)
+    @Test(priority = 12)
     public void deleteDropDown() throws Exception {
-        pages.getPagesHelper().deletePages(33, "NEW DROPDOWN");
+        //pages.getPagesHelper().deletePages(33, "NEW DROPDOWN");
         pages.getPagesHelper().deletePages(3, "HOME");
     }
 }

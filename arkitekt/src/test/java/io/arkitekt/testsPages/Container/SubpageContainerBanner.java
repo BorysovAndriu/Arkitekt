@@ -28,7 +28,7 @@ public class SubpageContainerBanner extends TestBasePages {
 
     @Test(priority = 5)
     public void addBannerButtonContent() throws Exception {
-        pages.getHyperlinkHelper().insertContentHyperlink(22,  "New Page - Marathon");
+        pages.getHyperlinkHelper().insertContentHyperlink(22,  "New Container - Marathon");
     }
 
     @Test(priority = 6)

@@ -118,7 +118,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
     public void openEditWinHyperlink() throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@id='banner_text_ifr']"));
         //виділення тексту
-        doubleClick(By.xpath("//body[@id='tinymce']/h4[2]"));
+        doubleClick(By.xpath("//body[@id='tinymce']/h4[1]"));
         //driver.findElement(By.xpath("//body[@id='tinymce']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
         stopFrame();
         //клік по едіторі на гіперлінку

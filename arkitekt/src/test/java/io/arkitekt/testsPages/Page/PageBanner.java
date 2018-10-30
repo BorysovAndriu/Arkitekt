@@ -3,8 +3,6 @@ package io.arkitekt.testsPages.Page;
 import io.arkitekt.testsPages.TestBasePages;
 import org.testng.annotations.Test;
 
-import java.io.FileNotFoundException;
-
 public class PageBanner extends TestBasePages {
 
     @Test(priority = 1)
@@ -33,7 +31,7 @@ public class PageBanner extends TestBasePages {
     }
 
     @Test(priority = 6)
-    public void addBannerButtonFile() throws InterruptedException, FileNotFoundException {
+    public void addBannerButtonFile() throws InterruptedException {
         pages.getHyperlinkHelper().insertFileHyperlink(1);
     }
 

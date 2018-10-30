@@ -149,7 +149,7 @@ public class PagesHelperBase extends HelperBase {
             } else {
                 if (x == 33) {
                     new Actions(driver).
-                            moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                            moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).click().
                             build().perform();
                     checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"));
                 } else
@@ -178,9 +178,9 @@ public class PagesHelperBase extends HelperBase {
             } else {
                 if (x == 33) {
                     new Actions(driver).
-                            moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                            moveToElement(driver.findElement(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))).click().
                             build().perform();
-                    checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"));
+                    checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul[1]//a"));
                 } else checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
             }
         } else if (x == 22) {
@@ -210,9 +210,9 @@ public class PagesHelperBase extends HelperBase {
             } else {
                 if (x == 33) {
                     new Actions(driver).
-                            moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                            moveToElement(driver.findElement(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))).
                             build().perform();
-                    checkingText(namePage, By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"));
+                    checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul[1]//a"));
                 } else checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
             }
         } else if (x == 22) {
@@ -244,7 +244,7 @@ public class PagesHelperBase extends HelperBase {
                     }
                 }
             } else if (x == 33) {
-                gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+               gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
                 if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                     click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                     new Actions(driver).
@@ -253,20 +253,31 @@ public class PagesHelperBase extends HelperBase {
                     if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
                         stopFrame();
                     }
-                    hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-                    gotoFrame(By.cssSelector("#page_preview_iframe"));
+                } else {
+                    new Actions(driver).moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).click().
+                            build().perform();
+                    if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"))) {
+                        stopFrame();
+                    }
+                }
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+                gotoFrame(By.cssSelector("#page_preview_iframe"));
+                if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                     click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
                     new Actions(driver).
                             moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
                             build().perform();
                     if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
                         stopFrame();
+                        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
                     }
                 } else {
-                    new Actions(driver).moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).
+                    new Actions(driver).
+                            moveToElement(driver.findElement(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))).click().
                             build().perform();
-                    if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"))) {
+                    if (!isElementDesplayed(By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul"))) {
                         stopFrame();
+                        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
                     }
                 }
             }
