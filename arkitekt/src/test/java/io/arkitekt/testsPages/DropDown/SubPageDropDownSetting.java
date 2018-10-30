@@ -4,7 +4,7 @@ import io.arkitekt.testsPages.TestBasePages;
 import org.testng.annotations.Test;
 
 public class SubPageDropDownSetting extends TestBasePages {
-/*
+
     @Test(priority = 1)
     public void addDropDown() throws Exception {
         pages.getPagesHelper().addPages( "NEW DROPDOWN", 3);
@@ -19,10 +19,10 @@ public class SubPageDropDownSetting extends TestBasePages {
     public void toggleOff() throws InterruptedException {
         pages.getPagesHelper().toggle( "", 33);
     }
-*/
+
     @Test(priority = 4)
     public void toggleOn() throws InterruptedException {
-        pages.getPagesHelper().toggle("", 33);
+        pages.getPagesHelper().toggle("NEW PAGE", 33);
     }
 
     @Test(priority = 5)
@@ -37,12 +37,12 @@ public class SubPageDropDownSetting extends TestBasePages {
 
     @Test(priority = 7)
     public void lockscreenSubPageDropDownr() throws InterruptedException {
-        pages.getPagesHelper().lockPages(33, "");
+        pages.getPagesHelper().lockPages(33, "SUBDROP");
     }
 
     @Test(priority = 8)
     public void unlocksubPageDropDown() throws InterruptedException {
-        pages.getPagesHelper().unlockPages("SUBCONT", 33);
+        pages.getPagesHelper().unlockPages("SUBDROP", 33);
     }
 
     @Test(priority = 9)

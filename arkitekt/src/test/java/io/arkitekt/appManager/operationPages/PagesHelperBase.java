@@ -87,7 +87,8 @@ public class PagesHelperBase extends HelperBase {
             click(By.xpath("//*[@id=\"menu_item_remove\"]"));
             click(By.xpath("//button[@id='delete_page']"));
             if (x == 33) {
-                assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Empty DropDown')]")).isDisplayed());
+                builderCheckOffSubPageDrop();
+                subdomainCheckOffSubPageDrop();
             } else {
                 builderCheck(x, namePage);
                 subdomainCheck(x, namePage);
@@ -111,7 +112,7 @@ public class PagesHelperBase extends HelperBase {
         By delete = By.xpath((findPagesCards(x) + "//span[@class='menu-item-delete menu-item-options a-builder-icon-delete']").substring(9).trim());
         By moreSpan = By.xpath((findPagesCards(x) + "//span[@class='menu-item-option a-builder-icon-dots-vertical menu-item-options']").substring(9).trim());
 
-        if (x == 1) {
+        if (x == 1 || x==2 || x==33) {
            if(isElementPresent(more)) {
                click(more);
            } else if (isElementPresent(moreSpan)) {
@@ -119,13 +120,7 @@ public class PagesHelperBase extends HelperBase {
            } else {
                click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
            }
-        } else if (x == 2 || x==33) {
-            if (isElementPresent(moreSpan)) {
-                click(moreSpan);
-            } else {
-                click(By.xpath((findPagesCards(x) + "//span[@class='menu-item-option menu-item-options a-builder-icon-dots-vertical']").substring(9).trim()));
-            }
-        } else if (x == 3 || x == 4 || x == 22) {
+        }  else if (x == 3 || x == 4 || x == 22) {
             if(isElementPresent(delete)) {
                 click(delete);
             } else {
@@ -139,6 +134,7 @@ public class PagesHelperBase extends HelperBase {
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                Thread.sleep(2000);
                 if (x == 33) {
                     new Actions(driver).
                             moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
@@ -168,6 +164,7 @@ public class PagesHelperBase extends HelperBase {
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                Thread.sleep(2000);
                 if (x == 33) {
                     new Actions(driver).
                             moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
@@ -200,6 +197,7 @@ public class PagesHelperBase extends HelperBase {
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 33) {
             if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
                 click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+                Thread.sleep(2000);
                 if (x == 33) {
                     new Actions(driver).
                             moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
@@ -244,50 +242,58 @@ public class PagesHelperBase extends HelperBase {
                     }
                 }
             } else if (x == 33) {
-               gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-                if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
-                    click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-                    new Actions(driver).
-                            moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
-                            build().perform();
-                    if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
-                        stopFrame();
-                    }
-                } else {
-                    new Actions(driver).moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).click().
-                            build().perform();
-                    if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"))) {
-                        stopFrame();
-                    }
-                }
-                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-                gotoFrame(By.cssSelector("#page_preview_iframe"));
-                if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
-                    click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
-                    new Actions(driver).
-                            moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
-                            build().perform();
-                    if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
-                        stopFrame();
-                        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-                    }
-                } else {
-                    new Actions(driver).
-                            moveToElement(driver.findElement(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))).click().
-                            build().perform();
-                    if (!isElementDesplayed(By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul"))) {
-                        stopFrame();
-                        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-                    }
-                }
+                builderCheckOffSubPageDrop();
+                subdomainCheckOffSubPageDrop();
             }
         } else if (isElementPresent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle toggled']"))) {
             builderCheck(x, namePage);
             subdomainCheck(x, namePage);
         }
-
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         click(By.xpath("//a[@class='back-to-menu waves-circle waves-effect' and @href='#!/pages']"));
+    }
+
+    public void builderCheckOffSubPageDrop() throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+            Thread.sleep(2000);
+            new Actions(driver).
+                    moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
+                    build().perform();
+            if (isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul"))) {
+                stopFrame();
+            }
+        } else {
+            new Actions(driver).moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).click().
+                    build().perform();
+            if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"))) {
+                stopFrame();
+            }
+        }
+    }
+
+    public void subdomainCheckOffSubPageDrop() throws InterruptedException {
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        gotoFrame(By.cssSelector("#page_preview_iframe"));
+        if (isElementPresent(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"))) {
+            click(By.xpath("//div[@class='mobile-menu mobilebar_icon active']/button"));
+            new Actions(driver).
+                    moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
+                    build().perform();
+            if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
+                stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+            }
+        } else {
+            new Actions(driver).
+                    moveToElement(driver.findElement(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))).click().
+                    build().perform();
+            if (isElementDesplayed(By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul"))) {
+                stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+            }
+        }
     }
 
     public void renamePage(String namePage, int x) throws InterruptedException {

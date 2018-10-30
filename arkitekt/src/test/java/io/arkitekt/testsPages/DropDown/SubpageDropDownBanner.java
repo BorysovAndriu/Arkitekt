@@ -37,7 +37,7 @@ public class SubpageDropDownBanner extends TestBasePages {
     }
 
     @Test(priority = 7)
-    public void addBannerButtonFile() throws InterruptedException, FileNotFoundException {
+    public void addBannerButtonFile() throws InterruptedException {
         pages.getHyperlinkHelper().insertFileHyperlink(33);
     }
 

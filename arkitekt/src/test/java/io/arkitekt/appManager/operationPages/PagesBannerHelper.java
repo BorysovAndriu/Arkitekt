@@ -32,16 +32,19 @@ public class PagesBannerHelper extends PagesHelperBase {
         //перевірка в превю відображення банеру
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (x==1 || x==2 || x==3 | x==33) {
-            if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))) {
-                stopFrame();
-                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-            } else if (isElementPresent(By.xpath("//header[@class='page-main-banner active_banner']"))) {
+        if (x==1 || x==2 || x==3) {
+            if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))
+                    || isElementPresent(By.xpath("//header[@class='page-main-banner active_banner']"))) {
                 stopFrame();
                 hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
         } else if (x==22) {
             if (isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
+                stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+            }
+        } else if (x==33) {
+            if (isElementPresent(By.xpath("//header[@class='page-main-banner']/div[1]"))) {
                 stopFrame();
                 hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
@@ -55,7 +58,7 @@ public class PagesBannerHelper extends PagesHelperBase {
         click(By.xpath("//a[@class='uploaded-banner-image-delete waves-effect']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        if (x==1 || x==2 || x==3 | x==33) {
+        if (x==1 || x==2 || x==3 || x==33) {
             if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner hidden']"))) {
                 stopFrame();
             } else if (isElementPresent(By.xpath("//header[@class='page-main-banner active_banner hidden']"))) {
@@ -71,8 +74,8 @@ public class PagesBannerHelper extends PagesHelperBase {
         //перевірка в превю відображення банеру
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (x==1 || x==2 || x==3 | x==33) {
-            if (isElementPresent(By.xpath(" By.xpath(//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"))) {
+        if (x==1 || x==2 || x==3 || x==33) {
+            if (isElementPresent(By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"))) {
                 stopFrame();
                 hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
@@ -84,22 +87,6 @@ public class PagesBannerHelper extends PagesHelperBase {
         }
         //вихід з розділу банер
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
-
-        /*
-        if(x!=22) {
-            checkingBuilder("active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip",
-                    By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"), "className");
-        } else {
-            isElementPresent(By.xpath("//header[@class='page-main-banner-section hidden']/div"));
-        }
-
-        if(x!=22) {
-            checkingSubdomian("active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top",
-                    By.xpath("//nav[@class='active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top']"),
-                    "className");
-        } else {
-            isElementPresent(By.xpath("//header[@class='page-main-banner-section']/div"));
-        }*/
     }
 
     public void deleteBannerText(int x) throws InterruptedException {

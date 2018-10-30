@@ -24,7 +24,11 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         String hyperlinkID = getIdPage("data-activates", By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
         click(By.xpath(String.format("//ul[@id='%s']/li[2]", hyperlinkID)));
         //вибір сторінки
-        click(By.xpath("//ul[@id='pages_list_text_edit']/li[1]"));
+        if (x==33){
+            click(By.xpath("//ul[@id='pages_list_text_edit']/li[2]"));
+        } else {
+            click(By.xpath("//ul[@id='pages_list_text_edit']/li[1]"));
+        }
         openNewWindow();
         click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
@@ -69,7 +73,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
             click(By.xpath("//header[@class='page-main-banner-section']//a"));
         }
 
-        //don't work checking download file
+        //doesn't work checking download file
         //File file = new File("C:\\Users\\Andrew\\Downloads\\carBanner.jpg");
         //file.exists();
         stopFrame();
