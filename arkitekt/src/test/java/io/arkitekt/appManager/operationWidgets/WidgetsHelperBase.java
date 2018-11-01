@@ -31,23 +31,61 @@ public class WidgetsHelperBase extends HelperBase {
         stopFrame();
     }
 
+    public void showMetaBlog(String meta) throws InterruptedException {
+        moveWidgetTAB("blog", "edit");
+        stopFrame();
+        click(By.xpath("//a[@href='#blog_design']"));
+        String locator = null;
+        if (meta == "tags") {
+            locator = "tag";
+        } else if (meta == "categories") {
+            locator = "category";
+        } else if (meta == "authors") {
+            locator ="author";
+        }
+
+        if(meta == "tags") {
+            click(By.xpath(String.format("//input[@name='blog_%s']/following-sibling::span/span", meta)));
+            saveChange("blog");
+            checkigPostBuilder("#" + meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
+            checkigPostSubdomain("#" + meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
+        } else {
+            click(By.xpath(String.format("//input[@name='blog_%s']/following-sibling::span/span", locator)));
+            saveChange("blog");
+            checkigPostBuilder(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
+            checkigPostSubdomain(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
+        }
+    }
+
     public void addCategoryBlog(String nameWidget, String nameIcon) throws InterruptedException {
         moveWidgetTAB(nameWidget, nameIcon);
         stopFrame();
-        click(By.xpath(String.format("//div[@id='edit_%s_block']//i[@class='a-builder-icon-plus']", nameWidget)));
-        moveToBable(By.xpath("//div[@id='blog_categories']//div[@class='tag-keyword in_focus']//input"), "News");
-        List<WebElement> selectedBableis = driver.findElements(By.xpath("//div[@class='tag-keyword selected_keyword']"));
-        if (selectedBableis.size() > 0) {
-            for (int i = 1; i <= selectedBableis.size(); i++) {
-                click(By.xpath("(//div[@class='tag-keyword selected_keyword'])[1]"));
+        click(By.xpath("//a[@href='#blog_categories']"));
+        By locator = By.xpath("//div[@id='blog_categories']//div[starts-with (@id,'blog_categories')]");
+        List<WebElement> categories = driver.findElements(locator);
+        if(categories.size() > 0) {
+            for (int i = 1; i <= categories.size(); i++) {
+                hover(By.xpath(String.format(locator +"[" + i + "]").substring(9).trim()),
+                        By.xpath(String.format(locator +"[" + i + "]/a").substring(9).trim()));
             }
-            click(By.xpath("(//div[@id='blog_categories']//div[@class='tag-keyword in_focus'])[last()]"));
-        } else {
-            click(By.xpath("(//div[@id='blog_categories']//div[@class='tag-keyword in_focus'])[last()]"));
         }
+        click(By.xpath(String.
+                format("//div[@id='edit_%s_block']//div[@class='pull-right btn btn-breze btn-fab']",
+                        nameWidget)));
+        moveToBable(By.xpath("//div[@id='blog_categories']//div[@class='tag-keyword in_focus']//input"), "categories");
+        click(By.xpath("//div[@id='blog_categories']//div[@class='tag-keyword in_focus']//input"));
         saveChange(nameWidget);
-        checkingWidgetGagBuilder();
-        checkingWidgetGagSubdomain();
+        click(By.xpath("//a[@href='#!/blog']"));
+        hover(By.xpath("//div[@class='posts_block']/div[1]"), By.xpath("//div[@class='posts_block']/div[1]//button"));
+        click(By.xpath("//button[@data-todo='edit']"));
+        openSettingTAB();
+        click(By.xpath("//button[@data-keywords='categories']"));
+        click(By.xpath("//div[@id='post_categories_list']/div"));
+        click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
+        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
+        checkigPostBuilder("categories", By.xpath("//span[@class='post-content-category']"), "textContent");
+        checkigPostSubdomain("categories", By.xpath("//span[@class='post-content-category']"), "textContent");
+        click(By.xpath("//div[@id='site_blog']//a"));
     }
 
     public void addPost(String nameWidget, String nameIcon) throws InterruptedException {
@@ -57,13 +95,10 @@ public class WidgetsHelperBase extends HelperBase {
         String idPost = getIdPage("data-activates", By.xpath("//input[@value='Draft']"));
         click(By.xpath("//input[@value='Draft']"));
         click(By.xpath(String.format("//ul[@id='%s']/li[2]", idPost)));
-        openSettingTAB();
-        click(By.xpath("//button[@data-keywords='categories']"));
-        click(By.xpath("(//div[@id='post_categories_list']//div[@class='tag-keyword'])[last()]"));
-        click(By.xpath("//div[@id='post_keywords_modal']//button[text()='Save']"));
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        checkigPostBuilder();
-        checkigPostSubdomain();
+        checkigPostBuilder("\n TestPost \n",
+                By.xpath("//div[@class='blog-block row']//div[1]//div[starts-with(@class,'sb5-blog-post-title')]/a"), "textContent");
+        checkigPostSubdomain("\n TestPost \n", By.xpath("//div[@class='blog-block']/div[1]//a"), "textContent");
     }
 
     public void deletePost() throws InterruptedException {
@@ -73,9 +108,50 @@ public class WidgetsHelperBase extends HelperBase {
 
     public void addThumbnailPost() throws InterruptedException {
         movePostTAB();
+        stopFrame();
         openSettingTAB();
         attachImage(By.xpath("//div[@id='edit_post_block']//input[@name='block[image]']"),
                 "src/test/resources/ThumbnailPost.jpg");
+        click(By.xpath("(//li[@class='post_excerpt_li']//span[@class='check'])[1]"));
+        click(By.xpath("(//li[@class='post_excerpt_li']//span[@class='check'])[2]"));
+        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
+        checkigWidgetBuilder(By.xpath("//div[@class='thumbnail_image thumb_original_banner_selected']"));
+        checkigWidgetSubdomain(By.xpath("//div[@class='thumbnail_image banner_selected']"));
+    }
+
+    public void addExcerpt() throws InterruptedException {
+        movePostTAB();
+        stopFrame();
+        openSettingTAB();
+        gotoFrame(By.id("mce_2_ifr"));
+        type("Excerpt", By.xpath("//body[@data-id='mce_2']"));
+        stopFrame();
+        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
+        checkigPostBuilder("Excerpt", By.xpath("//div[@class='sb5-blog-post-content excerpt-content  ']/p"), "textContent");
+        checkigPostSubdomain("Excerpt", By.xpath("//div[@class='sb5-blog-post-content excerpt-content ']/p"), "textContent");
+    }
+
+    public void addMetaPost(String mateName) throws InterruptedException {
+        movePostTAB();
+        stopFrame();
+        openSettingTAB();
+        click(By.xpath(String.format("//button[@data-keywords='%s']", mateName)));
+        By locator = By.xpath(String.format("//div[@id='post_%s_list']/div", mateName));
+        List<WebElement> tags = driver.findElements(locator);
+        if(tags.size() > 0) {
+            for (int i = 1; i <= tags.size(); i++) {
+                hover(By.xpath(String.format(locator +"[" + i + "]").substring(9).trim()),
+                        By.xpath(String.format(locator +"[" + i + "]/a").substring(9).trim()));
+            }
+            click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
+            click(By.xpath(String.format("//button[@data-keywords='%s']", mateName)));
+        }
+        click(By.xpath("//div[@class='modal-body']/div[@class='pull-right btn btn-breze btn-fab']"));
+        moveToBable(locator, mateName);
+        click(locator);
+        click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
+        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
+        showMetaBlog(mateName);
     }
 
     public void moveToBable(By bable, String text) {
@@ -109,8 +185,8 @@ public class WidgetsHelperBase extends HelperBase {
 
     public void movePostTAB() throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        hover(By.xpath("//div[@class='blog-block row']/div[1])"),
-                By.xpath("//div[@class='blog-block row']/div[1]//span[@class='sb5-remove-el-post']"));
+        hover(By.xpath("//div[@class='blog-block row']/div[1]"),
+                By.xpath("//span[@class='sb5-edit-el-post waves-effect waves-circle']"));
     }
 
     public void checkigWidgetBuilder(By widget) throws InterruptedException {
@@ -141,18 +217,20 @@ public class WidgetsHelperBase extends HelperBase {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 
-    public void checkigPostBuilder() throws InterruptedException {
+    public void checkigPostBuilder(String text, By locator, String value) throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        checking("News", By.xpath("//div[@class='blog-block row']/div[1]"), "data-block-categories");
+        checking(text, locator, value);
         stopFrame();
     }
 
-    public void checkigPostSubdomain() throws InterruptedException {
+    public void checkigPostSubdomain(String text, By locator, String value) throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        checking("News", By.xpath("//div[@class='blog-block']/div[1]"), "data-block-categories");
+        checking(text, locator, value);
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
+
+
 
 }

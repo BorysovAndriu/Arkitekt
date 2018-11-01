@@ -5,19 +5,16 @@ import org.testng.annotations.Test;
 
 public class Blog extends TestBaseWidgets {
 
-    @Test(priority = 1)
+    /*@Test(priority = 1)
     public void addPage() throws Exception {
         widgets.getPagesHelper().addPages("NEW PAGE", 1);
     }
-
-    @Test(priority = 2)
-    public void addBlog() throws Exception {
-        widgets.getWidgetsHelper().addWidget("blog");
-    }
+*/
+    //set at home test +
 
     @Test(priority = 3)
-    public void addCategoryBlog() throws InterruptedException {
-        widgets.getWidgetsHelper().addCategoryBlog("blog", "edit");
+    public void addBlog() throws Exception {
+        widgets.getWidgetsHelper().addWidget("blog");
     }
 
     @Test(priority = 4)
@@ -25,33 +22,44 @@ public class Blog extends TestBaseWidgets {
         widgets.getWidgetsHelper().addPost("blog", "add");
     }
 
-/**
     @Test(priority = 5)
-    public void addThumbnailPost() throws InterruptedException {
-        widgets.getWidgetsHelper().addThumbnailPost();
+    public void addCategoryPost() throws InterruptedException {
+        widgets.getWidgetsHelper().addMetaPost("categories");
     }
 
     @Test(priority = 6)
-    public void addExcerpt() throws InterruptedException {
-        widgets.getWidgetsHelper().addExcerpt();
+    public void addCategoryBlog() throws InterruptedException {
+        widgets.getWidgetsHelper().addCategoryBlog("blog", "edit");
     }
 
     @Test(priority = 7)
     public void addTagPost() throws InterruptedException {
-        widgets.getWidgetsHelper().addTaglPost();
+        widgets.getWidgetsHelper().addMetaPost("tags");
     }
 
     @Test(priority = 8)
     public void addAuthorPost() throws InterruptedException {
-        widgets.getWidgetsHelper().addAuthorPost();
+        widgets.getWidgetsHelper().addMetaPost("authors");
     }
 
+    @Test(priority = 9)
+    public void addThumbnailPost() throws InterruptedException {
+        widgets.getWidgetsHelper().addThumbnailPost();
+    }
+
+    @Test(priority = 10)
+    public void addExcerpt() throws InterruptedException {
+        widgets.getWidgetsHelper().addExcerpt();
+    }
+
+
+    /**
     @Test(priority = 7)
     public void repost() throws InterruptedException {
         widgets.getWidgetsHelper().repostToSocial();
     }
 
-    @Test(priority = 7)
+    @Test(priority = 8)
     public void addTagPost() throws InterruptedException {
         widgets.getWidgetsHelper().deleteTagPost();
     }
@@ -61,8 +69,13 @@ public class Blog extends TestBaseWidgets {
         widgets.getWidgetsHelper().deleteAuthorPost();
     }
 
-    @Test(priority = 9)
-    public void DeleteThumbnailPost() throws InterruptedException {
+     @Test(priority = 9)
+     public void deleteExcerptPost() throws InterruptedException {
+     widgets.getWidgetsHelper().deleteExcerptPost();
+     }
+
+    @Test(priority = 10)
+    public void deleteThumbnailPost() throws InterruptedException {
         widgets.getWidgetsHelper().deleteThumbnailPost();
     }
  */

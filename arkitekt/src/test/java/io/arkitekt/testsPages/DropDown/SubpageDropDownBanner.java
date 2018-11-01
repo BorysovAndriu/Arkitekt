@@ -14,7 +14,7 @@ public class SubpageDropDownBanner extends TestBasePages {
 
     @Test(priority = 2)
     public void addSubDropDown() throws Exception {
-     pages.getPagesHelper().addSubPage(33);
+        pages.getPagesHelper().addSubPage(33);
     }
 
     @Test(priority = 3)

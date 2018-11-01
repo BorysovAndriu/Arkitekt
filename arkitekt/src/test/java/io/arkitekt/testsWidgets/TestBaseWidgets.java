@@ -17,25 +17,24 @@ public class TestBaseWidgets {
         widgets.init();
         widgets.getWidgetsHelper().openSite("http://staging.arkitekt.io/");
         widgets.getWidgetsHelper().login("andriu2018.10.04@gmail.com","1111111111");
+        /**
         widgets.getWidgetsHelper().initListSite(true);
         int before = widgets.getWidgetsHelper().getCountSite();
         if (before == 1) {
             widgets.getWidgetsHelper().initListSite(false);
         } else {
             widgets.getWidgetsHelper().openFirstSite();
-        }
-        widgets.getWidgetsHelper().click(By.xpath("//li//a[@href='#!/pages']"));
-        //widgets.getPagesHelper().openSettingPages(1);
+        }*/
     }
 
-    /**@AfterMethod()
-    public void restartTestt() throws Exception {
-        if(! widgets.getWidgetsHelper().isElementDesplayed(By.xpath("//h5[text()='Primary Navigation']"))) {
-            widgets.stop();
+    @AfterMethod()
+    public void restartTest() throws Exception {
+        if(!widgets.getWidgetsHelper().isElementPresent(By.xpath("//div[@class='user-name']"))) {
+            tearDown();
             setUpp();
         }
     }
-*/
+
     @AfterClass
     public void tearDown() throws Exception {
         widgets.stop();
