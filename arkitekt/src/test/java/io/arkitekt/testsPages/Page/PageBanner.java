@@ -21,7 +21,7 @@ public class PageBanner extends TestBasePages {
     }
 
     @Test(priority = 4)
-    public void minBannerHeight() throws Exception {
+    public void moveBannerHeight() throws Exception {
         pages.getBannerHelper().moveBannerHeight(1);
     }
 
