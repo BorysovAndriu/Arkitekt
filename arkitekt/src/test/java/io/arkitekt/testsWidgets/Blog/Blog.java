@@ -54,10 +54,6 @@ public class Blog extends TestBaseWidgets {
 
 
     /**
-    @Test(priority = 7)
-    public void repost() throws InterruptedException {
-        widgets.getWidgetsHelper().repostToSocial();
-    }
 
     @Test(priority = 8)
     public void addTagPost() throws InterruptedException {
