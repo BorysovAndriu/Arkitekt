@@ -96,9 +96,9 @@ public class WidgetsHelperBase extends HelperBase {
         click(By.xpath("//input[@value='Draft']"));
         click(By.xpath(String.format("//ul[@id='%s']/li[2]", idPost)));
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        checkigPostBuilder("\n TestPost \n",
+        checkigPostBuilder("\nTestPost\n",
                 By.xpath("//div[@class='blog-block row']//div[1]//div[starts-with(@class,'sb5-blog-post-title')]/a"), "textContent");
-        checkigPostSubdomain("\n TestPost \n", By.xpath("//div[@class='blog-block']/div[1]//a"), "textContent");
+        checkigPostSubdomain("\nTestPost\n", By.xpath("//div[@class='blog-block']/div[1]//a"), "textContent");
     }
 
     public void deletePost() throws InterruptedException {
@@ -123,6 +123,12 @@ public class WidgetsHelperBase extends HelperBase {
         movePostTAB();
         stopFrame();
         openSettingTAB();
+
+        String collapce = driver.findElement(By.id("post_excerpt_checked")).getAttribute("class");
+        if (collapce == "collapse") {
+            click(By.xpath("(//li[@class='post_excerpt_li']//span[@class='check'])[1]"));
+        }
+
         gotoFrame(By.id("mce_2_ifr"));
         type("Excerpt", By.xpath("//body[@data-id='mce_2']"));
         stopFrame();
@@ -152,6 +158,7 @@ public class WidgetsHelperBase extends HelperBase {
         click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
         showMetaBlog(mateName);
+
     }
 
     public void moveToBable(By bable, String text) {
@@ -185,8 +192,14 @@ public class WidgetsHelperBase extends HelperBase {
 
     public void movePostTAB() throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        hover(By.xpath("//div[@class='blog-block row']/div[1]"),
-                By.xpath("//span[@class='sb5-edit-el-post waves-effect waves-circle']"));
+        By hoverPostTab = By.xpath("//span[@class='sb5-edit-el-post']");
+        By hoverPostTabafterReload = By.xpath("//span[@class='sb5-edit-el-post waves-effect waves-circle']");
+
+        if (isElementPresent(hoverPostTabafterReload)) {
+            hover(By.xpath("//div[@class='blog-block row']/div[1]"), hoverPostTabafterReload);
+        } else if (isElementPresent(hoverPostTab)) {
+            hover(By.xpath("//div[@class='blog-block row']/div[1]"), hoverPostTab);
+        }
     }
 
     public void checkigWidgetBuilder(By widget) throws InterruptedException {
