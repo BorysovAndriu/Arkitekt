@@ -1,13 +1,12 @@
-package io.arkitekt.appManager.testsSite;
+package io.arkitekt.testsSite;
 
 import io.arkitekt.appManager.AppManager;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Set;
 
 public class TestBase {
@@ -20,13 +19,22 @@ public class TestBase {
         app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
         app.getLoginHelper().login("1111111111");
 
-        Set cookies = app.driver.manage().getCookies();
-
-        try {
         File file = new File("src/test/resources/cookies.csv");
-        PrintWriter writer = new PrintWriter(file.getAbsoluteFile());
-        writer.print(cookies);
-        writer.close();
+        try {
+            FileWriter writer = new FileWriter(file);
+            BufferedWriter bf = new BufferedWriter(writer);
+            for(Cookie ck : app.driver.manage().getCookies()) {
+                bf.write((ck.getName()+";"
+                +ck.getValue()+";"
+                +ck.getDomain()+";"
+                +ck.getPath()+";"
+                +ck.getExpiry()+";"
+                +ck.isSecure()));
+                bf.newLine();
+            }
+            bf.flush();
+            bf.close();
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

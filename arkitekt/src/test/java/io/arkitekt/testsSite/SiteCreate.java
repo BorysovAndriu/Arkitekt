@@ -1,4 +1,4 @@
-package io.arkitekt.appManager.testsSite;
+package io.arkitekt.testsSite;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;

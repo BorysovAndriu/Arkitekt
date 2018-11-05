@@ -4,8 +4,8 @@
     <test name="PreviewSite">
         <classes>
             <class name="io.arkitekt.testsRegistration.PreviewSite"/>
-            <class name="io.arkitekt.appManager.testsSite.DeleteSite"/>
-            <class name="io.arkitekt.appManager.testsSite.SiteCreate"/>
+            <class name="io.arkitekt.testsSite.DeleteSite"/>
+            <class name="io.arkitekt.testsSite.SiteCreate"/>
         </classes>
     </test>
     <test name="PageSetting">

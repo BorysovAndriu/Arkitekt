@@ -1,16 +1,14 @@
 package io.arkitekt.appManager;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.testng.Assert.assertEquals;
 
@@ -212,7 +210,7 @@ public class HelperBase {
         String email = reader.readLine();
         return email;
     }
-/*
+
     public void writeCookies () throws IOException {
         RegistrData lastEmail = new RegistrData();
         File file = new File("src/test/resources/cookies.csv");
@@ -221,12 +219,12 @@ public class HelperBase {
         writer.close();
     }
 
-    public Cookie readeCookies() throws IOException {
+    public String readeCookies() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/cookies.csv")));
-        Set email = Collections.singleton(reader.readLine());
-        return email;
+        String lines = String.valueOf(new HashSet<String>(Collections.singleton(reader.readLine())));
+        return lines;
     }
-*/
+
 
 }
 

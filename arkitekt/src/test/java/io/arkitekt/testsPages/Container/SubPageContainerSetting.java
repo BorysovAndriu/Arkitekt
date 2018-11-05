@@ -26,12 +26,6 @@ public class SubPageContainerSetting extends TestBasePages {
         pages.getPagesHelper().renamePage( "SUBCONT", 22);
     }
 
-    /** немає можливовсті перевірити частину зміненної урл оскільки сабпейдж не містить урл.
-    @Test(priority = 5)
-    public void renameUrl() throws InterruptedException {
-        pages.getPagesHelper().renameUrl("/subcont-test", 22);
-    }*/
-
     @Test(priority = 6)
     public void lockscreenContainer() throws InterruptedException {
         pages.getPagesHelper().lockPages(22, "");
