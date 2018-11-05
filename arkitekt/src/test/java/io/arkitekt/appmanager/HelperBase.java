@@ -8,7 +8,9 @@ import org.testng.Assert;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
@@ -19,7 +21,7 @@ public class HelperBase {
         this.driver = driver;
     }
 
-    public void login(String email, String password) throws InterruptedException, IOException {
+    public void login(String password) throws InterruptedException, IOException {
         click(By.xpath("//a[@class='btn btn-link']"));
         type(readeEmail(), By.id("user_email"));
         type(password, By.id("user_password"));
@@ -210,6 +212,21 @@ public class HelperBase {
         String email = reader.readLine();
         return email;
     }
+/*
+    public void writeCookies () throws IOException {
+        RegistrData lastEmail = new RegistrData();
+        File file = new File("src/test/resources/cookies.csv");
+        PrintWriter writer = new PrintWriter(file.getAbsoluteFile());
+        writer.print(lastEmail.getEmail());
+        writer.close();
+    }
+
+    public Cookie readeCookies() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/cookies.csv")));
+        Set email = Collections.singleton(reader.readLine());
+        return email;
+    }
+*/
 
 }
 

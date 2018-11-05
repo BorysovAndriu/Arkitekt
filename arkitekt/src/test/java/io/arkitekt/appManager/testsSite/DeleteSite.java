@@ -1,4 +1,4 @@
-package io.arkitekt.testsRegistration;
+package io.arkitekt.appManager.testsSite;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -10,6 +10,7 @@ public class DeleteSite extends TestBase {
     public void testDeleteSite() throws Exception {
         if (!app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))) {
             app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
+
             app.getNavHelperLeftPanel().initListSite(true);
             int oneSiteMustBe = app.getNavHelperLeftPanel().getCountSite();
             Assert.assertEquals(oneSiteMustBe, 1);

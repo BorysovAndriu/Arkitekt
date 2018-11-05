@@ -1,6 +1,5 @@
 package io.arkitekt.appManager.operationWidgets;
 
-import io.arkitekt.appManager.AppManager;
 import io.arkitekt.appManager.operationPages.PagesHelperBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,6 +32,7 @@ public class AppManagerWidgets{
         } else if (browser.equals(BrowserType.EDGE)) {
             driver = new EdgeDriver();
         }
+
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 

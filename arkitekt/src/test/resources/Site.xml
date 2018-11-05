@@ -3,8 +3,8 @@
 <suite name="Site" verbose="1">
     <test name="Site">
         <classes>
-            <class name="io.arkitekt.testsRegistration.DeleteSite"/>
-            <class name="io.arkitekt.testsRegistration.SiteCreate"/>
+            <class name="io.arkitekt.appManager.testsSite.DeleteSite"/>
+            <class name="io.arkitekt.appManager.testsSite.SiteCreate"/>
         </classes>
     </test>
 </suite>

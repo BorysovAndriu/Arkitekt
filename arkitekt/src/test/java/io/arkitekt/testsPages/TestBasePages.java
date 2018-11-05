@@ -13,7 +13,7 @@ public class TestBasePages {
     public void setUpp() throws Exception {
         pages.init();
         pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
-        pages.getPagesHelper().login("andriu2018.10.04@gmail.com","1111111111");
+        pages.getPagesHelper().login("1111111111");
 
         /**
         pages.getPagesHelper().initListSite(true);

@@ -72,6 +72,9 @@ public class AppManager {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         //driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
+
+        //driver.manage().addCookie(getLoginHelper().readeCookies());
+
         builder = new Actions(driver);
 
         loginHelper = new io.arkitekt.appManager.LoginHelper(driver);

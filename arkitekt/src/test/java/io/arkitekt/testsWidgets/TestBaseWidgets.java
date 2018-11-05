@@ -16,7 +16,8 @@ public class TestBaseWidgets {
     public void setUpp() throws Exception {
         widgets.init();
         widgets.getWidgetsHelper().openSite("http://staging.arkitekt.io/");
-        widgets.getWidgetsHelper().login("andriu2018.10.04@gmail.com","1111111111");
+        widgets.getWidgetsHelper().login("1111111111");
+
         /**
         widgets.getWidgetsHelper().initListSite(true);
         int before = widgets.getWidgetsHelper().getCountSite();
