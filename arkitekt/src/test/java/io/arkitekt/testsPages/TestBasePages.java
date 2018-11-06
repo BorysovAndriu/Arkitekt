@@ -24,7 +24,7 @@ public class TestBasePages {
             pages.getPagesHelper().openFirstSite();
         }
         */
-        pages.getPagesHelper().click(By.xpath("//li//a[@href='#!/pages']"));
+        pages.getPagesHelper().click(By.cssSelector("#pages"));
     }
 
     @AfterMethod()

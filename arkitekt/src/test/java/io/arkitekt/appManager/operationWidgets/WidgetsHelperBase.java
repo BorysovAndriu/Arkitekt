@@ -42,6 +42,8 @@ public class WidgetsHelperBase extends HelperBase {
             locator = "category";
         } else if (meta == "authors") {
             locator ="author";
+        } else {
+            locator = meta;
         }
 
         if(meta == "tags") {
@@ -52,8 +54,18 @@ public class WidgetsHelperBase extends HelperBase {
         } else {
             click(By.xpath(String.format("//input[@name='blog_%s']/following-sibling::span/span", locator)));
             saveChange("blog");
-            checkigPostBuilder(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
-            checkigPostSubdomain(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
+            if (meta == "date") {
+                checkingPresentBuilder(By.xpath("//span[@class='sb5-blog-post-date']"));
+                checkingPresentSubdomain(By.xpath("//span[@class='sb5-blog-post-date']"));
+            } else if (meta == "likes" || meta == "share") {
+                checkingPresentBuilder(By.xpath(String.format("//span[@class='pull-right content_meta_styles sb5-blog-post-%s ']", meta)));
+                checkingPresentSubdomain(By.xpath(String.format("//span[@class='pull-right content_meta_styles sb5-blog-post-%s ']", meta)));
+            } else if (meta == "read_more") {
+                //span[@class='read-more_button']
+            } else {
+                checkigPostBuilder(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
+                checkigPostSubdomain(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
+            }
         }
     }
 
@@ -161,6 +173,30 @@ public class WidgetsHelperBase extends HelperBase {
 
     }
 
+    public void addDate(String nameWidget, String nameIcon) throws InterruptedException {
+        moveWidgetTAB(nameWidget, nameIcon);
+        stopFrame();
+        showMetaBlog("date");
+    }
+
+    public void addLikes(String nameWidget, String nameIcon) throws InterruptedException {
+        moveWidgetTAB(nameWidget, nameIcon);
+        stopFrame();
+        showMetaBlog("likes");
+    }
+
+    public void addShare(String nameWidget, String nameIcon) throws InterruptedException {
+        moveWidgetTAB(nameWidget, nameIcon);
+        stopFrame();
+        showMetaBlog("share");
+    }
+
+    public void addReadMoreButton(String nameWidget, String nameIcon) throws InterruptedException {
+        moveWidgetTAB(nameWidget, nameIcon);
+        stopFrame();
+        showMetaBlog("read_more");
+    }
+
     public void moveToBable(By bable, String text) {
         new Actions(driver).moveToElement(driver.findElement(bable)).sendKeys(text).build().perform();
     }
@@ -216,16 +252,16 @@ public class WidgetsHelperBase extends HelperBase {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 
-    public void checkingWidgetGagBuilder() throws InterruptedException {
+    public void checkingPresentBuilder( By locator) throws InterruptedException {
         gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        isElementPresent(By.xpath("//img[@class='img-responsive gag']"));
+        isElementPresent(locator);
         stopFrame();
     }
 
-    public void checkingWidgetGagSubdomain() throws InterruptedException {
+    public void checkingPresentSubdomain(By locator) throws InterruptedException {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        isElementPresent(By.xpath("//img[@class='img-responsive gag']"));
+        isElementPresent(locator);
         stopFrame();
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }

@@ -32,18 +32,12 @@ public class PagesBannerHelper extends PagesHelperBase {
         //перевірка в превю відображення банеру
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
         gotoFrame(By.cssSelector("#page_preview_iframe"));
-        if (x==1 || x==2 || x==3) {
-            if (isElementPresent(By.xpath("//header[@class='active_banner page-main-banner']"))
-                    || isElementPresent(By.xpath("//header[@class='page-main-banner active_banner']"))) {
-                stopFrame();
-                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
-            }
-        } else if (x==22) {
+        if (x==22) {
             if (isElementPresent(By.xpath("//header[@class='page-main-banner-section']"))) {
                 stopFrame();
                 hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }
-        } else if (x==33) {
+        } else if (x==1 || x==33 || x==2 || x==3) {
             if (isElementPresent(By.xpath("//header[@class='page-main-banner']/div[1]"))) {
                 stopFrame();
                 hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
@@ -76,6 +70,9 @@ public class PagesBannerHelper extends PagesHelperBase {
         gotoFrame(By.cssSelector("#page_preview_iframe"));
         if (x==1 || x==2 || x==3 || x==33) {
             if (isElementPresent(By.xpath("//nav[@class='active_navbar fixed_strip navTonB navbar right_side rightbar top_bar withstrip affix-top withoutbanner nonetransparent_strip']"))) {
+                stopFrame();
+                hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+            } else if (isElementPresent(By.xpath("//nav[@class='active_navbar fixed_strip navbar nonetransparent_strip right_side rightbar top_bar withstrip withoutbanner affix-top']"))) {
                 stopFrame();
                 hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }

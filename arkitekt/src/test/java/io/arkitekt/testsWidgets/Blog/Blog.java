@@ -52,8 +52,29 @@ public class Blog extends TestBaseWidgets {
         widgets.getWidgetsHelper().addExcerpt();
     }
 
+    @Test(priority = 11)
+    public void showDate() throws InterruptedException {
+        widgets.getWidgetsHelper().addDate("blog", "edit");
+    }
 
-    /**
+    @Test(priority = 12)
+    public void showLikes() throws InterruptedException {
+        widgets.getWidgetsHelper().addLikes("blog", "edit");
+    }
+
+    @Test(priority = 13)
+    public void showShare() throws InterruptedException {
+        widgets.getWidgetsHelper().addShare("blog", "edit");
+    }
+
+    @Test(priority = 14)
+    public void showReadeMore() throws InterruptedException {
+        widgets.getWidgetsHelper().addReadMoreButton("blog", "edit");
+    }
+
+
+
+    /**likes
 
     @Test(priority = 8)
     public void addTagPost() throws InterruptedException {
