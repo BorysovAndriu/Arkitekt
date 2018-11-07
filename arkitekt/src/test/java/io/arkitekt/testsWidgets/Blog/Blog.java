@@ -7,7 +7,7 @@ public class Blog extends TestBaseWidgets {
 
     /*@Test(priority = 1)
     public void addPage() throws Exception {
-        widgets.getPagesHelper().addPages("NEW PAGE", 1);
+
     }
 */
     //set at home test +
@@ -54,28 +54,42 @@ public class Blog extends TestBaseWidgets {
 
     @Test(priority = 11)
     public void showDate() throws InterruptedException {
-        widgets.getWidgetsHelper().addDate("blog", "edit");
+        widgets.getWidgetsHelper().addDate();
     }
 
     @Test(priority = 12)
     public void showLikes() throws InterruptedException {
-        widgets.getWidgetsHelper().addLikes("blog", "edit");
+        widgets.getWidgetsHelper().addLikes();
     }
 
     @Test(priority = 13)
     public void showShare() throws InterruptedException {
-        widgets.getWidgetsHelper().addShare("blog", "edit");
+        widgets.getWidgetsHelper().addShare();
     }
 
     @Test(priority = 14)
     public void showReadeMore() throws InterruptedException {
-        widgets.getWidgetsHelper().addReadMoreButton("blog", "edit");
+        widgets.getWidgetsHelper().addReadMoreButton();
     }
 
+    /** Неможу вибрати лейаут з дропдауну
+    @Test(priority = 15)
+    public void setLayoutCards() throws InterruptedException {
+        widgets.getWidgetsHelper().setLayout("blog", "edit", "cards");
+    }
 
+    @Test(priority = 16)
+    public void setLayoutMasonry() throws InterruptedException {
+        widgets.getWidgetsHelper().setLayout("blog", "edit", "masonry");
+    }
 
-    /**likes
+    @Test(priority = 17)
+    public void setLayoutListing() throws InterruptedException {
+        widgets.getWidgetsHelper().setLayout("blog", "edit", "listing");
+    }
+*/
 
+    /**
     @Test(priority = 8)
     public void addTagPost() throws InterruptedException {
         widgets.getWidgetsHelper().deleteTagPost();
@@ -95,7 +109,7 @@ public class Blog extends TestBaseWidgets {
     public void deleteThumbnailPost() throws InterruptedException {
         widgets.getWidgetsHelper().deleteThumbnailPost();
     }
- */
+*/
 
     @Test(priority = 10)
     public void deletePost() throws InterruptedException {
@@ -105,11 +119,6 @@ public class Blog extends TestBaseWidgets {
     @Test(priority = 11)
     public void deleteBlog() throws Exception {
         widgets.getWidgetsHelper().deleteWidgetTAB("blog", "remove");
-    }
-
-    @Test(priority = 12)
-    public void deletePage() throws Exception {
-        widgets.getPagesHelper().deletePages(1, "HOME");
     }
 
 }
