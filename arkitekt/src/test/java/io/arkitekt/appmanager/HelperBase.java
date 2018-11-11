@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.testng.Assert.assertEquals;
@@ -33,8 +35,8 @@ public class HelperBase {
     public void clickNavigation() throws InterruptedException {
         By locatorLink = By.xpath("//following-sibling::div[starts-with(@class,'navbar_links')]//li");
         List<WebElement> links = driver.findElements(locatorLink);
-        for (int i = 0 ; i< links.size(); i++) {
-            WebElement link = driver.findElement(By.xpath("//following-sibling::div[starts-with(@class,'navbar_links')]//li["+(i+1)+"]"));
+        for (int i = 0; i < links.size(); i++) {
+            WebElement link = driver.findElement(By.xpath("//following-sibling::div[starts-with(@class,'navbar_links')]//li[" + (i + 1) + "]"));
             link.click();
         }
     }
@@ -197,7 +199,7 @@ public class HelperBase {
         }
     }
 
-    public void writeEmail () throws IOException {
+    public void writeEmail() throws IOException {
         RegistrData lastEmail = new RegistrData();
         File file = new File("src/test/resources/email.csv");
         PrintWriter writer = new PrintWriter(file.getAbsoluteFile());
@@ -211,20 +213,51 @@ public class HelperBase {
         return email;
     }
 
-    public void writeCookies () throws IOException {
-        RegistrData lastEmail = new RegistrData();
+    public void writeCookies() throws IOException {
+        SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy hh:mm:ss");
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Calendar calendar = new GregorianCalendar();
+        calendar.add(Calendar.YEAR, 10);
+        String expired = format.format(calendar.getTime());
         File file = new File("src/test/resources/cookies.csv");
-        PrintWriter writer = new PrintWriter(file.getAbsoluteFile());
-        writer.print(lastEmail.getEmail());
-        writer.close();
+        try {
+            FileWriter writer = new FileWriter(file);
+            BufferedWriter bf = new BufferedWriter(writer);
+
+            Cookie ck = driver.manage().getCookieNamed("_my_indicloud_session");
+            bf.write((ck.getName()));
+            bf.newLine();
+            bf.write((ck.getValue()));
+            bf.newLine();
+            bf.write((ck.getDomain()));
+            bf.newLine();
+            bf.write((ck.getPath()));
+            bf.newLine();
+            bf.write((expired));
+            bf.newLine();
+            bf.flush();
+            bf.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public String readeCookies() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/cookies.csv")));
-        String lines = String.valueOf(new HashSet<String>(Collections.singleton(reader.readLine())));
-        return lines;
+    public Cookie readeCookies() throws IOException {
+        List<String> lines1 = Files.readAllLines(new File("src/test/resources/cookies.csv").toPath());
+        String name = lines1.get(0);
+        String value = lines1.get(1);
+        String domain = lines1.get(2);
+        String path = lines1.get(3);
+        Date date = new Date(lines1.get(4));
+
+        Cookie build = new Cookie.Builder(name, value).
+                domain(domain).
+                path(path).
+                isHttpOnly(true).
+                expiresOn(date).build();
+
+        return build;
     }
-
-
 }
 

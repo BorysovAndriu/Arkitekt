@@ -39,8 +39,18 @@ public class PageSetting extends TestBasePages {
     public void unlockPage() throws InterruptedException {
         pages.getPagesHelper().unlockPages("PAGE", 1);
     }
-
+/*
     @Test(priority = 8)
+    public void setAsHomePage() throws InterruptedException {
+        pages.getPagesHelper().setAsHome("PAGE", 1);
+    }
+
+    @Test(priority = 9)
+    public void ofAsHomePage() throws InterruptedException {
+        pages.getPagesHelper().offAsHome("PAGE", 1);
+    }
+*/
+    @Test(priority = 10)
     public void deletePage() throws Exception {
         pages.getPagesHelper().deletePages(1, "HOME");
     }

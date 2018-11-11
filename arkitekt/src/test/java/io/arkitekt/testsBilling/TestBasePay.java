@@ -15,8 +15,9 @@ public class TestBasePay {
     @BeforeClass
     public void setUpp() throws Exception {
         app.init();
-        //app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-        //app.getLoginHelper().login("1111111111");
+        app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+        app.driver.manage().addCookie(app.getBillingHelper().readeCookies());
+        app.getBillingHelper().click(By.xpath("//a[@class='btn btn-link']"));
 
         if (!app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))) {
             app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));

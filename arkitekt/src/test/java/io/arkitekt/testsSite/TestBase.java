@@ -1,13 +1,10 @@
 package io.arkitekt.testsSite;
 
 import io.arkitekt.appManager.AppManager;
-import org.openqa.selenium.Cookie;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
-import java.io.*;
-import java.util.Set;
 
 public class TestBase {
 
@@ -17,27 +14,8 @@ public class TestBase {
     public void setUpp() throws Exception {
         app.init();
         app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-        app.getLoginHelper().login("1111111111");
-
-        File file = new File("src/test/resources/cookies.csv");
-        try {
-            FileWriter writer = new FileWriter(file);
-            BufferedWriter bf = new BufferedWriter(writer);
-            for(Cookie ck : app.driver.manage().getCookies()) {
-                bf.write((ck.getName()+";"
-                +ck.getValue()+";"
-                +ck.getDomain()+";"
-                +ck.getPath()+";"
-                +ck.getExpiry()+";"
-                +ck.isSecure()));
-                bf.newLine();
-            }
-            bf.flush();
-            bf.close();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        app.driver.manage().addCookie(app.getLoginHelper().readeCookies());
+        app.getNavHelperLeftPanel().click(By.xpath("//a[@class='btn btn-link']"));
     }
 
     @AfterClass

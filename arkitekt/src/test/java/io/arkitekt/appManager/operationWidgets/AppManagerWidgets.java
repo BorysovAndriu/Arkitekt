@@ -18,6 +18,7 @@ public class AppManagerWidgets{
 
     private WidgetsHelperBase widgetsHelper;
     private PagesHelperBase pagesHelper;
+    private BlogHelper blogHelper;
 
     public AppManagerWidgets(String browser) {
         this.browser = browser;
@@ -40,6 +41,7 @@ public class AppManagerWidgets{
 
         widgetsHelper = new WidgetsHelperBase(driver);
         pagesHelper = new PagesHelperBase(driver);
+        blogHelper = new BlogHelper(driver);
     }
 
     public void stop() {
@@ -50,6 +52,7 @@ public class AppManagerWidgets{
         return widgetsHelper;
     }
     public PagesHelperBase getPagesHelper() {return  pagesHelper;}
+    public BlogHelper getBlogHelper() {return  blogHelper;}
 
 }
 

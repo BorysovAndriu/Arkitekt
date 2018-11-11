@@ -10,7 +10,6 @@ public class SiteCreate extends TestBase {
   public void testCreateSite() throws Exception {
     if (! app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))){
       app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
-
       app.getNavHelperLeftPanel().initListSite(true);
       int oneSitemustBe = app.getNavHelperLeftPanel().getCountSite();
       app.getNavHelperLeftPanel().initListSite(false);
@@ -21,7 +20,6 @@ public class SiteCreate extends TestBase {
       int before = app.getNavHelperLeftPanel().getCountSite();
       app.getSiteEditHelper().createSite();
       app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
-
       app.getNavHelperLeftPanel().initListSite(true);
       int after = app.getNavHelperLeftPanel().getCountSite();
       app.getNavHelperLeftPanel().initListSite(false);

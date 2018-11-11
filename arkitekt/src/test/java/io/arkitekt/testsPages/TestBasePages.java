@@ -13,8 +13,8 @@ public class TestBasePages {
     public void setUpp() throws Exception {
         pages.init();
         pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
-        pages.getPagesHelper().login("1111111111");
-
+        pages.driver.manage().addCookie(pages.getPagesHelper().readeCookies());
+        pages.getPagesHelper().click(By.xpath("//a[@class='btn btn-link']"));
         /**
         pages.getPagesHelper().initListSite(true);
         int before = pages.getPagesHelper().getCountSite();

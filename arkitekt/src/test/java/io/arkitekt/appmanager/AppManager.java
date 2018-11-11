@@ -75,8 +75,7 @@ public class AppManager {
         //driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
 
-        //Set<String> cookies = getLoginHelper().readeCookies();
-        //driver.manage().addCookie((Cookie) cookies);
+        //driver.manage().addCookie(getLoginHelper().readeCookies());
 
         builder = new Actions(driver);
 

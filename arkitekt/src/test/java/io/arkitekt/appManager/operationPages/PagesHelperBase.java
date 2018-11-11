@@ -360,4 +360,40 @@ public class PagesHelperBase extends HelperBase {
         openSettingPages(x);
         click(By.xpath("//a[@href='#page_banner']"));
     }
+
+    public void setAsHome(int x) throws InterruptedException {
+        new Actions(driver).moveToElement(driver.findElement(findPagesCards(x))).build().perform();
+        findxPathDeleteIcon(x);
+        click(By.xpath("//button[@data-todo='set_home']"));
+        refresh();
+        checkBuilderSetasHome("/domianss/new-page");
+        checkSubdomSetAsHome("/new-page");
+    }
+
+    public void offAsHome(int x) {
+
+    }
+
+    public void checkSubdomSetAsHome(String namePageHome) throws InterruptedException {
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        gotoFrame(By.cssSelector("#page_preview_iframe"));
+        By title = By.xpath("//nav[starts-with(@class, 'active_navbar')]//a[@class='navbar-brand inline-block']");
+        click(title);
+        checking(namePageHome, title, "pathname");
+        stopFrame();
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+    }
+
+    public void checkBuilderSetasHome(String namePageHome) throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        By title = By.xpath("//nav[starts-with(@class, 'active_navbar')]//a[@class='navbar-brand inline-block']");
+        click(title);
+        checking(namePageHome, title, "pathname");
+        stopFrame();
+    }
+
+    public void allPagesAdminpanel() {
+    }
+
+
 }

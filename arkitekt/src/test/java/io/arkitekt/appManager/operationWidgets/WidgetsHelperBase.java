@@ -27,78 +27,13 @@ public class WidgetsHelperBase extends HelperBase {
     public void deleteWidgetTAB(String nameWidget, String nameIcon) throws InterruptedException {
         moveWidgetTAB(nameWidget, nameIcon);
         click(By.cssSelector("#delete_widget_page"));
-        isElementPresent(By.cssSelector(".sb-5-empty-ingorm"));//шукати ров блок якщо є віджет якшо немає то він зникає
+
+        isElementPresent(By.cssSelector(".sb5-empty-ingorm"));//шукати ров блок якщо є віджет якшо немає то він зникає
         stopFrame();
     }
 
-    public void showMetaBlog(String meta) throws InterruptedException {
-        moveWidgetTAB("blog", "edit");
-        stopFrame();
-        click(By.xpath("//a[@href='#blog_design']"));
-        String locator = null;
-        if (meta == "tags") {
-            locator = "tag";
-        } else if (meta == "categories") {
-            locator = "category";
-        } else if (meta == "authors") {
-            locator ="author";
-        } else {
-            locator = meta;
-        }
-
-        if(meta == "tags") {
-            click(By.xpath(String.format("//input[@name='blog_%s']/following-sibling::span/span", meta)));
-            saveChange("blog");
-            checkigPostBuilder("#" + meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
-            checkigPostSubdomain("#" + meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
-        } else {
-            click(By.xpath(String.format("//input[@name='blog_%s']/following-sibling::span/span", locator)));
-            saveChange("blog");
-            if (meta == "date") {
-                checkingPresentBuilder(By.xpath("//span[@class='sb5-blog-post-date']"));
-                checkingPresentSubdomain(By.xpath("//span[@class='sb5-blog-post-date']"));
-            } else if (meta == "likes" || meta == "share") {
-                checkingPresentBuilder(By.xpath(String.format("//span[@class='pull-right content_meta_styles sb5-blog-post-%s ']", meta)));
-                checkingPresentSubdomain(By.xpath(String.format("//span[@class='pull-right content_meta_styles sb5-blog-post-%s ']", meta)));
-            } else if (meta == "read_more") {
-                checkingPresentBuilder(By.xpath("//span[@class='read-more_button']"));
-                checkingPresentSubdomain(By.xpath("//span[@class='read-more_button']"));
-            } else {
-                checkigPostBuilder(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
-                checkigPostSubdomain(meta, By.xpath(String.format("//span[@class='post-content-%s']", locator)), "textContent");
-            }
-        }
-    }
-
-    public void addCategoryBlog(String nameWidget, String nameIcon) throws InterruptedException {
-        moveWidgetTAB(nameWidget, nameIcon);
-        stopFrame();
-        click(By.xpath("//a[@href='#blog_categories']"));
-        By locator = By.xpath("//div[@id='blog_categories']//div[starts-with (@id,'blog_categories')]");
-        List<WebElement> categories = driver.findElements(locator);
-        if(categories.size() > 0) {
-            for (int i = 1; i <= categories.size(); i++) {
-                hover(By.xpath(String.format(locator +"[" + i + "]").substring(9).trim()),
-                        By.xpath(String.format(locator +"[" + i + "]/a").substring(9).trim()));
-            }
-        }
-        click(By.xpath(String.
-                format("//div[@id='edit_%s_block']//div[@class='pull-right btn btn-breze btn-fab']",
-                        nameWidget)));
-        moveToBable(By.xpath("//div[@id='blog_categories']//div[@class='tag-keyword in_focus']//input"), "categories");
-        click(By.xpath("//div[@id='blog_categories']//div[@class='tag-keyword in_focus']//input"));
-        saveChange(nameWidget);
-        click(By.xpath("//a[@href='#!/blog']"));
-        hover(By.xpath("//div[@class='posts_block']/div[1]"), By.xpath("//div[@class='posts_block']/div[1]//button"));
-        click(By.xpath("//button[@data-todo='edit']"));
-        openSettingTAB();
-        click(By.xpath("//button[@data-keywords='categories']"));
-        click(By.xpath("//div[@id='post_categories_list']/div"));
-        click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
-        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        checkigPostBuilder("categories", By.xpath("//span[@class='post-content-category']"), "textContent");
-        checkigPostSubdomain("categories", By.xpath("//span[@class='post-content-category']"), "textContent");
-        click(By.xpath("//div[@id='site_blog']//a"));
+    public void saveChange(String nameWidget) throws InterruptedException {
+        click(By.xpath(String.format("//div[@id='edit_%s_block']//button[text()='Save']", nameWidget)));
     }
 
     public void addPost(String nameWidget, String nameIcon) throws InterruptedException {
@@ -109,117 +44,19 @@ public class WidgetsHelperBase extends HelperBase {
         click(By.xpath("//input[@value='Draft']"));
         click(By.xpath(String.format("//ul[@id='%s']/li[2]", idPost)));
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        checkigPostBuilder("\nTestPost\n",
+        checkigPostBuilder("\n    "+"TestPost"+"\n  ",
                 By.xpath("//div[@class='blog-block row']//div[1]//div[starts-with(@class,'sb5-blog-post-title')]/a"), "textContent");
-        checkigPostSubdomain("\nTestPost\n", By.xpath("//div[@class='blog-block']/div[1]//a"), "textContent");
+        checkigPostSubdomain("\n    "+"TestPost"+"\n  ", By.xpath("//div[@class='blog-block']/div[1]//a"), "textContent");
     }
 
     public void deletePost() throws InterruptedException {
         movePostTAB("remove");
         stopFrame();
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        click(By.cssSelector("#delete_post_trigger"));
+        stopFrame();
         checkingPresentBuilder(By.xpath("//div[@class= 'sb5-block-blog-gag a-builder-icon-blog-widget']"));
         checkingPresentSubdomain(By.xpath("//div[@class= 'sb5-block-blog-gag a-builder-icon-blog-widget']"));
-    }
-
-    public void addThumbnailPost() throws InterruptedException {
-        movePostTAB("edit");
-        stopFrame();
-        openSettingTAB();
-        attachImage(By.xpath("//div[@id='edit_post_block']//input[@name='block[image]']"),
-                "src/test/resources/ThumbnailPost.jpg");
-        click(By.xpath("(//li[@class='post_excerpt_li']//span[@class='check'])[1]"));
-        click(By.xpath("(//li[@class='post_excerpt_li']//span[@class='check'])[2]"));
-        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        checkigWidgetBuilder(By.xpath("//div[@class='thumbnail_image thumb_original_banner_selected']"));
-        checkigWidgetSubdomain(By.xpath("//div[@class='thumbnail_image banner_selected']"));
-    }
-
-    public void addExcerpt() throws InterruptedException {
-        movePostTAB("edit");
-        stopFrame();
-        openSettingTAB();
-
-        String collapce = driver.findElement(By.id("post_excerpt_checked")).getAttribute("class");
-        if (collapce == "collapse") {
-            click(By.xpath("(//li[@class='post_excerpt_li']//span[@class='check'])[1]"));
-        }
-
-        gotoFrame(By.id("mce_2_ifr"));
-        type("Excerpt", By.xpath("//body[@data-id='mce_2']"));
-        stopFrame();
-        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        checkigPostBuilder("Excerpt", By.xpath("//div[@class='sb5-blog-post-content excerpt-content  ']/p"), "textContent");
-        checkigPostSubdomain("Excerpt", By.xpath("//div[@class='sb5-blog-post-content excerpt-content ']/p"), "textContent");
-    }
-
-    public void addMetaPost(String mateName) throws InterruptedException {
-        movePostTAB("edit");
-        stopFrame();
-        openSettingTAB();
-        click(By.xpath(String.format("//button[@data-keywords='%s']", mateName)));
-        By locator = By.xpath(String.format("//div[@id='post_%s_list']/div", mateName));
-        List<WebElement> tags = driver.findElements(locator);
-        if(tags.size() > 0) {
-            for (int i = 1; i <= tags.size(); i++) {
-                hover(By.xpath(String.format(locator +"[" + i + "]").substring(9).trim()),
-                        By.xpath(String.format(locator +"[" + i + "]/a").substring(9).trim()));
-            }
-            click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
-            click(By.xpath(String.format("//button[@data-keywords='%s']", mateName)));
-        }
-        click(By.xpath("//div[@class='modal-body']/div[@class='pull-right btn btn-breze btn-fab']"));
-        moveToBable(locator, mateName);
-        click(locator);
-        click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
-        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        showMetaBlog(mateName);
-
-    }
-
-    public void addDate() throws InterruptedException {
-        showMetaBlog("date");
-    }
-
-    public void addLikes() throws InterruptedException {
-        showMetaBlog("likes");
-    }
-
-    public void addShare() throws InterruptedException {
-        showMetaBlog("share");
-    }
-
-    public void addReadMoreButton() throws InterruptedException {
-        showMetaBlog("read_more");
-    }
-
-    public void setLayout(String nameWidget, String nameIcon, String layout) throws InterruptedException {
-        moveWidgetTAB(nameWidget, nameIcon);
-        stopFrame();
-        click(By.xpath("//a[@href='#blog_design']"));
-        driver.findElement(By.xpath("(//div[@id='blog_design']//input)[1]")).sendKeys();
-        //click(By.xpath("(//div[@id='blog_design']//input)[1]"));
-        if(layout == "cards") {
-            click(By.xpath("//ul[@id='select-options-cdbf']/li[1]/span"));
-        } else if (layout == "listing") {
-            click(By.xpath("//ul[@id='select-options-cdbf']/li[2]/span"));
-        } else if (layout == "masonry") {
-            click(By.xpath("//ul[@id='select-options-cdbf']/li[3]/span"));
-        }
-        saveChange(nameWidget);
-        checkingPresentBuilder(By.xpath(String.format("//div[@data-layout='%s']", layout)));
-        checkingPresentSubdomain(By.xpath(String.format("//div[@data-layout='%s']", layout)));
-    }
-
-    public void moveToBable(By bable, String text) {
-        new Actions(driver).moveToElement(driver.findElement(bable)).sendKeys(text).build().perform();
-    }
-
-    public void openSettingTAB() throws InterruptedException {
-        click(By.xpath("//a[@href='#post_settings']"));
-    }
-
-    public void saveChange(String nameWidget) throws InterruptedException {
-        click(By.xpath(String.format("//div[@id='edit_%s_block']//button[text()='Save']", nameWidget)));
     }
 
     public void dragWidget(By widget, By place) {
@@ -259,8 +96,6 @@ public class WidgetsHelperBase extends HelperBase {
                 hover(By.xpath("//div[@class='blog-block row']/div[1]"), removePostTab);
             }
         }
-
-
     }
 
     public void checkigWidgetBuilder(By widget) throws InterruptedException {
@@ -305,6 +140,19 @@ public class WidgetsHelperBase extends HelperBase {
         hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
     }
 
+    public void checkingNotPresentBuilder(By locator) throws InterruptedException {
+        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
+        if (!isElementPresent(locator)) {
+            stopFrame();
+        }
+    }
 
-
+    public void checkingNotPresentSubdomain(By locator) throws InterruptedException {
+        hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        gotoFrame(By.cssSelector("#page_preview_iframe"));
+        if(!isElementPresent(locator)) {
+            stopFrame();
+            hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
+        }
+    }
 }
