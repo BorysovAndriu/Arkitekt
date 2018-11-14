@@ -182,6 +182,11 @@ public class HelperBase {
         driver.findElement(locator).sendKeys(file.getAbsolutePath());
     }
 
+    public void attachValue(By locator, String value) {
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(value);
+    }
+
     public void doubleClick(By locator) {
         new Actions(driver).doubleClick(driver.findElement(locator)).build().perform();
         //driver.findElement(locator).sendKeys(Keys.CONTROL+"a");

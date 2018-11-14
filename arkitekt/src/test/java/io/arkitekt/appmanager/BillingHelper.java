@@ -88,7 +88,7 @@ public class BillingHelper extends HelperBase {
                     "textContent");
             calendar.add(Calendar.MONTH, 1);
             String afterMonth = format.format(calendar.getTime());
-            checking(("\n" + afterMonth + "\n"), By.xpath("//div[@id='next_payment_date']"), "textContent");
+            checking(("\n" + afterMonth), By.xpath("//div[@id='next_payment_date']"), "textContent");
             //метод зафейлиця якщо запускати тест повторно підписку сайту через деякий час (день два ...).
         }
     }

@@ -112,8 +112,10 @@ public class BlogHelper extends WidgetsHelperBase {
         type("Excerpt", By.xpath("//body[@data-id='mce_2']"));
         stopFrame();
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        checkigPostBuilder("Excerpt", By.xpath("//div[@class='sb5-blog-post-content excerpt-content  ']/p"), "textContent");
-        checkigPostSubdomain("Excerpt", By.xpath("//div[@class='sb5-blog-post-content excerpt-content ']/p"), "textContent");
+        checkigPostBuilder("Excerpt",
+                By.xpath("//div[@class='sb5-blog-post-content excerpt-content  ']/p"), "textContent");
+        checkigPostSubdomain("Excerpt",
+                By.xpath("//div[@class='sb5-blog-post-content excerpt-content ']/p"), "textContent");
     }
 
     public void addMetaPost(String mateName) throws InterruptedException {

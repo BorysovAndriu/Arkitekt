@@ -25,23 +25,6 @@ public class TestBasePay {
             int oneSitemustBe = app.getNavHelperLeftPanel().getCountSite();
             app.getNavHelperLeftPanel().initListSite(false);
             Assert.assertEquals(oneSitemustBe, 1);
-        } else {
-            if (app.getSiteEditHelper().isElementPresent(By.xpath("//div[@class='main-block' and @data-billing-plan='trial']"))
-                    || app.getSiteEditHelper().isElementPresent(By.xpath("//div[@class='main-block' and @data-billing-plan='unsubscribed']"))) {
-                app.getBillingHelper().gotoSettingBilling();
-            } else if (app.getSiteEditHelper().isElementPresent(By.xpath("//div[@class='main-block' and @data-billing-plan='expired']"))) {
-                app.getBillingHelper().gotoSettingBillingExpired();
-            } else if (app.getSiteEditHelper().isElementPresent(By.xpath("//div[@class='main-block' and @data-billing-plan='subscribed']"))) {
-                app.getNavHelperLeftPanel().initListSite(true);
-                int before = app.getBillingHelper().getCountSite();
-                if (before == 1) {
-                    app.getNavHelperLeftPanel().initListSite(false);
-                    app.getBillingHelper().gotoSettingBilling();
-                    app.getBillingHelper().cancelSubscribpition();
-                    app.getNavHelperLeftPanel().checkingText("Expired On:",
-                            By.xpath("//p[@class='help-block settings-billing-date']"));
-                }
-            }
         }
     }
 

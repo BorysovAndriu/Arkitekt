@@ -5,7 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class WidgetsHelperBase extends HelperBase {
@@ -47,6 +52,57 @@ public class WidgetsHelperBase extends HelperBase {
         checkigPostBuilder("\n    "+"TestPost"+"\n  ",
                 By.xpath("//div[@class='blog-block row']//div[1]//div[starts-with(@class,'sb5-blog-post-title')]/a"), "textContent");
         checkigPostSubdomain("\n    "+"TestPost"+"\n  ", By.xpath("//div[@class='blog-block']/div[1]//a"), "textContent");
+    }
+
+    public void addDraft() throws InterruptedException {
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+        click(By.xpath("//div[@class='left-block-item-inner pages active-menu']//a[@href='#!/main-menu']"));
+        click(By.xpath("//a[@href='#!/blog']"));
+        int before = getCountPost();
+        click(By.xpath("//button[@class='pull-right sb5-add-page btn btn-white-plus btn-fab closed waves-effect waves-circle']"));
+        isElementPresent(By.xpath("//input[@value='Draft']"));
+        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
+        int after = getCountPost();
+        Assert.assertEquals(after, before + 1);
+    }
+
+    public int getCountPost() {
+        List<WebElement> listPost = driver.findElements(By.xpath("//div[@class='posts_block']/div"));
+        return listPost.size();
+    }
+
+    public void addScheduled() throws InterruptedException {
+        click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
+        click(By.xpath("//div[@class='left-block-item-inner pages active-menu']//a[@href='#!/main-menu']"));
+        click(By.cssSelector("#Settings"));
+        click(By.xpath("//div[@class='left-block-item-inner settings active-menu']//li[2]/a"));
+
+        By locator =  By.xpath("//select[@name='site_timez']/preceding-sibling::input");
+        click(locator);
+        String  timeZoneId = getIdPage("data-activates", locator);
+        click(By.xpath(String.format("//ul[@id='%s']/li[70]/span", timeZoneId)));
+
+        click(By.xpath("//div[@id='settings_site_general']//button[@class='btn btn-default page-btn-save btn-raised waves-effect']"));
+        click(By.xpath("//div[@id='settings_site_general']//a[@href='#!/settings']"));
+        click(By.xpath("//div[@class='left-block-item-inner settings active-menu']//a[@href='#!/main-menu']"));
+        click(By.xpath("//a[@href='#!/blog']"));
+        click(By.xpath("//button[@class='pull-right sb5-add-page btn btn-white-plus btn-fab closed waves-effect waves-circle']"));
+        type("TestScheduled", By.name("blog_post_title"));
+        String idPost = getIdPage("data-activates", By.xpath("//input[@value='Draft']"));
+        click(By.xpath("//input[@value='Draft']"));
+        click(By.xpath(String.format("//ul[@id='%s']/li[3]", idPost)));
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Calendar calendar = new GregorianCalendar();
+        calendar.add(Calendar.MINUTE, 1);
+        String scheduledTime = format.format(calendar.getTime());
+
+        attachValue(By.cssSelector("#post_time"), scheduledTime);
+        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
+        Thread.sleep(30000);
+        refresh();
+        String status = getId("data-status", By.xpath("//div[@class='posts_block']/div[1]"));
+        Assert.assertEquals(status,"1");
     }
 
     public void deletePost() throws InterruptedException {
