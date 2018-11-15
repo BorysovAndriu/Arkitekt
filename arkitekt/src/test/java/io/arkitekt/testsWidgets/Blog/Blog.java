@@ -90,41 +90,37 @@ public class Blog extends TestBaseWidgets {
         widgets.getBlogHelper().setLayout("blog", "edit", "listing");
     }
 
-
-    @Test(priority = 8)
+    @Test(priority = 18)
     public void deleteTagPost() throws InterruptedException {
         widgets.getBlogHelper().deleteMetaPost("tags");
     }
 
-    @Test(priority = 8)
+    @Test(priority = 19)
     public void deleteAuthorPost() throws InterruptedException {
         widgets.getBlogHelper().deleteMetaPost("authors");
     }
 
-/*
-
-    @Test(priority = 9)
+    @Test(priority = 20)
     public void deleteExcerptPost() throws InterruptedException {
-        widgets.getWidgetsHelper().deleteExcerptPost();
+        widgets.getBlogHelper().deleteExcerptPost();
     }
 
-    @Test(priority = 10)
+    @Test(priority =21)
     public void deleteThumbnailPost() throws InterruptedException {
-        widgets.getWidgetsHelper().deleteThumbnailPost();
+        widgets.getBlogHelper().deleteThumbnailPost();
     }
-*/
 
-    @Test(priority = 30)
+    @Test(priority = 22)
     public void deletePost() throws InterruptedException {
         widgets.getWidgetsHelper().deletePost();
     }
 
-    @Test(priority = 31)
+    @Test(priority = 23)
     public void deleteBlog() throws Exception {
         widgets.getWidgetsHelper().deleteWidgetTAB("blog", "remove");
     }
 
-    @Test(priority = 32)
+    @Test(priority = 24)
     public void deletePage() throws Exception {
         widgets.getPagesHelper().deletePages(1, "HOME");
     }

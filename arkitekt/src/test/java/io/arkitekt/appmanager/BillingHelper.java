@@ -78,17 +78,17 @@ public class BillingHelper extends HelperBase {
         Calendar calendar = new GregorianCalendar();
 
         if (billingCycle == "Monthly") {
-            checking(("\n" + curentDate + "\n"), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
+            checking(("\n\r" + curentDate), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
                     "textContent");
             calendar.add(Calendar.MONTH, 1);
             String afterMonth = format.format(calendar.getTime());
-            checking(("\n" + afterMonth + "\n"), By.xpath("//div[@id='next_payment_date']"), "textContent");
+            checking(("\n\r" + afterMonth), By.xpath("//div[@id='next_payment_date']"), "textContent");
         } else if (billingCycle == "Annual") {
-            checking(("\n" + curentDate + "\n"), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
+            checking(("\n\r" + curentDate), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
                     "textContent");
             calendar.add(Calendar.MONTH, 1);
             String afterMonth = format.format(calendar.getTime());
-            checking(("\n" + afterMonth + "\n"), By.xpath("//div[@id='next_payment_date']"), "textContent");
+            checking(("\n\r" + afterMonth), By.xpath("//div[@id='next_payment_date']"), "textContent");
             //метод зафейлиця якщо запускати тест повторно підписку сайту через деякий час (день два ...).
         }
     }

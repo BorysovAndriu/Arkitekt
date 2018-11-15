@@ -33,11 +33,18 @@ public class HelperBase {
     }
 
     public void clickNavigation() throws InterruptedException {
-        By locatorLink = By.xpath("//following-sibling::div[starts-with(@class,'navbar_links')]//li");
+        /*
+        if(isElementPresent(By.xpath("//button[@type='button']"))) {
+            click(By.xpath("//button[@type='button']"));
+        }
+        */
+
+        By locatorLink = By.xpath("(//nav[starts-with(@class, 'active_navbar')]//ul)[1]/li");
         List<WebElement> links = driver.findElements(locatorLink);
         for (int i = 0; i < links.size(); i++) {
-            WebElement link = driver.findElement(By.xpath("//following-sibling::div[starts-with(@class,'navbar_links')]//li[" + (i + 1) + "]"));
+            WebElement link = driver.findElement(By.xpath("(//nav[starts-with(@class, 'active_navbar')]//ul)[1]/li[" + (i + 1) + "]"));
             link.click();
+
         }
     }
 
