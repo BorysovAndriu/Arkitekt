@@ -19,6 +19,11 @@ public class NavHelperLeftPanel extends HelperBase {
 
     public void gotoThemes(By theme) throws InterruptedException {
         click(theme);
+        //click(By.xpath("//a[@class='simple-btn ripple-btn']"));
+    }
+
+    public void gotoTheme(By theme) throws InterruptedException {
+        click(theme);
         click(By.name("commit"));
     }
 

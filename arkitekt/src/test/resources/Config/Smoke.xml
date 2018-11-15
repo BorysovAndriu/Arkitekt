@@ -1,13 +1,38 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke" verbose="1">
+
     <test name="PreviewSite">
         <classes>
-            <class name="io.arkitekt.testsRegistration.PreviewSite"/>
+            <class name="io.arkitekt.testPreviewSite.PreviewSite"/>
+        </classes>
+    </test>
+
+    <test name="Registration">
+        <classes>
+            <class name="io.arkitekt.testsRegistration.SignUp"/>
+        </classes>
+    </test>
+
+    <test name="Site">
+        <classes>
             <class name="io.arkitekt.testsSite.DeleteSite"/>
             <class name="io.arkitekt.testsSite.SiteCreate"/>
         </classes>
     </test>
+
+    <test name="Login">
+        <classes>
+            <class name="io.arkitekt.testLogin.Login"/>
+        </classes>
+    </test>
+
+    <test name="Billing">
+        <classes>
+            <class name="io.arkitekt.testsBilling.Payment"/>
+        </classes>
+    </test>
+
     <test name="PageSetting">
         <classes>
             <class name="io.arkitekt.testsPages.Page.PageSetting"/>

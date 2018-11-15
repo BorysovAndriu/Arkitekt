@@ -3,16 +3,18 @@ package io.arkitekt.appManager.operationWidgets;
 import io.arkitekt.appManager.HelperBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+=======
+>>>>>>> master
 public class WidgetsHelperBase extends HelperBase {
 
     public WidgetsHelperBase(WebDriver driver) {

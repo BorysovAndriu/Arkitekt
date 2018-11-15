@@ -1,7 +1,7 @@
 package io.arkitekt.appManager.operationWidgets;
 
-import io.arkitekt.appManager.HelperBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -234,6 +234,27 @@ public class BlogHelper extends WidgetsHelperBase {
                 (String.format("//div[@class='sb5-blog-post-%s content_meta_styles ']", metaName)));
         checkingNotPresentSubdomain(By.xpath
                 (String.format("//div[@class='sb5-blog-post-%s content_meta_styles ']", metaName)));
+    }
+
+    public void deleteThumbnailPost() throws InterruptedException {
+        movePostTAB("edit");
+        stopFrame();
+        openSettingTAB();
+        click(By.xpath("//div[@class='delete-uploaded-image pull-right waves-effect']"));
+        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
+        checkingPresentBuilder(By.xpath("//div[@class='thumbnail_image gag banner_selected']"));
+        checkingPresentSubdomain(By.xpath("//a/div[@class='thumbnail_image gag banner_selected']"));
+    }
+
+    public void deleteExcerptPost() throws InterruptedException {
+        movePostTAB("edit");
+        stopFrame();
+        openSettingTAB();
+        driver.findElement(By.id("mce_2_ifr")).
+                sendKeys(Keys.chord(Keys.CONTROL, "a") + Keys.DELETE);
+        stopFrame();
+        checkingPresentBuilder(By.xpath("//div[@class='sb5-blog-post-content excerpt-content hidden ']"));
+        checkingPresentSubdomain(By.xpath("//div[@class='sb5-blog-post-content excerpt-content hidden']"));
     }
 }
 

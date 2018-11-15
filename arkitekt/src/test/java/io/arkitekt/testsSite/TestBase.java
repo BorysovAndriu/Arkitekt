@@ -1,7 +1,6 @@
 package io.arkitekt.testsSite;
 
 import io.arkitekt.appManager.AppManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -14,8 +13,7 @@ public class TestBase {
     public void setUpp() throws Exception {
         app.init();
         app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
-        app.driver.manage().addCookie(app.getLoginHelper().readeCookies());
-        app.getNavHelperLeftPanel().click(By.xpath("//a[@class='btn btn-link']"));
+        app.getNavHelperLeftPanel().login("1111111111");
     }
 
     @AfterClass

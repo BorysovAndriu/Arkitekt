@@ -100,6 +100,7 @@ public class Blog extends TestBaseWidgets {
         widgets.getBlogHelper().deleteMetaPost("authors");
     }
 
+<<<<<<< HEAD
     /*
 
         @Test(priority = 9)
@@ -121,19 +122,29 @@ public class Blog extends TestBaseWidgets {
     @Test(priority = 29)
     public void addDraftPost() throws InterruptedException {
         widgets.getWidgetsHelper().addDraft();
+=======
+    @Test(priority = 20)
+    public void deleteExcerptPost() throws InterruptedException {
+        widgets.getBlogHelper().deleteExcerptPost();
     }
 
-    @Test(priority = 30)
+    @Test(priority =21)
+    public void deleteThumbnailPost() throws InterruptedException {
+        widgets.getBlogHelper().deleteThumbnailPost();
+>>>>>>> master
+    }
+
+    @Test(priority = 22)
     public void deletePost() throws InterruptedException {
         widgets.getWidgetsHelper().deletePost();
     }
 
-    @Test(priority = 31)
+    @Test(priority = 23)
     public void deleteBlog() throws Exception {
         widgets.getWidgetsHelper().deleteWidgetTAB("blog", "remove");
     }
 
-    @Test(priority = 32)
+    @Test(priority = 24)
     public void deletePage() throws Exception {
         widgets.getPagesHelper().deletePages(1, "HOME");
     }

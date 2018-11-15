@@ -9,7 +9,7 @@ public class DeleteSite extends TestBase {
     @Test
     public void testDeleteSite() throws Exception {
         if (!app.getSiteEditHelper().isElementPresent(By.cssSelector("#choose_template"))) {
-            app.getNavHelperLeftPanel().gotoThemes(By.xpath("//img[@alt='Marathon']"));
+            app.getNavHelperLeftPanel().gotoTheme(By.xpath("//img[@alt='Marathon']"));
 
             app.getNavHelperLeftPanel().initListSite(true);
             int oneSiteMustBe = app.getNavHelperLeftPanel().getCountSite();
