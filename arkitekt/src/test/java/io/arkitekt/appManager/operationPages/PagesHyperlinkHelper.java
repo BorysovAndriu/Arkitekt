@@ -180,6 +180,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         for (String winNew : driver.getWindowHandles()) {
             driver.switchTo().window(winNew);
         }
+        Thread.sleep(15000);
         driver.getTitle().equals(Title);
         driver.close();
         driver.switchTo().window(winbefore);

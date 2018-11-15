@@ -9,8 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.testng.Assert.assertTrue;
-
 public class PagesHelperBase extends HelperBase {
 
     public PagesHelperBase(WebDriver driver) {
@@ -175,7 +173,7 @@ public class PagesHelperBase extends HelperBase {
             } else {
                 if (x == 33) {
                     new Actions(driver).
-                            moveToElement(driver.findElement(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))).click().
+                            moveToElement(driver.findElement(By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"))).
                             build().perform();
                     checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/ul[1]//a"));
                 } else checkingText(namePage, By.xpath("//nav[1]/div/div[1]/ul/li[1]/a"));
@@ -267,7 +265,7 @@ public class PagesHelperBase extends HelperBase {
         } else {
             new Actions(driver).moveToElement(driver.findElement(By.xpath("//nav[5]/div/div[1]/ul/li[1]/a"))).click().
                     build().perform();
-            if (!isElementDesplayed(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"))) {
+            if (!isElementPresent(By.xpath("//nav[5]/div/div[1]/ul/li[1]/ul[1]//a"))) {
                 stopFrame();
             }
         }
@@ -281,7 +279,7 @@ public class PagesHelperBase extends HelperBase {
             new Actions(driver).
                     moveToElement(driver.findElement(By.xpath("//*[@id='mobilebar']/ul[1]/li[1]/a"))).
                     build().perform();
-            if (!isElementDesplayed(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
+            if (!isElementPresent(By.xpath("//div[@id='mobilebar']/ul[1]/li[1]/ul[1]//a"))) {
                 stopFrame();
                 hover(By.cssSelector(".hover_preview_button"), By.cssSelector("#toggle_preview"));
             }

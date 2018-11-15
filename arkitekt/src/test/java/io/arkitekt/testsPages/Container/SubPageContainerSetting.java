@@ -7,21 +7,25 @@ public class SubPageContainerSetting extends TestBasePages {
 
     @Test(priority = 1)
     public void addContainer() throws Exception {
-        pages.getPagesHelper().addPages("NEW CONTAINER",2);
+        pages.getPagesHelper().addPages("NEW CONTAINER", 2);
+    }
+
+    @Test(priority = 2)
+    public void addSubpageContainer() throws Exception {
         pages.getPagesHelper().addSubPage(22);
     }
 
-    @Test (priority = 2)
+    @Test (priority = 3)
     public void toggleOff() throws InterruptedException {
         pages.getPagesHelper().toggle( "", 22);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void toggleOn() throws InterruptedException {
         pages.getPagesHelper().toggle("", 22);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void renameContainer() throws InterruptedException {
         pages.getPagesHelper().renamePage( "SUBCONT", 22);
     }
