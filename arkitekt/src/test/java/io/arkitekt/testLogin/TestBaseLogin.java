@@ -14,7 +14,7 @@ public class TestBaseLogin {
     @BeforeClass
     public void setUpp() throws Exception {
         app1.init();
-        app1.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+        app1.getNavHelperLeftPanel().openSite("http://preprod.arkitekt.io/");
     }
 
     @AfterMethod
@@ -22,7 +22,7 @@ public class TestBaseLogin {
         if (!app1.getNavHelperLeftPanel().isElementPresent(By.xpath("//a[text()='Get started']"))) {
             app1.stop();
             app1.init();
-            app1.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+            app1.getNavHelperLeftPanel().openSite("http://preprod.arkitekt.io/");
         }
     }
 

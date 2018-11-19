@@ -12,7 +12,7 @@ public class TestBasePages {
     @BeforeClass
     public void setUpp() throws Exception {
         pages.init();
-        pages.getPagesHelper().openSite("http://staging.arkitekt.io/");
+        pages.getPagesHelper().openSite("http://preprod.arkitekt.io/");
         pages.driver.manage().addCookie(pages.getPagesHelper().readeCookies());
         pages.getPagesHelper().click(By.xpath("//a[@class='btn btn-link']"));
         /**
@@ -29,7 +29,7 @@ public class TestBasePages {
 
     @AfterMethod()
     public void restartTest() throws Exception {
-        if(! pages.getPagesHelper().isElementPresent(By.xpath("//h5[text()='Primary Navigation']"))) {
+        if(! pages.getPagesHelper().isElementDesplayed(By.xpath("//h5[text()='Primary Navigation']"))) {
             tearDown();
             setUpp();
         }

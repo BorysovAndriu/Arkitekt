@@ -71,8 +71,8 @@ public class PagesBackgroundHelper extends PagesHelperBase{
         if (x == 1 || x == 33) {
             String color = (driver.findElement(By.xpath("//div[@class='content-wrapper important_color']")).
                     getCssValue("background-image"));
-            String c = color.substring(0, 38);
-            assertEquals(c, "linear-gradient(rgba(84, 225, 53, 0.3)");
+            //String c = color.substring(0, 38);
+            assertEquals(color, "linear-gradient(rgba(84, 225, 53, 0.3)");
         } else if (x == 22) {
             String color = (driver.findElement(By.xpath("//div[@class='content-wrapper']/section[1]")).
                     getCssValue("background-image"));
