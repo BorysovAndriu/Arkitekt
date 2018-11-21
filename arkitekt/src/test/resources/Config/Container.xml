@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
 <suite name="Container">
 
+    <test name="PageSetting">
+        <classes>
+            <class name="io.arkitekt.testsPages.Page.PageSetting"/>
+        </classes>
+    </test>
+
+    <test name="PageBanner">
+        <classes>
+            <class name="io.arkitekt.testsPages.Page.PageBanner"/>
+        </classes>
+    </test>
+
+    <test name="PageBackground">
+        <classes>
+            <class name="io.arkitekt.testsPages.Page.PageBackground"/>
+        </classes>
+    </test>
     <test name="ContainerSetting">
         <classes>
             <class name="io.arkitekt.testsPages.Container.ContainerSetting"/>
