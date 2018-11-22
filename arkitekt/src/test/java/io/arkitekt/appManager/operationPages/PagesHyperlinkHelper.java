@@ -127,8 +127,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         stopFrame();
         //клік по едіторі на гіперлінку
         click(By.xpath("//div[@id='page_options']//div[@class='mce-container-body mce-flow-layout']//div[1]/div[3]"));
-        //клік по дропдаун для вибору типу гіперлінки
-        click(By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
+        //клік по дропдаун для вибору типу гіперлінки click(By.xpath("//div[@id='edit_text_hyperlink_block']//input[@value='None']"));
     }
 
     public void checkingSubdomainOpenWin(int x, String Title) throws InterruptedException {

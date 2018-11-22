@@ -36,6 +36,7 @@ public class AppManagerWidgets{
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        driver.navigate().to("http://preprod.arkitekt.io/");
 
         builder = new Actions(driver);
 

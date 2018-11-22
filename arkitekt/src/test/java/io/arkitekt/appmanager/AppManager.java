@@ -1,6 +1,5 @@
 package io.arkitekt.appManager;
 
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +15,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class AppManager {
@@ -74,6 +72,7 @@ public class AppManager {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         //driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
+        driver.navigate().to("http://preprod.arkitekt.io/");
 
         //driver.manage().addCookie(getLoginHelper().readeCookies());
 

@@ -4,10 +4,11 @@ import io.arkitekt.testsWidgets.TestBaseWidgets;
 import org.testng.annotations.Test;
 
 public class Blog extends TestBaseWidgets {
-
+/*
     @Test(priority = 1)
     public void addPage() throws Exception {
         widgets.getPagesHelper().addPages("NEW PAGE", 1);
+        widgets.getPagesHelper().openSettingPages(1);
     }
 
     @Test(priority = 2)
@@ -26,7 +27,7 @@ public class Blog extends TestBaseWidgets {
     }
 
     @Test(priority = 5)
-    public void addCategoryBlog() throws InterruptedException {
+    public void filterCategoryBlog() throws InterruptedException {
         widgets.getBlogHelper().addCategoryBlog("blog", "edit");
     }
 
@@ -109,7 +110,7 @@ public class Blog extends TestBaseWidgets {
     public void deleteThumbnailPost() throws InterruptedException {
         widgets.getBlogHelper().deleteThumbnailPost();
     }
-
+*/
     @Test(priority = 22)
     public void addScheduledPost() throws InterruptedException {
         widgets.getWidgetsHelper().addScheduled();
