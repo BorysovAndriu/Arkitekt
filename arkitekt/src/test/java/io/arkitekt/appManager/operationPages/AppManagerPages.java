@@ -1,5 +1,6 @@
 package io.arkitekt.appManager.operationPages;
 
+import io.arkitekt.appManager.AppManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -38,7 +39,6 @@ public class AppManagerPages{
         }
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.navigate().to("http://preprod.arkitekt.io/");
 
 
         builder = new Actions(driver);

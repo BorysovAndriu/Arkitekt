@@ -80,9 +80,9 @@ public class BlogHelper extends WidgetsHelperBase {
         click(By.xpath("//div[@id='post_categories_list']/div"));
         click(By.xpath("//button[@class='btn btn-default btn-flat keywords-save']"));
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
-        click(By.xpath("//div[@id='site_blog']//a"));
         checkigPostBuilder("categories", By.xpath("//span[@class='post-content-category']"), "textContent");
         checkigPostSubdomain("categories", By.xpath("//span[@class='post-content-category']"), "textContent");
+        click(By.xpath("//div[@id='site_blog']//a"));
     }
 
     public void addThumbnailPost() throws InterruptedException {
@@ -213,7 +213,8 @@ public class BlogHelper extends WidgetsHelperBase {
     }
 
     public void deleteMetaPost(String metaName) throws InterruptedException {
-        openEditPostWithoutThumb();
+        movePostTAB("edit");
+        stopFrame();
         openSettingTAB();
         By locator;
         if (metaName == "authors") {
@@ -235,21 +236,9 @@ public class BlogHelper extends WidgetsHelperBase {
                 (String.format("//div[@class='sb5-blog-post-%s content_meta_styles ']", metaName)));
     }
 
-    public void openEditPostWithoutThumb() throws InterruptedException {
-        gotoFrame(By.xpath("//iframe[@class='block-iframe']"));
-        By editPostTab = By.xpath("//span[@class='sb5-edit-el-post']");
-        By editPostTabafterReload = By.xpath("//span[@class='sb5-edit-el-post waves-effect waves-circle']");
-
-        if (isElementPresent(editPostTabafterReload)) {
-            hover(By.xpath("//div[@class='post-thump-wrap']"), editPostTabafterReload);
-        } else if (isElementPresent(editPostTab)) {
-            hover(By.xpath("//div[@class='post-thump-wrap']"), editPostTab);
-        }
-        stopFrame();
-    }
-
     public void deleteThumbnailPost() throws InterruptedException {
-        openEditPostWithoutThumb();
+        movePostTAB("edit");
+        stopFrame();
         openSettingTAB();
         click(By.xpath("//div[@class='delete-uploaded-image pull-right waves-effect']"));
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
@@ -258,12 +247,12 @@ public class BlogHelper extends WidgetsHelperBase {
     }
 
     public void deleteExcerptPost() throws InterruptedException {
-        openEditPostWithoutThumb();
+        movePostTAB("edit");
+        stopFrame();
         openSettingTAB();
         driver.findElement(By.id("mce_2_ifr")).
                 sendKeys(Keys.chord(Keys.CONTROL, "a") + Keys.DELETE);
         stopFrame();
-        click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
         checkingPresentBuilder(By.xpath("//div[@class='sb5-blog-post-content excerpt-content hidden ']"));
         checkingPresentSubdomain(By.xpath("//div[@class='sb5-blog-post-content excerpt-content hidden']"));
     }

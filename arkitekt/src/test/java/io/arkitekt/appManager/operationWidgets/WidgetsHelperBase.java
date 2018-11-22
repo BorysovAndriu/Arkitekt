@@ -50,7 +50,7 @@ public class WidgetsHelperBase extends HelperBase {
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
         checkigPostBuilder("\n    "+"TestPost"+"\n  ",
                 By.xpath("//div[@class='blog-block row']//div[1]//div[starts-with(@class,'sb5-blog-post-title')]/a"), "textContent");
-        checkigPostSubdomain("\n    "+"TestPost"+"\n  ", By.xpath("//div[@class='blog-block']/div[1]/div/a"), "textContent");
+        checkigPostSubdomain("\n    "+"TestPost"+"\n  ", By.xpath("//div[@class='blog-block']/div[1]//a"), "textContent");
     }
 
     public void addDraft() throws InterruptedException {
@@ -62,7 +62,7 @@ public class WidgetsHelperBase extends HelperBase {
         isElementPresent(By.xpath("//input[@value='Draft']"));
         click(By.xpath("//div[@id='edit_post_block']//button[text()='Save']"));
         int after = getCountPost();
-        Assert.assertEquals(before, after - 1);
+        Assert.assertEquals(after, before + 1);
     }
 
     public int getCountPost() {
