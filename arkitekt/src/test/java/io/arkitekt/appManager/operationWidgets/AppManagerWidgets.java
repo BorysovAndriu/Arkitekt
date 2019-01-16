@@ -8,6 +8,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class AppManagerWidgets{
@@ -15,6 +20,7 @@ public class AppManagerWidgets{
     private String browser;
     public WebDriver driver;
     Actions builder;
+    private final Properties properties;
 
     private WidgetsHelperBase widgetsHelper;
     private PagesHelperBase pagesHelper;
@@ -22,10 +28,12 @@ public class AppManagerWidgets{
 
     public AppManagerWidgets(String browser) {
         this.browser = browser;
+        properties = new Properties();
     }
 
-    public void init() {
-
+    public void init() throws IOException {
+        String target = System.getProperty("target", "local");
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
@@ -35,6 +43,7 @@ public class AppManagerWidgets{
         }
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
 
         builder = new Actions(driver);

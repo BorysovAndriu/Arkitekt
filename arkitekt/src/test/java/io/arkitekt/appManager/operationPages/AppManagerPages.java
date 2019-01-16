@@ -8,6 +8,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -28,8 +32,9 @@ public class AppManagerPages{
         properties = new Properties();
     }
 
-    public void init() {
-
+    public void init() throws IOException {
+        String target = System.getProperty("target", "local");
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
@@ -38,8 +43,8 @@ public class AppManagerPages{
             driver = new EdgeDriver();
         }
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
-
 
         builder = new Actions(driver);
 

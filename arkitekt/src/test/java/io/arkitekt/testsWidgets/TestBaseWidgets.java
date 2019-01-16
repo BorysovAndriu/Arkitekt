@@ -17,7 +17,7 @@ public class TestBaseWidgets {
     @BeforeClass
     public void setUpp() throws Exception {
         widgets.init();
-        widgets.getWidgetsHelper().openSite("http://staging.arkitekt.io/");
+        //widgets.getWidgetsHelper().openSite("http://staging.arkitekt.io/");
         widgets.driver.manage().addCookie(widgets.getPagesHelper().readeCookies());
         widgets.getPagesHelper().click(By.xpath("//a[@class='btn btn-link']"));
 

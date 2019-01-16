@@ -8,40 +8,30 @@ repositories{
     mavenCentral()
 }
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "io.qameta.allure:allure-gradle:2.5"
-    }
-}
-
-apply plugin: 'io.qameta.allure'
-
-allure {
-    version = '2.4.1'
-    aspectjweaver = true
-    autoconfigure = true
-
-    resultsGlob = {
-        include '/arkitekt/build/allure-results'
-        exclude '/arkitekt/build'
-    }
-
-    resultsDir = file('/arkitekt/allure-results')
-    reportDir = file('build/allure-results')
-    downloadLink = 'https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.1.1/allure-2.1.1.zip'
+configurations {
+    agent
 }
 
 dependencies {
     compile 'org.testng:testng:6.14.3'
     compile 'org.seleniumhq.selenium:selenium-java:3.11.0'
     compile 'com.thoughtworks.xstream:xstream:1.4.10-java7'
-}
+    compile 'org.subethamail:subethasmtp:3.1.7'
+    implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.6'
+    implementation 'org.apache.httpcomponents:fluent-hc:4.5.6'
+    implementation 'org.jsoup:jsoup:1.11.3'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.1'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.1'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compile 'javax.activation:activation:1.1'
+    compile 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.0'
+    compile group: 'javax.activation', name: 'activation', version: '1.1.1'
 
-test {
-    useTestNG()
+    agent "org.aspectj:aspectjweaver:1.8.10"
+    compile "io.qameta.allure:allure-testng:2.0-BETA10"
 }
 
 task Site(type: Test) {
@@ -61,5 +51,25 @@ task Site(type: Test) {
         systemProperty 'platform', "${platform}"
     }
 }
+
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+test {
+    useTestNG()
+    systemProperty 'allure.results.directory', 'build/allure-results'
+}
+
+task generateAllure(type: Exec) {
+    workingDir "$projectDir/allure/bin"
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'cmd', '/c', 'allure.bat', 'generate', '-c', '../../build/allure-results'
+    } else {
+        commandLine 'bash', '-c', 'allure', 'generate', '-c',"$projectDir/build/allure-results"
+    }
+}
+
+tasks.withType(Test)*.finalizedBy generateAllure
 
 

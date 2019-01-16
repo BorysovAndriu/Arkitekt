@@ -14,7 +14,7 @@ public class TestBasePages {
     @BeforeClass
     public void setUpp() throws Exception {
         pages.init();
-        pages.getPagesHelper().openSite("http://preprod.arkitekt.io/");
+        //pages.getPagesHelper().openSite("http://preprod.arkitekt.io/");
         pages.driver.manage().addCookie(pages.getPagesHelper().readeCookies());
         pages.getPagesHelper().click(By.xpath("//a[@class='btn btn-link']"));
         /**

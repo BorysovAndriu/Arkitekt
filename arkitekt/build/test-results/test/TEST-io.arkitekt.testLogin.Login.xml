@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.arkitekt.testLogin.Login" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-12-09T17:21:20" hostname="AndriuPC" time="58.905">
+  <properties/>
+  <testcase name="testLogin" classname="io.arkitekt.testLogin.Login" time="58.905"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 2.43.600210 (68dcf5eebde37173d4027fa8635e332711d2874a) on port 46976
+Only local connections are allowed.
+Dec 09, 2018 7:21:16 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+</testsuite>

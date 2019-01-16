@@ -41,4 +41,18 @@ public class NavHelperLeftPanel extends HelperBase {
         logo();
     }
 
+    public void openPasswordRecovery() throws InterruptedException {
+        click(By.xpath(" //a[@class='pull-right forgot-password']"));
+        type("user1@localhost.localdomain",By.xpath("//input[@id='send_input']"));
+        click(By.xpath("//input[@id='btn_send']"));
+        click(By.cssSelector("#modal_done"));
+    }
+
+    public void finish(String link, String password) throws InterruptedException {
+        driver.get(link);
+        type(password, By.cssSelector("#user_password"));
+        type(password, By.cssSelector("#user_password_confirmation"));
+        click(By.cssSelector("#new_user"));
+    }
+
 }

@@ -6,6 +6,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class TestBaseLogin {
 
@@ -14,15 +15,19 @@ public class TestBaseLogin {
     @BeforeClass
     public void setUpp() throws Exception {
         app1.init();
-        app1.getNavHelperLeftPanel().openSite("http://preprod.arkitekt.io/");
+    }
+
+    @BeforeMethod
+    public void startMailServer() {
+        app1.mail().start();
     }
 
     @AfterMethod
     public void restart() throws Exception {
+        app1.mail().stop();
         if (!app1.getNavHelperLeftPanel().isElementPresent(By.xpath("//a[text()='Get started']"))) {
             app1.stop();
             app1.init();
-            app1.getNavHelperLeftPanel().openSite("http://preprod.arkitekt.io/");
         }
     }
 
