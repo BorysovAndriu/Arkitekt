@@ -1,6 +1,6 @@
 package io.arkitekt.testLogin;
 
-import io.arkitekt.appManager.AppManager;
+import io.arkitekt.mainWorker.launcherApp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class TestBaseLogin {
 
-    protected static final AppManager app1 = new AppManager(BrowserType.CHROME);
+    protected static final launcherApp app1 = new launcherApp(BrowserType.CHROME);
 
     @BeforeClass
     public void setUpp() throws Exception {

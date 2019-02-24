@@ -1,4 +1,4 @@
-package io.arkitekt.appManager.operationPages;
+package io.arkitekt.mainWorker.operationMainSite;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,19 +13,17 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class AppManagerPages{
+public class MainSite {
 
-    private final Properties properties;
     private String browser;
     public WebDriver driver;
     Actions builder;
+    private final Properties properties;
 
-    private PagesHelperBase pagesHelper;
-    private PagesBannerHelper bannerHelper;
-    private PagesBackgroundHelper backgroundHelper;
-    private PagesHyperlinkHelper hyperlinkHelper;
+    public MainSiteHelper mainSiteHelper;
 
-    public AppManagerPages(String browser) {
+
+    public MainSite(String browser) {
         this.browser = browser;
         properties = new Properties();
     }
@@ -40,30 +38,22 @@ public class AppManagerPages{
         } else if (browser.equals(BrowserType.EDGE)) {
             driver = new EdgeDriver();
         }
+
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
 
+
         builder = new Actions(driver);
 
-        pagesHelper = new PagesHelperBase(driver);
-        bannerHelper = new PagesBannerHelper(driver);
-        backgroundHelper = new PagesBackgroundHelper(driver);
-        hyperlinkHelper = new PagesHyperlinkHelper(driver);
+        mainSiteHelper = new MainSiteHelper(driver);
     }
 
     public void stop() {
         driver.quit();
     }
 
-    public PagesHelperBase getPagesHelper() {
-        return pagesHelper;
+    public MainSiteHelper getMainSiteHelper() {
+        return mainSiteHelper;
     }
-    public PagesBannerHelper getBannerHelper() {
-        return bannerHelper;
-    }
-    public PagesBackgroundHelper getBackgroundHelper() {return backgroundHelper;}
-    public PagesHyperlinkHelper getHyperlinkHelper() {return hyperlinkHelper;}
-
 }
-

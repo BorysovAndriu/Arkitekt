@@ -1,6 +1,6 @@
 package io.arkitekt.testsWidgets;
 
-import io.arkitekt.appManager.operationWidgets.AppManagerWidgets;
+import io.arkitekt.mainWorker.operationWidgets.AppManagerWidgets;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;

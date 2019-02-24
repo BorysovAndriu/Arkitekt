@@ -1,4 +1,4 @@
-package io.arkitekt.appManager.operationPages;
+package io.arkitekt.mainWorker.operationPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

@@ -1,4 +1,4 @@
-package io.arkitekt.appManager;
+package io.arkitekt.mainWorker.operationsMail;
 
 public class MailMessage {
 

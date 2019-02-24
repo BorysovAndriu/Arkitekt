@@ -1,25 +1,8 @@
-package io.arkitekt.appManager.operationAPI;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.fluent.Form;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.client.LaxRedirectStrategy;
-import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import java.io.File;
-import java.io.IOException;
-
+package io.arkitekt.API;
 
 public class HttpSession {
-    MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
+/*РОзробка
+MediaType mediaType = MediaType.parse("multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW");
     RequestBody body = RequestBody.create(mediaType, "------WebKitFormBoundary7MA4YWxkTrZu0gW" +
             "\r\nContent-Disposition: form-data; name=\"_method\"" +
             "\r\n\r\nPUT\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW" +
@@ -46,7 +29,7 @@ public class HttpSession {
         String token = loginGET();
         HttpResponse response = Request.Post("http://preproduction-my.arkitekt.io/users/sign_in").
                 addHeader("Content-Type", "application/x-www-form-urlencoded").
-                bodyForm(Form.form().
+                bodyForm(Normalizer.Form.form().
                         add("user[email]", "api1234@gmail.com").
                         add("user[password]", "1111111111").
                         add("authenticity_token", token).
@@ -63,9 +46,9 @@ public class HttpSession {
                 addFormDataPart("banner_tmp_image_file", file.getName(),
                         RequestBody.create(MediaType.parse("image/jpg"),file)).
                 build();
-        /*HttpResponse response = Request.Post("http://preproduction-my.arkitekt.io/users/sign_in").
+        *//*HttpResponse response = Request.Post("http://preproduction-my.arkitekt.io/users/sign_in").
                 addHeader("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW").
-                bodyFile(Form.form().build();*/
+                bodyFile(Form.form().build();*//*
 
     }
 
@@ -82,5 +65,5 @@ public class HttpSession {
         } finally {
             response.close();
         }
-    }
+    }*/
 }

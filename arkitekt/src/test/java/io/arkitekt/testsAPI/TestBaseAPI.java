@@ -1,6 +1,6 @@
 package io.arkitekt.testsAPI;
 
-import io.arkitekt.appManager.operationAPI.ApiManager;
+import io.arkitekt.API.ApiManager;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.IOException;

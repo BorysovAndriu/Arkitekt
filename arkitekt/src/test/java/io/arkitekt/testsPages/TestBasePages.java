@@ -1,11 +1,9 @@
 package io.arkitekt.testsPages;
 
-import io.arkitekt.appManager.operationPages.AppManagerPages;
+import io.arkitekt.mainWorker.operationPages.AppManagerPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.*;
-
-import java.lang.reflect.Method;
 
 public class TestBasePages {
 

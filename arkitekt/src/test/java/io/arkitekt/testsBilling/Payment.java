@@ -1,6 +1,6 @@
 package io.arkitekt.testsBilling;
 
-import io.arkitekt.appManager.BillingData;
+import io.arkitekt.mainWorker.operationBilling.BillingData;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 

@@ -1,5 +1,6 @@
-package io.arkitekt.appManager.operationMainSite;
+package io.arkitekt.mainWorker.operationWidgets;
 
+import io.arkitekt.mainWorker.operationPages.PagesHelperBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,17 +14,18 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class MainSite {
+public class AppManagerWidgets{
 
     private String browser;
     public WebDriver driver;
     Actions builder;
     private final Properties properties;
 
-    public MainSiteHelper mainSiteHelper;
+    private MainSite widgetsHelper;
+    private PagesHelperBase pagesHelper;
+    private BlogHelper blogHelper;
 
-
-    public MainSite(String browser) {
+    public AppManagerWidgets(String browser) {
         this.browser = browser;
         properties = new Properties();
     }
@@ -45,14 +47,20 @@ public class MainSite {
 
         builder = new Actions(driver);
 
-        mainSiteHelper = new MainSiteHelper(driver);
+        widgetsHelper = new MainSite(driver);
+        pagesHelper = new PagesHelperBase(driver);
+        blogHelper = new BlogHelper(driver);
     }
 
     public void stop() {
         driver.quit();
     }
 
-    public MainSiteHelper getMainSiteHelper() {
-        return mainSiteHelper;
+    public MainSite getWidgetsHelper() {
+        return widgetsHelper;
     }
+    public PagesHelperBase getPagesHelper() {return  pagesHelper;}
+    public BlogHelper getBlogHelper() {return  blogHelper;}
+
 }
+

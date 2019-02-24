@@ -1,6 +1,5 @@
-package io.arkitekt.appManager.operationWidgets;
+package io.arkitekt.mainWorker.operationPages;
 
-import io.arkitekt.appManager.operationPages.PagesHelperBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -14,18 +13,19 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class AppManagerWidgets{
+public class AppManagerPages{
 
+    private final Properties properties;
     private String browser;
     public WebDriver driver;
     Actions builder;
-    private final Properties properties;
 
-    private MainSite widgetsHelper;
     private PagesHelperBase pagesHelper;
-    private BlogHelper blogHelper;
+    private PagesBannerHelper bannerHelper;
+    private PagesBackgroundHelper backgroundHelper;
+    private PagesHyperlinkHelper hyperlinkHelper;
 
-    public AppManagerWidgets(String browser) {
+    public AppManagerPages(String browser) {
         this.browser = browser;
         properties = new Properties();
     }
@@ -40,27 +40,30 @@ public class AppManagerWidgets{
         } else if (browser.equals(BrowserType.EDGE)) {
             driver = new EdgeDriver();
         }
-
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.get(properties.getProperty("web.baseUrl"));
         driver.manage().window().maximize();
 
         builder = new Actions(driver);
 
-        widgetsHelper = new MainSite(driver);
         pagesHelper = new PagesHelperBase(driver);
-        blogHelper = new BlogHelper(driver);
+        bannerHelper = new PagesBannerHelper(driver);
+        backgroundHelper = new PagesBackgroundHelper(driver);
+        hyperlinkHelper = new PagesHyperlinkHelper(driver);
     }
 
     public void stop() {
         driver.quit();
     }
 
-    public MainSite getWidgetsHelper() {
-        return widgetsHelper;
+    public PagesHelperBase getPagesHelper() {
+        return pagesHelper;
     }
-    public PagesHelperBase getPagesHelper() {return  pagesHelper;}
-    public BlogHelper getBlogHelper() {return  blogHelper;}
+    public PagesBannerHelper getBannerHelper() {
+        return bannerHelper;
+    }
+    public PagesBackgroundHelper getBackgroundHelper() {return backgroundHelper;}
+    public PagesHyperlinkHelper getHyperlinkHelper() {return hyperlinkHelper;}
 
 }
 

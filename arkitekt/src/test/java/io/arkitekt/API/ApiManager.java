@@ -1,4 +1,4 @@
-package io.arkitekt.appManager.operationAPI;
+package io.arkitekt.API;
 
 import java.io.File;
 import java.io.FileReader;

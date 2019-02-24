@@ -1,6 +1,6 @@
-package io.arkitekt.appManager.operationMainSite;
+package io.arkitekt.mainWorker.operationMainSite;
 
-import io.arkitekt.appManager.HelperBase;
+import io.arkitekt.mainWorker.operationsMainSelenium.HelperBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

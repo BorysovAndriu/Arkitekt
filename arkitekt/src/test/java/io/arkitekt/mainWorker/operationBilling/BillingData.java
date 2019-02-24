@@ -1,4 +1,4 @@
-package io.arkitekt.appManager;
+package io.arkitekt.mainWorker.operationBilling;
 
 public class BillingData {
     private String name;

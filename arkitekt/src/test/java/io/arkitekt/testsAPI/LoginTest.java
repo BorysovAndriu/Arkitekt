@@ -1,6 +1,5 @@
 package io.arkitekt.testsAPI;
 
-import io.arkitekt.appManager.operationAPI.HttpSession;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

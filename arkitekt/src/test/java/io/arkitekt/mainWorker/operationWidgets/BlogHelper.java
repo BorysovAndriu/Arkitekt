@@ -1,4 +1,4 @@
-package io.arkitekt.appManager.operationWidgets;
+package io.arkitekt.mainWorker.operationWidgets;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
