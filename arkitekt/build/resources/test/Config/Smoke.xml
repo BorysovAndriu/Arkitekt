@@ -8,12 +8,6 @@
         </classes>
     </test>
 
-    <test name="Registration">
-        <classes>
-            <class name="io.arkitekt.testsRegistration.SignUp"/>
-        </classes>
-    </test>
-
     <test name="Site">
         <classes>
             <class name="io.arkitekt.testsSite.DeleteSite"/>

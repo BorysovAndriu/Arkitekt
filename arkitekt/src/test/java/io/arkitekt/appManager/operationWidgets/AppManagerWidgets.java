@@ -9,7 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -22,7 +21,7 @@ public class AppManagerWidgets{
     Actions builder;
     private final Properties properties;
 
-    private WidgetsHelperBase widgetsHelper;
+    private MainSite widgetsHelper;
     private PagesHelperBase pagesHelper;
     private BlogHelper blogHelper;
 
@@ -48,7 +47,7 @@ public class AppManagerWidgets{
 
         builder = new Actions(driver);
 
-        widgetsHelper = new WidgetsHelperBase(driver);
+        widgetsHelper = new MainSite(driver);
         pagesHelper = new PagesHelperBase(driver);
         blogHelper = new BlogHelper(driver);
     }
@@ -57,7 +56,7 @@ public class AppManagerWidgets{
         driver.quit();
     }
 
-    public WidgetsHelperBase getWidgetsHelper() {
+    public MainSite getWidgetsHelper() {
         return widgetsHelper;
     }
     public PagesHelperBase getPagesHelper() {return  pagesHelper;}

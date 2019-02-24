@@ -17,18 +17,18 @@ public class TestBaseWidgets {
     @BeforeClass
     public void setUpp() throws Exception {
         widgets.init();
-        //widgets.getWidgetsHelper().openSite("http://staging.arkitekt.io/");
+        //widgets.getMainSiteHelper().navigationToPage("http://staging.arkitekt.io/");
         widgets.driver.manage().addCookie(widgets.getPagesHelper().readeCookies());
         widgets.getPagesHelper().click(By.xpath("//a[@class='btn btn-link']"));
 
 
         /**
-         widgets.getWidgetsHelper().initListSite(true);
-         int before = widgets.getWidgetsHelper().getCountSite();
+         widgets.getMainSiteHelper().initListSite(true);
+         int before = widgets.getMainSiteHelper().getCountSite();
          if (before == 1) {
-         widgets.getWidgetsHelper().initListSite(false);
+         widgets.getMainSiteHelper().initListSite(false);
          } else {
-         widgets.getWidgetsHelper().openFirstSite();
+         widgets.getMainSiteHelper().openFirstSite();
          }*/
     }
 

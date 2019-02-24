@@ -6,13 +6,34 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class PagesHelperBase extends HelperBase {
 
     public PagesHelperBase(WebDriver driver) {
         super(driver);
+    }
+
+    By mainMenu = By.xpath("//ul[@class='list-unstyled menu']//a");
+
+    public void goTo(String nameMenu) {
+
+        List<WebElement> linksMainMenu = driver.findElements(mainMenu);
+
+        for (int i = 0; i < linksMainMenu.size(); i++) {
+            String urlMenu = linksMainMenu.get(i).getAttribute("hash").substring(3);
+            if(urlMenu.equals(nameMenu)) {
+                linksMainMenu.get(i).click();
+                break;
+            }
+        }
     }
 
     public By findPagesCards(int x) {
@@ -220,7 +241,7 @@ public class PagesHelperBase extends HelperBase {
 
     public void toggle(String namePage, int x) throws InterruptedException {
         openSettingPages(x);
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         click(By.xpath("//input[@name='enable-page']/following-sibling::span"));
         if (isElementPresent(By.xpath("//input[@name='enable-page']/following-sibling::span[@class='toggle untoggled']"))) {
             if (x == 22) {
@@ -389,9 +410,5 @@ public class PagesHelperBase extends HelperBase {
         checking(namePageHome, title, "pathname");
         stopFrame();
     }
-
-    public void allPagesAdminpanel() {
-    }
-
 
 }

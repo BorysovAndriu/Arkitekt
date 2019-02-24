@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SignIN_UP" verbose="1">
+    <test name="Registration">
+        <classes>
+            <class name="io.arkitekt.testsRegistration.SignUp"/>
+        </classes>
+    </test>
+
+    <test name="Login">
+        <classes>
+            <class name="io.arkitekt.testLogin.Login"/>
+        </classes>
+    </test>
+
+    <test name="Site">
+        <classes>
+            <class name="io.arkitekt.testsSite.DeleteSite"/>
+            <class name="io.arkitekt.testsSite.SiteCreate"/>
+        </classes>
+    </test>
+
+</suite>

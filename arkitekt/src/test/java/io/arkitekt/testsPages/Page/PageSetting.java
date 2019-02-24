@@ -54,4 +54,9 @@ public class PageSetting extends TestBasePages {
     public void deletePage() throws Exception {
         pages.getPagesHelper().deletePages(1, "HOME");
     }
+
+    @Test(priority = 9)
+    public void goToMenu() throws InterruptedException {
+        pages.getPagesHelper().goTo("design");
+    }
 }

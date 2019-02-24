@@ -19,11 +19,13 @@ public class PageBanner extends TestBasePages {
     public void addBannerText() throws Exception {
         pages.getBannerHelper().addBannerText(1);
     }
+ /* переробити
 
     @Test(priority = 4)
     public void moveBannerHeight() throws Exception {
         pages.getBannerHelper().moveBannerHeight(1);
     }
+
 
     @Test(priority = 5)
     public void addBannerButtonContent() throws Exception {
@@ -49,6 +51,7 @@ public class PageBanner extends TestBasePages {
     public void deleteBannerText() throws Exception {
         pages.getBannerHelper().deleteBannerText(1);
     }
+    **/
 
     @Test(priority = 10)
     public void deleteBanner() throws Exception {

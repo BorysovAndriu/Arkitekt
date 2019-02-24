@@ -15,7 +15,7 @@ public class TestBasePay {
     @BeforeClass
     public void setUpp() throws Exception {
         app.init();
-        //app.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+        //app.getNavHelperLeftPanel().navigationToPage("http://staging.arkitekt.io/");
         app.driver.manage().addCookie(app.getBillingHelper().readeCookies());
         app.getBillingHelper().click(By.xpath("//a[@class='btn btn-link']"));
 

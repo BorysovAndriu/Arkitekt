@@ -1,13 +1,8 @@
 package io.arkitekt.testLogin;
 
-import io.arkitekt.appManager.MailMessage;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import ru.lanwen.verbalregex.VerbalExpression;
 
-import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.List;
 
 public class Login extends TestBaseLogin {
 

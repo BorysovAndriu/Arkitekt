@@ -1,0 +1,1 @@
+{"uuid":"5806552c-9b9b-4b53-9ef5-f5d2f6ce5736","name":"io.arkitekt.testsMainSite.TestBaseMainSite.restartTest","description":"","start":1550429640149,"stop":1550429640149,"children":["0d913090-dcc3-4d92-b58c-6c71e0dbfbe0"],"afters":[{"name":"restartTest","status":"passed","stage":"finished","description":"","start":1550429640149,"stop":1550429640149}]}

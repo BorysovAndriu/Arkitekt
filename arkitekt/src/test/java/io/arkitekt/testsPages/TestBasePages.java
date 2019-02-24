@@ -14,7 +14,7 @@ public class TestBasePages {
     @BeforeClass
     public void setUpp() throws Exception {
         pages.init();
-        //pages.getPagesHelper().openSite("http://preprod.arkitekt.io/");
+        //pages.getPagesHelper().navigationToPage("http://preprod.arkitekt.io/");
         pages.driver.manage().addCookie(pages.getPagesHelper().readeCookies());
         pages.getPagesHelper().click(By.xpath("//a[@class='btn btn-link']"));
         /**
@@ -26,17 +26,17 @@ public class TestBasePages {
          pages.getPagesHelper().openFirstSite();
          }
          */
-        pages.getPagesHelper().click(By.cssSelector("#pages"));
+        //pages.getPagesHelper().click(By.cssSelector("#pages"));
     }
 
-    @BeforeMethod
-    public void restart(Method method) throws Exception {
-        if (!pages.getPagesHelper().
-                isElementPresent(By.xpath("//div[@class='left-block-item-inner pages active-menu']"))) {
-            tearDown();
-            setUpp();
-        }
-    }
+//    @BeforeMethod
+//    public void restart(Method method) throws Exception {
+//        if (!pages.getPagesHelper().
+//                isElementPresent(By.xpath("//div[@class='left-block-item-inner pages active-menu']"))) {
+//            tearDown();
+//            setUpp();
+//        }
+//    }
 
     @AfterClass
     public void tearDown() {

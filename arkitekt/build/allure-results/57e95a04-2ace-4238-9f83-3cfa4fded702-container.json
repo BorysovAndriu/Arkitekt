@@ -1,0 +1,1 @@
+{"uuid":"57e95a04-2ace-4238-9f83-3cfa4fded702","name":"io.arkitekt.testLogin.TestBaseLogin.startMailServer","description":"","start":1549218917387,"stop":1549218917434,"children":["131d23fc-9f64-4441-b3ab-9ac9890ad398"],"befores":[{"name":"startMailServer","status":"passed","stage":"finished","description":"","start":1549218917387,"stop":1549218917433}]}

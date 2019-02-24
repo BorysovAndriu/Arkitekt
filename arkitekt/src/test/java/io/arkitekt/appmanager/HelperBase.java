@@ -3,6 +3,7 @@ package io.arkitekt.appManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -28,8 +29,17 @@ public class HelperBase {
         click(By.name("commit"));
     }
 
-    public void openSite(String url) {
+    public void navigationToPage(String pathUrl) {
+        String currentUrl = driver.getCurrentUrl();
+        driver.navigate().to(currentUrl + pathUrl);
+    }
+
+    public void openPageUrl(String url) {
         driver.navigate().to(url);
+    }
+
+    public void previousPage() {
+        driver.navigate().back();
     }
 
     public void clickNavigation() throws InterruptedException {
@@ -44,7 +54,6 @@ public class HelperBase {
         for (int i = 0; i < links.size(); i++) {
             WebElement link = driver.findElement(By.xpath("(//nav[starts-with(@class, 'active_navbar')]//ul)[1]/li[" + (i + 1) + "]"));
             link.click();
-
         }
     }
 
@@ -65,8 +74,8 @@ public class HelperBase {
 
     public void typeN(String text, By locator) throws InterruptedException {
         click(locator);
-        Thread.sleep(1000);
-        driver.findElement(locator).clear();
+        //Thread.sleep(1000);
+        //driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(text); //Keys.ENTER, Keys.ENTER,
     }
 
@@ -78,14 +87,19 @@ public class HelperBase {
 
     public void click(By locator) throws InterruptedException {
         visibilityElement(locator);
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         driver.findElement(locator).click();
+    }
+
+    public void click(WebElement element) throws InterruptedException {
+        visibilityElement((By) element);
+        driver.findElement((By) element).click();
     }
 
     public String gotoTab() throws InterruptedException {
         String firstTab = driver.getWindowHandle();
         clickA(By.xpath("//a[@class='simple-btn ripple-btn']"));
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(newTab.get(1));
         return firstTab;
@@ -94,7 +108,7 @@ public class HelperBase {
     public void gotoFrame(By locator) throws InterruptedException {
         visibilityElement(locator);
         driver.switchTo().frame(driver.findElement(locator));
-        Thread.sleep(10000);
+        //Thread.sleep(10000);
     }
 
     public void visibilityElement(By locator) {
@@ -104,7 +118,7 @@ public class HelperBase {
 
     public void stopFrame() throws InterruptedException {
         driver.switchTo().defaultContent();
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
     }
 
     public void closeTab() throws InterruptedException {
@@ -116,13 +130,13 @@ public class HelperBase {
     public void checking(String text, By locator, String value) {
         visibilityElement(locator);
         String existingText = driver.findElement(locator).getAttribute(value);
-        Assert.assertEquals(text, existingText);
+        Assert.assertEquals(existingText, text);
     }
 
     public void checkingText(String text, By locator) throws InterruptedException {
         visibilityElement(locator);
         String existingText = driver.findElement(locator).getText();
-        assertEquals(text, existingText);
+        assertEquals(existingText, text);
     }
 
     public boolean isElementFound(String text, By locator, String value) {
@@ -167,7 +181,7 @@ public class HelperBase {
         visibilityElement(locatorFind);
         new Actions(driver).
                 moveToElement(driver.findElement(locatorFind)).build().perform();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         click(locatorClick);
     }
 
@@ -268,6 +282,24 @@ public class HelperBase {
                 expiresOn(date).build();
 
         return build;
+    }
+
+    public String readToPropertiesFile(String nameFile, String nameParam) throws IOException {
+        Properties properties = new Properties();
+        String target = System.getProperty("target", nameFile);
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        return properties.getProperty(nameParam);
+    }
+
+    public void resizeWindow(int x, int y) {
+        Dimension size = new Dimension(x, y);
+        if(x>0 && y>0) {
+            driver.manage().window().setSize(size);
+        } else driver.manage().window().maximize();
+    }
+
+    public void scrollPageToElement(String param) {
+        ((JavascriptExecutor)driver).executeScript(param);
     }
 }
 

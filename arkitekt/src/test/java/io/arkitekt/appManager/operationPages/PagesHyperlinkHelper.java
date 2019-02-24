@@ -110,7 +110,7 @@ public class PagesHyperlinkHelper extends PagesBannerHelper {
         click(By.xpath(String.format("//ul[@id='%s']/li[1]", hyperlinkID)));
         click(By.xpath("//button[@class='btn btn-default btn-flat save-hyperlink waves-effect waves-button']"));
         click(By.xpath("//*[@href='#!/pages']//following-sibling::div/button"));
-        checkingBannerTextBuilder("Banner", x);
+        checkingBannerTextBuilder("Banner");
         checkingBannerTextSubdomain("Banner", x);
         click(By.xpath("//*[@id='page_options']//a[@href='#!/pages']"));
     }

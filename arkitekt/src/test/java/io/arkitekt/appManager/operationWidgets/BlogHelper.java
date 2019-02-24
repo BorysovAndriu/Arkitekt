@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
-public class BlogHelper extends WidgetsHelperBase {
+public class BlogHelper extends MainSite {
     public BlogHelper(WebDriver driver) {
         super(driver);
     }

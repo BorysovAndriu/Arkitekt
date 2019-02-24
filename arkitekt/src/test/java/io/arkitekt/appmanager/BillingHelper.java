@@ -80,13 +80,13 @@ public class BillingHelper extends HelperBase {
         if (billingCycle == "Monthly") {
             checking(("\n" + curentDate +"\n"), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
                     "textContent");
-            calendar.add(Calendar.MONTH, 1);
+            calendar.add(Calendar.DAY_OF_MONTH, 30);
             String afterMonth = format.format(calendar.getTime());
             checking(("\n" + afterMonth +"\n"), By.xpath("//div[@id='next_payment_date']"), "textContent");
         } else if (billingCycle == "Annual") {
             checking(("\n" + curentDate +"\n"), By.xpath("//div[@class='clear-md']/following-sibling::*[1][@class='pull-right settings-billing-date']"),
                     "textContent");
-            calendar.add(Calendar.MONTH, 1);
+            calendar.add(Calendar.DAY_OF_MONTH, 30);
             String afterMonth = format.format(calendar.getTime());
             checking(("\n" + afterMonth), By.xpath("//div[@id='next_payment_date']"), "textContent");
             //метод зафейлиця якщо запускати тест повторно підписку сайту через деякий час (день два ...).

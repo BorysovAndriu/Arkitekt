@@ -2,8 +2,27 @@ package io.arkitekt.appManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class NavHelperLeftPanel extends HelperBase {
+
+    @FindBy(xpath = "//ul[@class='list-unstyled menu']//a")
+    public List<WebElement> mainMenu;
+
+
+
+    public void goTo(String nameMenu) {
+
+        for (int i = 0; i<mainMenu.size(); i++) {
+            String urlMenu = mainMenu.get(i).getAttribute("hash");
+            if(urlMenu == nameMenu) {
+                mainMenu.get(i).click();
+            } else break;
+        }
+    }
 
     public NavHelperLeftPanel(WebDriver driver) {
         super(driver);

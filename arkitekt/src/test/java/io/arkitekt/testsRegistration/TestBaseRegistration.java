@@ -12,7 +12,7 @@ public class TestBaseRegistration {
     @BeforeClass
     public void setUpp() throws Exception {
         app1.init();
-        //app1.getNavHelperLeftPanel().openSite("http://staging.arkitekt.io/");
+        //app1.getNavHelperLeftPanel().navigationToPage("http://staging.arkitekt.io/");
     }
 
     @AfterClass

@@ -86,6 +86,7 @@ public class Payment extends TestBasePay {
         app.getBillingHelper().checkingBillingCycle("Annual");
     }
 
+    @Test(priority = 6)
     public void checkingActiveSubscribe() throws InterruptedException {
         if (app.getSiteEditHelper().isElementPresent(By.xpath("//div[@class='main-block' and @data-billing-plan='trial']"))
                 || app.getSiteEditHelper().
