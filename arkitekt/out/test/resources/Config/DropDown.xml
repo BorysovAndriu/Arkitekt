@@ -4,25 +4,25 @@
 
     <test name="DropDownSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.DropDown"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.DropDown"/>
         </classes>
     </test>
 
     <test name="SubPageDropDownSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.SubPageDropDownSetting"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.SubPageDropDownSetting"/>
         </classes>
     </test>
 
     <test name="SubPageDropDownBannerBanner">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBanner"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.SubpageDropDownBanner"/>
         </classes>
     </test>
 
     <test name="SubpageDropDownBannerBackground">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBackground"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.SubpageDropDownBackground"/>
         </classes>
     </test>
 

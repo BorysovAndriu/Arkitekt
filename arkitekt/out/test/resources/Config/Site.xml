@@ -3,14 +3,14 @@
 <suite name="Site" verbose="1">
     <test name="Site">
         <classes>
-            <class name="io.arkitekt.testsSite.DeleteSite"/>
-            <class name="io.arkitekt.testsSite.SiteCreate"/>
+            <class name="io.arkitekt.testsAll.testsSite.DeleteSite"/>
+            <class name="io.arkitekt.testsAll.testsSite.SiteCreate"/>
         </classes>
     </test>
 
     <test name="Registration">
         <classes>
-            <class name="io.arkitekt.testsRegistration.SignUp"/>
+            <class name="io.arkitekt.testsAll.testsRegistration.SignUp"/>
         </classes>
     </test>
 </suite>

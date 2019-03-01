@@ -3,7 +3,7 @@
 <suite name="SignIN_UP" verbose="1">
     <test name="Registration">
         <classes>
-            <class name="io.arkitekt.testsBilling.Payment"/>
+            <class name="io.arkitekt.testsAll.testsBilling.Payment"/>
         </classes>
     </test>
 </suite>
