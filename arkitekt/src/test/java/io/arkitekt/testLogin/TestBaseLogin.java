@@ -1,12 +1,9 @@
 package io.arkitekt.testLogin;
 
 import io.arkitekt.mainWorker.launcherApp;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
 public class TestBaseLogin {
 
@@ -17,7 +14,7 @@ public class TestBaseLogin {
         app1.init();
     }
 
-    @BeforeMethod
+   /* @BeforeMethod
     public void startMailServer() {
         app1.mail().start();
     }
@@ -29,7 +26,7 @@ public class TestBaseLogin {
             app1.stop();
             app1.init();
         }
-    }
+    }*/
 
     @AfterClass
     public void tearDown() throws Exception {

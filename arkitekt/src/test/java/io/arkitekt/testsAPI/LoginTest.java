@@ -1,13 +1,9 @@
 package io.arkitekt.testsAPI;
 
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-
 public class LoginTest extends TestBaseAPI{
 
 
-    @Test
+  /*  @Test
     public void Login() throws IOException {
         api.getHttpSession().loginPost();
     }
@@ -16,7 +12,7 @@ public class LoginTest extends TestBaseAPI{
     @Test
     public void UploadFile() throws IOException {
         api.getHttpSession().uploadFileBanner();
-    }
+    }*/
 
 
 }
