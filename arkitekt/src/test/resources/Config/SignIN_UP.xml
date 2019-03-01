@@ -3,20 +3,20 @@
 <suite name="SignIN_UP" verbose="1">
     <test name="Registration">
         <classes>
-            <class name="io.arkitekt.testsRegistration.SignUp"/>
+            <class name="io.arkitekt.testsAll.testsRegistration.SignUp"/>
         </classes>
     </test>
 
     <test name="Login">
         <classes>
-            <class name="io.arkitekt.testLogin.Login"/>
+            <class name="io.arkitekt.testsAll.testLogin.Login"/>
         </classes>
     </test>
 
     <test name="Site">
         <classes>
-            <class name="io.arkitekt.testsSite.DeleteSite"/>
-            <class name="io.arkitekt.testsSite.SiteCreate"/>
+            <class name="io.arkitekt.testsAll.testsSite.DeleteSite"/>
+            <class name="io.arkitekt.testsAll.testsSite.SiteCreate"/>
         </classes>
     </test>
 

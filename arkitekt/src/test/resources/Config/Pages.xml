@@ -4,85 +4,85 @@
 
     <test name="PageSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.Page.PageSetting"/>
+            <class name="io.arkitekt.testsAll.testsPages.Page.PageSetting"/>
         </classes>
     </test>
 
     <test name="PageBanner">
         <classes>
-            <class name="io.arkitekt.testsPages.Page.PageBanner"/>
+            <class name="io.arkitekt.testsAll.testsPages.Page.PageBanner"/>
         </classes>
     </test>
 
     <test name="PageBackground">
         <classes>
-            <class name="io.arkitekt.testsPages.Page.PageBackground"/>
+            <class name="io.arkitekt.testsAll.testsPages.Page.PageBackground"/>
         </classes>
     </test>
 
     <test name="ContainerSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.Container.ContainerSetting"/>
+            <class name="io.arkitekt.testsAll.testsPages.Container.ContainerSetting"/>
         </classes>
     </test>
 
     <test name="ContainerBanner">
         <classes>
-            <class name="io.arkitekt.testsPages.Container.ContainerBanner"/>
+            <class name="io.arkitekt.testsAll.testsPages.Container.ContainerBanner"/>
         </classes>
     </test>
 
     <test name="SubPageContainerSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.Container.SubPageContainerSetting"/>
+            <class name="io.arkitekt.testsAll.testsPages.Container.SubPageContainerSetting"/>
         </classes>
     </test>
 
     <test name="SubpageContainerBanner">
         <classes>
-            <class name="io.arkitekt.testsPages.Container.SubpageContainerBanner"/>
+            <class name="io.arkitekt.testsAll.testsPages.Container.SubpageContainerBanner"/>
         </classes>
     </test>
 
     <test name="SubpageContainerBackground">
         <classes>
-            <class name="io.arkitekt.testsPages.Container.SubpageContainerBackground"/>
+            <class name="io.arkitekt.testsAll.testsPages.Container.SubpageContainerBackground"/>
         </classes>
     </test>
 
     <test name="DropDownSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.DropDown"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.DropDown"/>
         </classes>
     </test>
 
     <test name="SubPageDropDownSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.SubPageDropDownSetting"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.SubPageDropDownSetting"/>
         </classes>
     </test>
 
     <test name="SubPageDropDownBannerBanner">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBanner"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.SubpageDropDownBanner"/>
         </classes>
     </test>
 
     <test name="SubpageDropDownBannerBackground">
         <classes>
-            <class name="io.arkitekt.testsPages.DropDown.SubpageDropDownBackground"/>
+            <class name="io.arkitekt.testsAll.testsPages.DropDown.SubpageDropDownBackground"/>
         </classes>
     </test>
 
     <test name="LinkPageSetting">
         <classes>
-            <class name="io.arkitekt.testsPages.LinkPage.LinkSetting"/>
+            <class name="io.arkitekt.testsAll.testsPages.LinkPage.LinkSetting"/>
         </classes>
     </test>
 
     <test name="LinkPageHyperlink">
         <classes>
-            <class name="io.arkitekt.testsPages.LinkPage.LinkHyperlink"/>
+            <class name="io.arkitekt.testsAll.testsPages.LinkPage.LinkHyperlink"/>
         </classes>
     </test>
 </suite>
