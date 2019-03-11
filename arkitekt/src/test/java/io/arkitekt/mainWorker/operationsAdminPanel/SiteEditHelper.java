@@ -19,7 +19,7 @@ public class SiteEditHelper extends HelperBase {
 
     public void deleteSite() throws InterruptedException {
         click(By.xpath("//div[@class=\"site_delete\"]//button"));
-        if (isElementDesplayed(By.xpath("//p[starts-with(text(),'Are you sure, you want to delete')]"))) {
+        if (isElementDisplayed(By.xpath("//p[starts-with(text(),'Are you sure, you want to delete')]"))) {
             click(By.id("delete"));
         } else {
             click(By.xpath("//div[@id='delete_site_subscribed']//button[text()='Done']"));

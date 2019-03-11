@@ -7,6 +7,6 @@ public class clickButtonCreateMyWebsite extends TestBaseMainSite {
 
     @Test
     public void chooseWebSite() throws InterruptedException {
-        mainSite.getMainSiteHelper().createMyWebsite();
+        app.getMainSiteHelper().createMyWebsite();
     }
 }

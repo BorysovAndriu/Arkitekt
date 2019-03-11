@@ -9,6 +9,6 @@ public class clickMenuOnMainPageMobileVertion extends TestBaseMainSite {
 
     @Test
     public void clickMobileMenu() throws InterruptedException, IOException {
-        mainSite.getMainSiteHelper().clickMenuOnMainPageMobile();
+        app.getMainSiteHelper().clickMenuOnMainPageMobile();
     }
 }

@@ -30,7 +30,7 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class launcherApp {
+public class LauncherApp {
 
     private Properties properties;
     public WebDriver driver;
@@ -57,7 +57,7 @@ public class launcherApp {
     private MailHelper mailHelper;
     private String browser;
 
-    public launcherApp(String browser) {
+    public LauncherApp(String browser) {
         this.browser = browser;
         properties = new Properties();
     }

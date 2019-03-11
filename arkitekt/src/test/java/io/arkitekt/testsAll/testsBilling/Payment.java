@@ -30,7 +30,7 @@ public class Payment extends TestBasePay {
 
     @Test(priority = 2)
     public void changeBillingCycle() throws InterruptedException {
-        if (app.getBillingHelper().isElementDesplayed(By.xpath("//div[@class='user-name']"))) {
+        if (app.getBillingHelper().isElementDisplayed(By.xpath("//div[@class='user-name']"))) {
             checkingActiveSubscribe();
         }
         app.getBillingHelper().changeCycle();
@@ -39,7 +39,7 @@ public class Payment extends TestBasePay {
 
     @Test(priority = 3)
     public void updateBillingCycle() throws InterruptedException {
-        if (app.getBillingHelper().isElementDesplayed(By.xpath("//div[@class='user-name']"))) {
+        if (app.getBillingHelper().isElementDisplayed(By.xpath("//div[@class='user-name']"))) {
             checkingActiveSubscribe();
         }
         app.getBillingHelper().fillCheckout(new BillingData("Boris", "5105-1051-0510-5100",
@@ -50,7 +50,7 @@ public class Payment extends TestBasePay {
 
     @Test(priority = 4)
     public void cancelSubscription() throws InterruptedException {
-        if (app.getBillingHelper().isElementDesplayed(By.xpath("//div[@class='user-name']"))) {
+        if (app.getBillingHelper().isElementDisplayed(By.xpath("//div[@class='user-name']"))) {
             checkingActiveSubscribe();
         }
         app.getBillingHelper().cancelSubscribpition();
@@ -60,7 +60,7 @@ public class Payment extends TestBasePay {
 
     @Test(priority = 5)
     public void repeatSubscription() throws InterruptedException {
-        if (app.getBillingHelper().isElementDesplayed(By.xpath("//div[@class='user-name']"))) {
+        if (app.getBillingHelper().isElementDisplayed(By.xpath("//div[@class='user-name']"))) {
             if (app.getSiteEditHelper().isElementPresent(By.xpath("//div[@class='main-block' and @data-billing-plan='trial']"))
                     || app.getSiteEditHelper().
                     isElementPresent(By.xpath("//div[@class='main-block' and @data-billing-plan='unsubscribed']"))) {

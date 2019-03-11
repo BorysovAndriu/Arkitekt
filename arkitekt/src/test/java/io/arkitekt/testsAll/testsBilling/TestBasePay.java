@@ -1,6 +1,6 @@
 package io.arkitekt.testsAll.testsBilling;
 
-import io.arkitekt.mainWorker.launcherApp;
+import io.arkitekt.mainWorker.LauncherApp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.Assert;
@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 
 public class TestBasePay {
 
-    protected static final launcherApp app = new launcherApp(BrowserType.CHROME);
+    protected static final LauncherApp app = new LauncherApp(BrowserType.CHROME);
 
     @BeforeClass
     public void setUpp() throws Exception {

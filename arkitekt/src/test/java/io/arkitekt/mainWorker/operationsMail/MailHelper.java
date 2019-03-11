@@ -1,15 +1,13 @@
 package io.arkitekt.mainWorker.operationsMail;
 
 
-import io.arkitekt.mainWorker.launcherApp;
-
 public class MailHelper{
     //розробка
-//    private launcherApp app;
+//    private LauncherApp app;
 //    private final Wiser wiser;
 //
 //
-//    public MailHelper(launcherApp app) {
+//    public MailHelper(LauncherApp app) {
 //        this.app = app;
 //        wiser = new Wiser();
 //    }

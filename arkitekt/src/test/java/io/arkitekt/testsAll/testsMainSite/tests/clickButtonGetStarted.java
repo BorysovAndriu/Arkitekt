@@ -7,6 +7,6 @@ public class clickButtonGetStarted extends TestBaseMainSite {
 
     @Test
     public void getStarted() throws InterruptedException {
-        mainSite.getMainSiteHelper().getStarted();
+        app.getMainSiteHelper().getStarted();
     }
 }

@@ -1,13 +1,13 @@
 package io.arkitekt.testsAll.testPreviewSite;
 
-import io.arkitekt.mainWorker.launcherApp;
+import io.arkitekt.mainWorker.LauncherApp;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public class TestBasePreview {
 
-    protected static final launcherApp app1 = new launcherApp(BrowserType.CHROME);
+    protected static final LauncherApp app1 = new LauncherApp(BrowserType.CHROME);
 
     @BeforeClass
     public void setUpp() throws Exception {

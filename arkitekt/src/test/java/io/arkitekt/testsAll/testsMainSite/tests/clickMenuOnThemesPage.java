@@ -9,6 +9,6 @@ public class clickMenuOnThemesPage extends TestBaseMainSite {
 
     @Test
     public void clickMenuOnThemesPage() throws InterruptedException, IOException {
-        mainSite.getMainSiteHelper().clickMenuOnThemesPage();
+        app.getMainSiteHelper().clickMenuOnThemesPage();
     }
 }

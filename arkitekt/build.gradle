@@ -32,6 +32,8 @@ dependencies {
 
     agent "org.aspectj:aspectjweaver:1.8.10"
     compile "io.qameta.allure:allure-testng:2.0-BETA10"
+
+    testCompile 'com.codeborne:selenide:5.1.0'
 }
 
 task Site(type: Test) {

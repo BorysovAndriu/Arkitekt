@@ -4,6 +4,7 @@ import io.arkitekt.mainWorker.operationsLogin.RegistrData;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -20,6 +21,7 @@ public class HelperBase {
 
     public HelperBase(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void login(String password) throws InterruptedException, IOException {
@@ -87,7 +89,7 @@ public class HelperBase {
 
     public void click(By locator) throws InterruptedException {
         visibilityElement(locator);
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         driver.findElement(locator).click();
     }
 
@@ -99,7 +101,7 @@ public class HelperBase {
     public String gotoTab() throws InterruptedException {
         String firstTab = driver.getWindowHandle();
         clickA(By.xpath("//a[@class='simple-btn ripple-btn']"));
-        //Thread.sleep(5000);
+        Thread.sleep(5000);
         ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(newTab.get(1));
         return firstTab;
@@ -139,20 +141,22 @@ public class HelperBase {
         assertEquals(existingText, text);
     }
 
-    public boolean isElementFound(String text, By locator, String value) {
+    public boolean isVisible(By locator) {
         try {
-            checking(text, locator, value);
+            visibilityElement(locator);
             return true;
-        } catch (NoSuchElementException ex) {
+        } catch (ElementNotVisibleException ex) {
             return false;
         }
     }
 
-    public boolean isElementDesplayed(By locator) {
+    public boolean isElementDisplayed(By locator) {
         try {
             driver.findElement(locator).click();
             return true;
         } catch (ElementNotVisibleException ex) {
+            return false;
+        } catch (Exception e) {
             return false;
         }
     }
